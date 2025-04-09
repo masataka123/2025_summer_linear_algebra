@@ -92,7 +92,7 @@
 
 ガイダンス資料と授業資料をまとめました. 
 
-[ガイダンス資料+授業資料](https://masataka123.github.io/2025_summer_linear_algebra/material/0_線形代数_2024.pdf)
+[ガイダンス資料+授業資料](https://masataka123.github.io/2025_summer_linear_algebra/material/0_線形代数_2025.pdf)
 
 以下は訂正リスト・バージョンアップの情報です. 間違いがあればこのファイルを訂正していきます. 
 

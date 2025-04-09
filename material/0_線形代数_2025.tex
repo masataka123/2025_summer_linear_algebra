@@ -1,0 +1,5888 @@
+\documentclass[dvipdfmx,a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[dvipdfmx]{hyperref} %リンクを有効にする
+\usepackage{url} %同上
+\usepackage{amsmath,amssymb} %もちろん
+\usepackage{amsfonts,amsthm,mathtools} %もちろん
+\usepackage{braket,physics} %あると便利なやつ
+\usepackage{bm} %ラプラシアンで使った
+\usepackage[top=30truemm,bottom=30truemm,left=25truemm,right=25truemm]{geometry} %余白設定
+\usepackage{latexsym} %ごくたまに必要になる
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usepackage{otf} %宗教上の理由でmin10が嫌いなので
+
+\usepackage[all]{xy}
+\usepackage{amsthm,amsmath,amssymb,comment}
+\usepackage{amsmath}    % æ°å­¦ç¨
+\usepackage{amssymb}  
+\usepackage{color}
+\usepackage{amscd}
+\usepackage{amsthm}  
+\usepackage{wrapfig}
+\usepackage{comment}	
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{pxrubrica}
+\usepackage{enumitem}
+\usepackage{mathrsfs} 
+\usepackage[colorlinks,linkcolor=red,anchorcolor=blue,citecolor=blue]{hyperref} 
+\setstretch{1.2}
+\usepackage{pgfplots}
+%\usepackage{showkeys}\renewcommand*{\showkeyslabelformat}[1]{\fbox{\parbox{2cm}{ \normalfont\tiny\sffamily#1\vspace{6mm}}}}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}} 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}} 
+\newcommand{\Sin}{\text{Sin}^{-1}} 
+\newcommand{\Cos}{\text{Cos}^{-1}} 
+\newcommand{\Tan}{\text{Tan}^{-1}} 
+\newcommand{\invsin}{\text{Sin}^{-1}} 
+\newcommand{\invcos}{\text{Cos}^{-1}} 
+\newcommand{\invtan}{\text{Tan}^{-1}} 
+\newcommand{\Area}{S}
+\newcommand{\vol}{\text{Vol}}
+\newcommand{\maru}[1]{\raise0.2ex\hbox{\textcircled{\tiny{#1}}}}
+\newcommand{\sgn}{{\rm sgn}}
+%\newcommand{\rank}{{\rm rank}}
+
+
+
+   %当然のようにやる．
+\allowdisplaybreaks[4]
+   %もちろん．
+%\title{第1回. 多変数の連続写像 (岩井雅崇, 2020/10/06)}
+%\author{岩井雅崇}
+%\date{2020/10/06}
+%ここまで今回の記事関係ない
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+
+\theoremstyle{definition}
+\newtheorem{thm}{定理}
+\newtheorem{lem}[thm]{補題}
+\newtheorem{prop}[thm]{命題}
+\newtheorem{cor}[thm]{系}
+\newtheorem{claim}[thm]{主張}
+\newtheorem{dfn}[thm]{定義}
+\newtheorem{rem}[thm]{補足}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{予想}
+\newtheorem{prob}[thm]{問題}
+\newtheorem{rema}[thm]{補足}
+\newtheorem{dfnthm}[thm]{定義・定理}
+\newtheorem{ques}[thm]{問題}
+\newtheorem{suma}[thm]{まとめ}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+  
+  \newcommand{\xb}[1]{\textcolor{blue}{#1}}
+\newcommand{\xr}[1]{\textcolor{red}{#1}}
+\newcommand{\xm}[1]{\textcolor{magenta}{#1}}
+
+\title{2025年度春夏学期  大阪大学 全学共通教育科目 \\ 線形代数学1 工(然56-110)}
+\author{岩井雅崇 (大阪大学)}
+\date{\today \, ver 1.00}
+%ここから本文．
+\begin{document}
+
+\maketitle
+\setcounter{tocdepth}{2}
+\tableofcontents
+\newpage
+
+\begin{center}
+\setcounter{section}{-1}
+\section{ガイダンス}
+\label{sec-guide}
+\end{center}
+
+\begin{center}
+{\Large 2025年度春夏学期 \\ 大阪大学 全学共通教育科目 線形代数学1 工(然56-110)} \\
+木曜2限(10:30-12:00) 共C302
+\end{center}
+\begin{flushright}
+ 岩井雅崇(いわいまさたか) \\
+\end{flushright}
+{\Large \underline{基本的事項}}
+\begin{itemize}
+  \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm} % 項目間
+\item この授業は\underline{対面授業}です. \underline{木曜2限(10:30-12:00)に共C302}にて授業を行います.
+\item 授業ホームページ(\url{https://masataka123.github.io/2025_summer_linear_algebra/})やCLEに「授業の資料・授業の板書」などをアップロードしていきます. 
+QRコードは下にあります.
+\begin{figure}[htbp]
+\begin{center}
+ \includegraphics[height=30mm, width=30mm]{linalg.png}
+\end{center}
+\end{figure}
+\end{itemize}
+
+\vspace{-18pt}
+\hspace{-18pt}{\Large \underline{成績に関して}}
+
+\underline{レポート(後述)・演習(後述)・期末試験(後述)で成績をつける予定です. } 内訳は未定です. 
+単位が欲しい方はレポートを必ず提出し, 演習と期末試験に必ず出席するようにしてください. 
+
+なお通常時の授業(演習や期末試験以外の授業)に出席点はございません. そのため授業への出席は任意となります. 
+
+\medskip
+\hspace{-18pt}{\Large \underline{1-1. レポートに関して}}
+
+次の日時にレポートを配布します. 
+\begin{itemize}
+  \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+\item レポート配布日時: 2025年6月5日
+\item レポート締切: 2025年06月19日 23:59:59 (日本標準時刻, GMT+9)
+\item レポート提出方法: 配布したレポート問題に解答し, CLEにて提出する. 
+\end{itemize}
+
+\hspace{-18pt}{\Large \underline{1-2. 演習に関して}}
+
+次の日時に演習の授業を行います. 
+\begin{itemize}
+  \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+\item 日時: 2025年7月17日 木曜2限(10:30-12:00) 
+\item 場所: 共C302 (授業の部屋)
+\item 演習内容: 配布したプリントの問題を解いて提出してください. なお協力して解いても構いません. 
+\end{itemize}
+\underline{以上は予定であるため, 変更の可能性があります.(レポートに変更する可能性もあります.)} 
+なお代理出席などの行為は不正行為とみなし, 加担した人全員の単位を不可にします.
+欠席する場合はあらかじめmasataka@math.sci.osaka-u.ac.jpにご連絡いただければ幸いです.\footnote{その場合は欠席理由をきちんとお伝えください. ただし正当な理由以外での欠席は認められません. (成績に関わるからです.) よくわからない場合はとりあえずメールしてください.}
+
+なおレポート・演習に関しての注意事項は以下の通りです. 
+
+
+\begin{itemize}
+  \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+\item \underline{レポートと演習で出した問題の何問かを数値や表現など少し変えて出す予定です.} 
+\item レポート・演習において, 答えのみならず, 答えを導出する過程をきちんと記してください. 
+\item レポート・演習は, \underline{協力してといて良く, 本などなんでも参考して良い}.
+\item レポート・演習において, 答えの丸写しが確認できた場合は加担した人全員の単位を不可にします.\footnote{答えの丸写しとは何も考えずに他人のレポートをコピーする行為です. この行為を厳禁とする理由とは"レポートと演習で出した問題の何問か試験に出すと言う状況下で, そのようなことをやっても意味がなく, 時間の無駄だと思う"からです. 協力して解いた場合でも, 全く同じ解答になることは稀で, 表記など微妙にずれます. }
+\end{itemize}
+\vspace{-12pt}
+要はレポート・演習は試験の練習だと思ってください.
+
+\medskip
+\hspace{-18pt}{\Large \underline{2. 期末試験に関して}}
+
+現時点での期末試験の予定は次のとおりです. 
+\begin{itemize}
+  \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+\item 日時: 2025年 7月31日 木曜2限(10:30-12:00)  (予定)
+\item 場所: 共C302 (授業の部屋)
+\item 持ち込みに関して: A4用紙4枚(裏表使用可)まで持ち込み可. 工夫を凝らしてA4用紙4枚に今までの内容をまとめてください.
+\item 試験内容 : 授業・演習でやった範囲
+\end{itemize}
+\underline{以上は予定であるため, 変更の可能性があります.} もし変更する場合はホームページやCLEで連絡します. 
+
+\medskip
+\hspace{-18pt}{\Large \underline{まとめ}}
+\begin{enumerate}
+  \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm} 
+\item \underline{単位が欲しい方はレポート・演習に取り組み, 期末試験で成績が取れるくらいの点を取ること.} 
+\item 単位を認定するくらいの成績が取れていない場合, 容赦無く不可を出します. 
+\item 講義への出席は自由です. 授業資料・授業の板書をホームページやCLEにアップロードするので, 自分の好きな方法で線形代数への理解を進めてください.\footnote{理由としては「私は講義をするのが上手くない」のと「もっと効率的な理解の方法があると思う」からです. この授業内容を理解するのに$1.5 \times 14 = 21$時間も本当にかかるのかと思います. (というか今の私は90分じっと講義を受けるのが好きではないです.  14週に分けて講義を聞くのも好きではないです. ) そして世の中には私よりもわかりやすい授業する人もいるので, そちらで理解を進めても良いと思います. 学び方は自由であり, その方法を制限するのは好きではありません. (つまり出席を取るのも好きではないです).}
+\end{enumerate}
+
+
+\vspace{11pt}
+\hspace{-18pt}{\Large \underline{その他}}
+\begin{itemize}
+  \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm} % 項目間
+  %\item 休講情報は授業ホームページ・KOANでお知らせいたします.
+  \item 休講予定: 2025年4月24日, 2025年5月15日, 2025年6月26日 休講情報は授業ホームページ・KOANでもお知らせいたします.
+   %\footnote{他にも授業が早く終われば休講にします.} 
+    %\item 演習問題と授業内容が噛み合ってない可能性があります.
+  \item 授業の資料・授業の板書, 休講情報, 資料の修正などのため, こまめにホームページ・CLEを確認してください.
+  \item 教科書は「金子晃著 線形代数講義」(サイエンス社)を用いる. なお後期の庵原先生の授業でも同じ教科書を用いる(と聞いています.)
+   \item オフィスアワーを月曜16:00-17:00に設けています. この時間に私の研究室に来ても構いません(ただし来る場合は前もって連絡してくれると助かります.)
+    %\item TAさんは演義の時間中に巡回しているので, 自由にご質問して構いません. 
+    %\item $\pi$-base \url{https://topology.jdabbs.com}も活用してください. 
+ \end{itemize}
+\newpage
+
+\setcounter{section}{-1}
+\section{はじめに}
+%%%%%%%%%%%%%
+\begin{comment}
+\subsection{この授業の目標}
+
+
+
+この授業を通して以下を理解してください
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{itemize}
+      \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+    \item 行列の定義と足し算・引き算・スカラー倍・掛け算.(\ref{subsec-2.2}節)
+    \item 連立一次方程式を基本変形でとく.
+    \item 正則行列と逆行列の基本変形での求め方.
+    \item 線形独立・基底・次元などの概念. (\ref{subsec-2.1}節, )
+    \item 線形写像の図形的意味(\ref{subsec-1.3}節), 線形写像の像と核.
+    \item 行列式とその計算.
+     \end{itemize}
+ \end{tcolorbox}
+ \end{comment}
+ %%%%%%%%%%%%%%%%%%%%
+\subsection{教科書と授業について}
+教科書「金子晃著 線形代数講義」(サイエンス社)を今回初めて用いるが, 何点か個人的に不満な点がある.
+    \begin{itemize}
+      \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+    \item 逆行列, 次元, 標準形(簡約行列?), など数学的な用語の定義がなされていない部分がある.
+    \item 一部理論が飛んでいて, 証明になっていないものがある. %特にガウスの消去法の部分は証明になっていない.
+    \item 連立一次方程式の説明の順番が明らかにおかしい. 具体的な物事と抽象的な物事が混ざっていてわかりづらい.
+    \item 行列式の存在を公理的に書いているのに, その後に具体的に定義している. (公理から出発するのなら, そのまま進んだ方が綺麗である. )
+    \item 意味のない文章が多く, 教科書というより本に近い気がする. その割に内容の難易度は高い.
+     \end{itemize}
+ただ悪いところだけではなく, 数学者が喜ぶような内容(ワイルの公理系や行列環)もあるので, この点は良いと思う.
+
+そのため一部教科書以外の内容を扱ったり, 教科書の内容の順番を入れ替えたりして授業を行う.
+要は授業・資料は教科書を解読したものだと思ってほしい. 
+
+\newpage 
+\section{平面と空間の幾何のまとめ. \cite[1章]{M}}
+
+
+\subsection{デカルト座標とベクトル \cite[1.1節]{M}} 
+この章では高校で習ったベクトルの復習をする. (授業では一部省略する. )
+%%%%%%%%%%%%%%%%%%%&%%%%%%%%%%%
+\begin{comment}
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[幾何学的ベクトル]
+    \begin{itemize}
+    \item  線分に向きをつけたものを{\bf 有向線分}という.
+    \item 有向線分を並行移動で移り合うものを同一視したものを{\bf 幾何学的ベクトル}という.
+    \item 空間の次元に等しい個数の数の列を{\bf 座標}という.
+    \end{itemize}
+    \end{dfn}
+ \end{tcolorbox}
+ 座標はデカルトによって
+ 
+\end{comment}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\subsubsection{数ベクトルと内積}
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[実数・平面・空間・数ベクトル]
+    \text{}
+    \begin{itemize}
+      \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+    \item $\R$で実数の集合を表す. 
+    \item  $\R^2$で平面をあらわし, $\R^2$の元を(平面の)数ベクトルという.
+    \item $\R^3$で空間を表し, $\R^3$の元を(空間の)数ベクトルという. $\R^3$の数ベクトルを以下のように表す. 
+    $$
+    (a_1, a_2, a_3)
+    \quad
+    \text{または}
+    \quad
+     \begin{pmatrix}
+     a_1\\a_2\\a_3
+      \end{pmatrix}
+    $$
+    また$\bm{a} $や$\overset{\to}{a}$のように略記する.
+     \end{itemize}
+         \end{dfn}
+ \end{tcolorbox}
+ 一般の数ベクトルについては\ref{subsec-2.1}節で定義する. 
+ 
+     \begin{rem}
+     数ベクトルに関して, 横に並べるか縦に並べるかは状況によって異なる. 例えば教科書などの本では$(a_1, a_2, a_3)$のように横に並べる. これは紙の印刷量を減らすためのように思う. 資料や板書ではどちらも用いる.
+  %この資料でも断りのない限り数ベクトルを$(a_1, a_2, a_3)$と表す.板書ではどちらも用いる.
+     
+     また資料では$\bm{a}$を用いるが, 板書では$\overset{\to}{a}$を用いる.
+     \end{rem}
+ \begin{rem}
+幾何学的ベクトル\footnote{有向線分( 線分に向きをつけたもの)を並行移動で移り合うものを同一視したもの}は数ベクトルを用いて表すことができる. (これは17世紀のデカルトによる発明らしい.)
+ \end{rem}
+
+ %%%%%%%%%%%%%%%
+\begin{comment}
+
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}
+$\bm{a}= \begin{pmatrix} a_1\\a_2\\a_3\end{pmatrix}$, 
+$ \bm{b}=\begin{pmatrix} b_1\\ b_2\\b_3 \end{pmatrix}$, $\lambda, \mu \in \R$について和, 差, スカラー倍, 線形結合を次で定める. 
+\begin{itemize}
+\item 和 $\bm{a} + \bm{b} = \begin{pmatrix}a_1 + b_1\\a_2 + b_2 \\ a_3 + b_3\end{pmatrix}$.
+\item 差 $\bm{a} - \bm{b} = \begin{pmatrix}a_1 - b_1\\a_2 - b_2\\a_3 - b_3\end{pmatrix}$.
+\item スカラー倍 $\lambda \bm{a} = \begin{pmatrix}\lambda a_1 \\ \lambda a_2\\ \lambda a_3 \end{pmatrix}$.
+\item 線形結合 $\lambda\bm{a} + \mu\bm{b}$. 一般的に$\bm{a}_1, \ldots, \bm{a}_n$と$\lambda_1, \ldots, \lambda_n \in \R$についてその線形結合を$\lambda_1\bm{a}_1 + \cdots + \lambda_n\bm{a}_n $で表す.
+\end{itemize}
+    \end{dfn}
+ \end{tcolorbox}
+ 
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[内積]
+$\bm{a}= \begin{pmatrix} a_1\\a_2\\a_3\end{pmatrix}$, 
+$ \bm{b}=\begin{pmatrix} b_1\\ b_2\\b_3 \end{pmatrix}$についてその内積を
+$$
+(\bm{a}, \bm{b})
+$$
+    \end{dfn}
+ \end{tcolorbox}
+ \end{comment}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ 
+ 
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}
+$\bm{a}= (a_1, a_2, a_3)$, $ \bm{b}=(b_1, b_2, b_3)$, $\lambda, \mu \in \R$について和, 差, スカラー倍, 線形結合を次で定める. 
+\begin{itemize}
+\setlength{\parskip}{0cm} 
+\setlength{\itemsep}{0cm}
+\item 和 $\bm{a} + \bm{b} = (a_1 + b_1, a_2 + b_2, a_3 + b_3)$.
+\item 差 $\bm{a} - \bm{b} =(a_1 - b_1, a_2 - b_2, a_3 - b_3)$.
+\item スカラー倍 $\lambda \bm{a} = (\lambda a_1, \lambda a_2, \lambda a_3)$.
+\item 線形結合 $\lambda\bm{a} + \mu\bm{b}$. 一般的に$\bm{a}_1, \ldots, \bm{a}_n$と$\lambda_1, \ldots, \lambda_n \in \R$についてその線形結合を$\lambda_1\bm{a}_1 + \cdots + \lambda_n\bm{a}_n $で表す.
+\end{itemize}
+    \end{dfn}
+ \end{tcolorbox}
+ 
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[内積]
+$\bm{a}= (a_1, a_2, a_3)$, 
+$ \bm{b}=(b_1, b_2, b_3)$についてその内積を次で定義する. 
+$$
+(\bm{a}, \bm{b})
+=
+a_1 b_1 + a_2 b_2 + a_3 b_3.
+$$
+    \end{dfn}
+ \end{tcolorbox}
+ 
+ 
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{prop}
+$\bm{a} =(a_1, a_2, a_3), \bm{b}=(b_1, b_2, b_3) \in \R^3$とする.
+\begin{enumerate}
+\setlength{\parskip}{0cm} 
+\setlength{\itemsep}{0cm}
+\item (ピタゴラスの定理) $\bm{a}$の長さ$||\bm{a}||$は以下で与えられる.
+$$
+||\bm{a}|| = \sqrt{(\bm{a}, \bm{a})} = \sqrt{a_{1}^{2}+a_{3}^{2}+a_{3}^{2}}
+$$
+\item $\bm{a}, \bm{b}$がなす角を$\theta$とすると
+$$
+\bm{a} \cdot\bm{b} = ||\bm{a} || || \bm{b}|| \cos \theta.
+$$
+特に$||\bm{a} ||  \neq 0$かつ$|| \bm{b}|| \neq0$のとき, 
+$$
+ \cos \theta  = \frac{\bm{a} \cdot\bm{b}}{||\bm{a} || || \bm{b}||}
+$$
+と表される. 
+そして$\bm{a} \cdot\bm{b} =0$は, $\bm{a}, \bm{b}$が直交していることと同値である.
+\item (双線形性) $\bm{a}, \bm{b}, \bm{c} \in \R^3$, $\lambda, \mu \in \R$について次が成り立つ.
+$$
+(\lambda \bm{a} + \mu \bm{b}, \bm{c})
+=\lambda( \bm{a} , \bm{c}) + \mu  (\bm{b}, \bm{c}).
+\quad
+( \bm{a}, \lambda \bm{b}+ \mu\bm{c})
+=
+\lambda ( \bm{a}, \bm{b})
++
+\mu ( \bm{a}, \bm{c})
+$$
+\end{enumerate}
+よってユークリッド空間においては内積によって角度や長さも決まる. 
+    \end{prop}
+    \end{tcolorbox}
+ 
+ 
+ \subsubsection{平面の方程式と直線の方程式}
+ 
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[平面の方程式]
+$a, b, c \in \R$とする. 
+一次式$ax + by + cz=d$を平面の方程式という. 
+\end{dfn}
+ \end{tcolorbox}
+ 
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{prop}[平面の方程式]
+$a, b, c \in \R$とし,平面$S$を$ax + by + cz=d$とする.
+\begin{enumerate}
+\setlength{\parskip}{0cm} 
+\setlength{\itemsep}{0cm}
+\item $(x_0, y_0, z_0)$という平面$S$の点を固定すると, 任意の平面$S$の点$(x,y,z)$について
+$
+\begin{pmatrix} x -x_0\\y-y_0\\z-z_0
+\end{pmatrix}
+$
+と$\begin{pmatrix} a\\b\\c
+\end{pmatrix}
+$
+は直行する. 
+$\begin{pmatrix} a\\b\\c
+\end{pmatrix}
+$を法線ベクトルという.
+\item 原点から平面$S$への距離は
+$
+\frac{|d|}{\sqrt{a^2 + b^2 + c^2}}
+$
+で表される. 
+\end{enumerate}
+\end{prop}
+ \end{tcolorbox}
+ 
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[直線の方程式]
+$\bm{x_0}= (x_0, y_0, z_0)$を通り, 方向$\bm{\lambda}=(l,m,n)$を持つ直線は次のように表される.
+\begin{enumerate}
+\setlength{\parskip}{0cm} 
+\setlength{\itemsep}{0cm}
+\item (パラメーター表示) $t \in \R$を用いて$\bm{x}=\bm{x_0} + t \bm{\lambda}$.
+\item (標準形の方程式) 
+$$
+\frac{x -x_0}{l}
+=
+\frac{y -y_0}{m}
+=
+\frac{z -z_0}{n}
+$$
+\end{enumerate}
+\end{dfn}
+ \end{tcolorbox}
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}\cite[定理1.1, 1.2]{M}
+\begin{enumerate}
+\setlength{\parskip}{0cm} 
+\setlength{\itemsep}{0cm}
+\item 空間の異なる2点$\bm{a}, \bm{b}$を通る直線はただ一つに定まり, パラメーター(変数)$t \in \R$を用いて以下で表される.
+$$
+\bm{x}
+=
+\bm{a} + (\bm{b} - \bm{a})t
+$$
+\item 空間の異なる3点$\bm{a}, \bm{b}, \bm{c}$を通る平面はただ一つに定まり, パラメーター(変数)$s, t \in \R$を用いて以下で表される.
+$$
+\bm{x}
+=
+\bm{a} + (\bm{b} - \bm{a})s +  (\bm{c} - \bm{a})t
+$$
+\end{enumerate}
+\end{thm}
+ \end{tcolorbox}
+ 
+ 
+ \begin{exa}\cite[例題1.1, 1.2, 1.3]{M}
+(1). 空間の点$(1,2,3)$を通り, 方向$(0,2,1)$を持つ直線のパラメーター表示は
+$$
+x=1, y=2+2t, z=3+t
+$$
+となる. まとめて書くなら以下のようになる. 
+$$
+\begin{pmatrix} x\\y\\z\end{pmatrix}
+=
+\begin{pmatrix} 1\\2+2t\\3+t\end{pmatrix}
+$$
+
+(2). 空間の点$(1,0,3)$を通り, 法線ベクトル$(0,2,1)$を持つ平面の方程式は
+$$
+0(x-1) + 2(y-0) + 1 (z-3)=0
+$$
+となるので, $2y + z-3=0$となる.
+
+(3) (1)の直線と(2)の平面の交点は$(1, \frac{2}{5}, \frac{11}{5})$である. 
+ \end{exa}
+ 
+ \begin{rem}[次元]
+ 教科書では次元を"自由に動けるパラメーターの個数"として定義している.
+ 直感的には直線は1次元, 平面は2次元, 空間は3次元である.
+ 
+ しかし私はこの定義は好きではないので, 授業ではさらっと言うだけにとどめる. 
+(理由としては「厳密ではないから」である.)
+後に厳密な定義を与える.  
+ \end{rem}
+
+ 
+ \subsection{$2\times 2$行列の定義と演算}
+ 教科書では行列の定義と演算がされていなかったので, この章で$2\times 2$行列と演算を定義する.\footnote{おそらくこの教科書が作られた時代は行列が高校で教えられていたと思われる. 私も高校で行列を学んだ. } 
+ 
+  \subsubsection{$2\times 2$行列の定義}
+  \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[$2\times 2$行列の定義]
+ $2 \times 2$個の数(実数または複素数)を
+$$
+\begin{pmatrix}
+a_{11}&a_{12}\\
+a_{21}&a_{22}\\
+\end{pmatrix}
+$$
+のように並べたものを\underline{$2 \times 2$行列}, 
+\underline{$(2,2)$型の行列}という.
+行列を上の$A$と書くとき, 以下のように表される.  
+$$
+A = \begin{pmatrix}
+a_{11}&a_{12}\\
+a_{21}&a_{22}\\
+\end{pmatrix}
+$$
+
+\end{dfn}
+\end{tcolorbox}
+同様に $2 \times 1$個の数(実数または複素数)を
+$$
+\begin{pmatrix}
+a_{11}\\
+a_{21}\\
+\end{pmatrix}
+$$
+のように並べたものを$2 \times 1$行列, $2$行$1$列の行列という.
+つまり数ベクトルもまた行列である. 
+一般の行列の定義は\ref{subsec-2.2}で与える. 
+
+
+  \subsubsection{$2\times 2$行列の足し算・引き算}
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[$2\times 2$行列の和と差]
+    \text{}
+ 
+$2 \times 2$行列
+$
+A=\begin{pmatrix}
+a& b \\
+c& d \\
+\end{pmatrix}
+$, 
+$
+B=\begin{pmatrix}
+p& q \\
+r& s\\
+\end{pmatrix}
+$
+とする.
+このとき行列の和$A+B$と差$A-B$を各成分の和や差として定義する.
+つまり以下のように定める. 
+$$
+A+B=
+\begin{pmatrix}
+a +p& b +q\\
+c+r& d+s \\
+\end{pmatrix}
+\quad
+A-B=
+\begin{pmatrix}
+a -p& b -q\\
+c-r & d-s \\
+\end{pmatrix}.
+$$
+  \end{dfn}
+ \end{tcolorbox}
+ 
+
+\begin{exa}
+ $A = 
+ \begin{pmatrix}
+ 3&1 \\
+ 1&4
+ \end{pmatrix}
+ $, 
+ $
+ B = 
+ \begin{pmatrix}
+ 2&7\\
+ 5&8
+ \end{pmatrix}
+ $
+ とする．
+$
+ A+B =
+ \begin{pmatrix}
+ 5&8 \\
+6&12
+ \end{pmatrix}
+ $, 
+ $
+  A-B =
+ \begin{pmatrix}
+ 1&-6 \\
+ -4&-4
+ \end{pmatrix}
+ $である.
+ \end{exa}
+
+
+
+\begin{exa}
+ $A = 
+ \begin{pmatrix}
+ 2&1 \\
+ 1&5
+ \end{pmatrix}
+ $, 
+ $
+ B = 
+ \begin{pmatrix}
+ 1&1\\
+ 4&6
+ \end{pmatrix}
+ $
+ とする．
+$
+ A+B =
+ \begin{pmatrix}
+ 3&2 \\
+5&11
+ \end{pmatrix}
+ $, 
+ $
+  A-B =
+ \begin{pmatrix}
+ 1&0\\
+ -3&-1
+ \end{pmatrix}
+ $である.
+ \end{exa}
+ 
+   \subsubsection{$2\times 2$行列のスカラー倍}
+ 
+  \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[行列のスカラー倍]
+    \text{}
+    
+$2 \times 2$行列
+$
+A=\begin{pmatrix}
+a& b \\
+c& d \\
+\end{pmatrix}
+$, $\lambda$を数とする($\lambda$をスカラーとも呼ぶ).
+$A$の$\lambda$倍$\lambda A$を次で定める.
+$$
+\lambda A=
+\begin{pmatrix}
+\lambda a&\lambda b \\
+\lambda c&\lambda d \\
+\end{pmatrix}.
+$$
+  \end{dfn}
+ \end{tcolorbox}
+
+\begin{exa}
+ $A = 
+ \begin{pmatrix}
+ 1 &-2 \\
+ 2&5
+ \end{pmatrix}
+ $,
+ $
+ \lambda =3
+ $
+ とする．
+ このとき$
+ \lambda A =
+ \begin{pmatrix}
+ 3 &-6 \\
+ 6&15
+ \end{pmatrix}
+ $である.
+ \end{exa}
+ \begin{exa}
+ $A = 
+ \begin{pmatrix}
+ 2&1 \\
+ 4&3
+ \end{pmatrix}
+ $, 
+ $
+ \lambda =-1
+ $
+ とする．
+ このとき$
+ \lambda A =
+ \begin{pmatrix}
+ -2 &-1 \\
+-4&-3
+ \end{pmatrix}
+ $である.
+ \end{exa}
+ 
+ \subsubsection{$2\times 2$行列と$2 \times 1$行列(数ベクトル)の積}
+  \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}
+    
+$2 \times 2$行列
+$
+A=\begin{pmatrix}
+a& b \\
+c& d \\
+\end{pmatrix}
+$と 
+$2 \times 1$行列(数ベクトル)
+$
+\bm{x}=
+\begin{pmatrix}
+x \\
+y\\
+\end{pmatrix}
+$
+との積$A\bm{x}$は$2 \times 1$行列(数ベクトル)で次の式で定義される.
+$$
+A\bm{x}=
+\begin{pmatrix}
+a& b \\
+c& d \\
+\end{pmatrix}
+\begin{pmatrix}
+x \\
+y\\
+\end{pmatrix}
+=
+\begin{pmatrix}
+ax + by \\
+cx + dy\\
+\end{pmatrix}
+$$
+つまり$A\bm{x}$の$(1,1)$成分は$(a,b)$と$(x,y)$の内積で, $A\bm{x}$の$(2,1)$成分は$(x,y)$と$(p,r)$の内積である. 
+  \end{dfn}
+ \end{tcolorbox}
+ 
+  \begin{exa}
+ $ A= 
+ \begin{pmatrix}
+2 & 2\\
+4 & 3
+ \end{pmatrix}
+ $, $
+\bm{x}= 
+ \begin{pmatrix}
+5 \\1
+ \end{pmatrix}
+ $
+ とする. 
+ 行列の積$A\bm{x}$は$2 \times 1$行列で次のものとなる.  
+ $$
+ A\bm{x}= 
+ \begin{pmatrix}
+2 & 2\\
+4 & 3
+ \end{pmatrix}
+  \begin{pmatrix}
+5 \\1
+ \end{pmatrix}
+ =  
+ \begin{pmatrix}
+2\times 5 + 2\times 1 \\
+4 \times 5 + 3 \times 1
+ \end{pmatrix}
+ = 
+  \begin{pmatrix}
+12 \\
+23
+ \end{pmatrix}.
+ $$
+ 
+ \end{exa}
+ 
+  \begin{exa}
+ $ A= 
+ \begin{pmatrix}
+1 & 3\\
+2 & 1
+ \end{pmatrix}
+ $, $
+ \bm{x} = 
+ \begin{pmatrix}
+2 \\5
+ \end{pmatrix}
+ $
+ とする. 
+ 行列の積$A\bm{x}$は$2 \times 1$行列で次のものとなる.  
+ $$
+ A\bm{x} = 
+ \begin{pmatrix}
+1 & 3\\
+2 & 1
+ \end{pmatrix}
+  \begin{pmatrix}
+2 \\5
+ \end{pmatrix}
+ =  
+ \begin{pmatrix}
+1\times 2 + 3\times 5 \\
+2\times 2 + 1 \times 5
+ \end{pmatrix}
+ = 
+  \begin{pmatrix}
+17 \\
+9
+ \end{pmatrix}.
+ $$
+ 
+  \end{exa}
+   \begin{exa}
+ $ A= 
+ \begin{pmatrix}
+1 & 0\\
+0 & 1
+ \end{pmatrix}
+ $, $
+\bm{x}= 
+ \begin{pmatrix}
+2 \\5
+ \end{pmatrix}
+ $
+ とする. 
+ 行列の積$A\bm{x}$は$2 \times 1$行列で次のものとなる.  
+ $$
+ A\bm{x} = 
+ \begin{pmatrix}
+1 & 0\\
+0 & 1
+ \end{pmatrix}
+  \begin{pmatrix}
+2 \\5
+ \end{pmatrix}
+ =  
+ \begin{pmatrix}
+1\times 2 + 0\times 5 \\
+0\times 2 + 1 \times 5
+ \end{pmatrix}
+ = 
+  \begin{pmatrix}
+2 \\5
+ \end{pmatrix}.
+ $$
+ 
+ \end{exa}
+  
+ \subsubsection{$2\times 2$行列との積}
+  \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[行列の積 2]
+    
+$2 \times 2$行列
+$
+A=\begin{pmatrix}
+a& b \\
+c& d \\
+\end{pmatrix}
+$,
+$
+B=
+\begin{pmatrix}
+p& q \\
+r& s\\
+\end{pmatrix}
+$
+との積$AB$は$2 \times 2$行列で次の式で定義される.
+$$
+AB =
+\begin{pmatrix}
+ap + br & aq + bs \\
+cp + dr& cq + ds\\
+\end{pmatrix}
+$$
+つまり以下が成り立つ.
+\begin{itemize}
+	\setlength{\parskip}{0cm}
+  	\setlength{\itemsep}{0pt} 
+\item $AB$の$(1,1)$成分は$(a,b)$と$(p,r)$の内積.
+\item $AB$の$(1,2)$成分は$(a,b)$と$(q,s)$の内積.
+\item $AB$の$(2,1)$成分は$(c,d)$と$(p,r)$の内積.
+\item $AB$の$(2,2)$成分は$(c,d)$と$(q,s)$の内積.
+\end{itemize}
+  \end{dfn}
+ \end{tcolorbox}
+ 
+ 
+ 
+ 
+ \begin{exa}
+ $ A= 
+ \begin{pmatrix}
+2 & 3\\
+1 & 4
+ \end{pmatrix}
+ $, $
+ B = 
+ \begin{pmatrix}
+5 & 2\\
+2 & 3
+ \end{pmatrix}
+ $
+ とする. 
+ 
+ $A$は$2\times 2$行列で$B$は$2 \times 2$行列なので, 行列の積$AB$が$2 \times 2$行列として定義でき, 
+ $$
+ AB = 
+ \begin{pmatrix}
+2 & 3\\
+1 & 4
+ \end{pmatrix}
+ \begin{pmatrix}
+5 & 2\\
+2 & 3
+ \end{pmatrix}
+ =  
+ \begin{pmatrix}
+2 \times 5 + 3 \times 2& 2 \times 2 + 3 \times 3\\
+1 \times 5 + 4 \times 2 & 1\times 2 + 4 \times 3
+ \end{pmatrix}
+ = 
+ \begin{pmatrix}
+16 & 13\\
+13 & 14
+ \end{pmatrix}.
+ $$
+ 
+また$B$は$2\times 2$行列で$A$は$2 \times 2$行列なので, 行列の積$BA$が$2 \times 2$行列として定義でき, 
+ $$
+ BA = 
+  \begin{pmatrix}
+5 & 2\\
+2 & 3
+ \end{pmatrix}
+  \begin{pmatrix}
+2 & 3\\
+1 & 4
+ \end{pmatrix}
+ =
+  \begin{pmatrix}
+12 & 23\\
+7 & 18
+ \end{pmatrix}.
+ $$
+
+よって\underline{行列の積に関して$AB=BA$とは限らない($AB \neq BA$となることがある).}
+ \end{exa}
+ 
+ 
+ 
+  \begin{exa}
+  $ A= 
+ \begin{pmatrix}
+1& 2\\
+2 & 1
+ \end{pmatrix}
+ $, $
+ B = 
+ \begin{pmatrix}
+1 & 0\\
+0 & 1
+ \end{pmatrix}
+ $
+ とする. 
+ 
+ $A$は$2\times 2$行列で$B$は$2 \times 2$行列なので, 行列の積$AB$と$BA$が$2 \times 2$行列として定義でき, 
+ $$
+ AB = 
+ \begin{pmatrix}
+1& 2\\
+2 & 1
+ \end{pmatrix}
+ \begin{pmatrix}
+1 & 0\\
+0 & 1
+ \end{pmatrix}
+ =  
+ \begin{pmatrix}
+1 \times 1 + 2 \times 0& 1 \times 0 + 2 \times 1\\
+2 \times 1 + 1 \times 0 & 2\times 0 + 1 \times 1
+ \end{pmatrix}
+ = 
+ \begin{pmatrix}
+1& 2\\
+2 & 1
+ \end{pmatrix}
+ =A.
+ $$
+  $$
+ BA = 
+ \begin{pmatrix}
+1 & 0\\
+0 & 1
+ \end{pmatrix}
+ \begin{pmatrix}
+1& 2\\
+2 & 1
+ \end{pmatrix}
+ =  
+ \begin{pmatrix}
+1 \times 1 + 0 \times 2& 1 \times 2 + 0 \times 1\\
+0 \times 1 + 1 \times 2 & 0\times 2 + 1 \times 1
+ \end{pmatrix}
+ = 
+ \begin{pmatrix}
+1& 2\\
+2 & 1
+ \end{pmatrix}
+  =A.
+ $$
+ 
+ \end{exa}
+
+
+ 
+\subsection{線形写像としての行列の意味 \cite[1.2節]{M}} 
+\label{subsec-1.3}
+\subsubsection{線形写像の定義と例}
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[平面の線形写像]
+    \label{dfn-plane-linear}
+   $2 \times 2$行列
+$
+A=\begin{pmatrix}
+a_{11}& a_{12}\\
+a_{21}& a_{22} \\
+\end{pmatrix}
+$とする. 
+ $$
+\begin{array}{ccccc}
+f: &\R^2& \rightarrow & \R^2& \\
+&
+\bm{x}
+=
+\begin{pmatrix}
+x \\ y
+ \end{pmatrix} & \longmapsto & 
+  \begin{pmatrix}
+\xi  \\ \eta
+ \end{pmatrix}
+  =
+ \begin{pmatrix}
+a_{11}x + a_{12}y \\ a_{21}x + a_{22}y
+ \end{pmatrix}
+ &
+\end{array}
+$$
+を\underline{平面の線形写像}という.
+
+ベクトルと行列を用いた表現で略記すると次のようになる.
+$$
+\bm{x}
+=
+\begin{pmatrix}
+x \\ y
+ \end{pmatrix} 
+ \longmapsto  
+  \begin{pmatrix}
+\xi  \\ \eta
+ \end{pmatrix}
+  =
+ A \bm{x}
+  = 
+ \begin{pmatrix}
+a_{11} &  a_{12} \\ a_{21} & a_{22} \\
+ \end{pmatrix}
+ \begin{pmatrix}
+x \\ y
+ \end{pmatrix} 
+$$
+\end{dfn}
+ \end{tcolorbox}
+ 
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[アフィン変換]
+
+$$
+\bm{x}
+=
+\begin{pmatrix}
+x \\ y
+ \end{pmatrix} 
+ \longmapsto  
+  \begin{pmatrix}
+\xi  \\ \eta
+ \end{pmatrix}
+  = 
+ \begin{pmatrix}
+a_{11} &  a_{12} \\ a_{21} & a_{22} \\
+ \end{pmatrix}
+ \begin{pmatrix}
+x \\ y
+ \end{pmatrix} 
+ +
+ \begin{pmatrix}
+b_1\\ b_2
+ \end{pmatrix} 
+$$
+を\underline{アフィン変換}という. これは線形写像に並行移動が加わったものである.
+
+$
+A=\begin{pmatrix}
+a_{11}& a_{12}\\
+a_{21}& a_{22} \\
+\end{pmatrix}
+$
+$
+\bm{b}=\begin{pmatrix}
+b_{1}\\
+b_{2} \\
+\end{pmatrix}
+$
+とおく. ベクトルと行列を用いた表現でアフィン変換を略記すると次のようになる.
+$$
+\bm{x}
+=
+\begin{pmatrix}
+x \\ y
+ \end{pmatrix} 
+ \longmapsto  
+  \begin{pmatrix}
+\xi  \\ \eta
+ \end{pmatrix}
+  =
+ A \bm{x}
++ \bm{b}
+  = 
+ \begin{pmatrix}
+a_{11} &  a_{12} \\ a_{21} & a_{22} \\
+ \end{pmatrix}
+ \begin{pmatrix}
+x \\ y
+ \end{pmatrix} 
+ +
+ \begin{pmatrix}
+b_1\\ b_2
+ \end{pmatrix} 
+$$
+\end{dfn}
+ \end{tcolorbox}
+ 
+\begin{rem}[線形の意味]
+平面の変換$f : R^2 \to \R^2$が線形とは$\bm{a}, \bm{b} \in \R^2$と$\lambda, \mu \in \R$について
+$$
+f(\lambda \bm{a} + \mu \bm{b})
+=
+\lambda f(\bm{a}) + \mu f(\bm{b})
+$$
+となること. 
+実は平面の変換で線形なものは定義\ref{dfn-plane-linear}の形でかける.
+またアフィン変換は線形ではない. 
+\end{rem}
+
+以下線形変換の例を見ていく. 
+
+ \begin{exa}[回転]
+   $\theta$を実数とし
+$
+A=\begin{pmatrix}
+\cos \theta & -\sin \theta\\
+\sin \theta& \cos \theta  \\
+\end{pmatrix}
+$ならば
+$
+f\begin{pmatrix}
+x \\ y
+ \end{pmatrix} 
+ =
+ A
+\begin{pmatrix}
+x \\ y
+ \end{pmatrix}  = 
+ \begin{pmatrix}
+(\cos \theta ) x - (\sin \theta )y \\
+(\sin \theta ) x + (\cos \theta )y 
+ \end{pmatrix}
+$
+である. これは反時計回りに$\theta$回転する変換である. \footnote{反時計周りとは左回りのこと. 今の時代の時計はデジタル時計なので, この表現はあと20年で廃れると思う. なのでここは阪大らしく「大阪環状線での内回り(京橋から大阪に最短で行く方向」として定義する. なおこの表現は電車が廃れると意味をなさなくなる. }
+\end{exa}
+
+
+ \begin{exa}[$y$軸に関する鏡映]
+$
+A=\begin{pmatrix}
+-1& 0 \\
+0& 1 \\
+\end{pmatrix}
+$ならば
+$
+f\begin{pmatrix}
+x \\ y
+ \end{pmatrix} 
+ =
+ A
+\begin{pmatrix}
+x \\ y
+ \end{pmatrix}  = 
+ \begin{pmatrix}
+-x \\y
+ \end{pmatrix}
+$
+である. これは$y$軸に関する鏡映と呼ばれる. $y$軸に関して鏡のように反転する変換である. 
+\end{exa}
+
+ \begin{exa}(一般の鏡映 \cite[例題1.4]{M})
+$m \in \R$とする.
+$$A=\begin{pmatrix}
+\frac{1-m^2}{1+m^2}& \frac{2m}{1+m^2} \\
+\frac{2m}{1+m^2}  & -\frac{1-m^2}{1+m^2} \\
+\end{pmatrix}
+$$
+とおく. 
+このとき
+$$
+f\begin{pmatrix}
+x \\ y
+ \end{pmatrix} 
+ =
+ A
+\begin{pmatrix}
+x \\ y
+ \end{pmatrix}  
+ =
+\begin{pmatrix}
+\frac{1-m^2}{1+m^2}& \frac{2m}{1+m^2} \\
+\frac{2m}{1+m^2}  & -\frac{1-m^2}{1+m^2} \\
+\end{pmatrix} 
+\begin{pmatrix}
+x \\ y
+ \end{pmatrix}  
+$$
+は$y=mx$という直線に関する鏡映となる. 
+\end{exa}
+
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}[回転と鏡映の内積不変性]
+    回転や鏡映は内積を変えない. つまり回転や内積で生成される変換
+    ($2 \times 2$行列)$P$と$\bm{x}, \bm{y} \in \R^2$について以下が成り立つ. 
+    $$
+    (P\bm{x}, P\bm{y}) = (\bm{x}, \bm{y})
+    $$
+    \end{thm}
+   
+    \end{tcolorbox}
+
+ \begin{exa}[相似拡大]
+$
+A=\begin{pmatrix}
+\lambda& 0 \\
+0& \mu \\
+\end{pmatrix}
+$ならば
+$
+f\begin{pmatrix}
+x \\ y
+ \end{pmatrix} 
+ =
+ A
+\begin{pmatrix}
+x \\ y
+ \end{pmatrix}  = 
+ \begin{pmatrix}
+\lambda x \\\mu y
+ \end{pmatrix}
+$
+である.
+これは$x$軸を$\lambda$倍して$y$軸を$\mu$倍するものである.
+
+特に$\lambda=\mu$ならば普通の相似拡大である．
+例えば$\lambda=\mu=-1$ならば180度回転となる. 
+\end{exa}
+
+\subsubsection{単位行列と逆行列}
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[単位行列・逆行列]
+    \text{}
+    \begin{enumerate}
+    \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+  \item 単位行列$E$を$
+  \begin{pmatrix}
+ 1& 0  \\
+ 0& 1  \\
+ \end{pmatrix} 
+ $
+ とする. 
+ 平面の線形変換の視点で見れば, 
+ $$
+\begin{pmatrix}
+x \\ y
+ \end{pmatrix} 
+ \longmapsto  
+  \begin{pmatrix}
+\xi  \\ \eta
+ \end{pmatrix}
+  =
+ \begin{pmatrix}
+1 &  0 \\ 0 & 1\\
+ \end{pmatrix}
+ \begin{pmatrix}
+x \\ y
+ \end{pmatrix} 
+=
+ \begin{pmatrix}
+x \\ y
+ \end{pmatrix} 
+  $$
+  であるので, 何も変化しない変換(恒等写像)である.
+  \item 2次正方行列
+ $A=
+  \begin{pmatrix}
+ a& b  \\
+ c& d  \\
+ \end{pmatrix} 
+ $で
+  $ad-bc \neq 0$となるものとする． 
+ $$
+ A^{-1} =   
+ \frac{1}{ad-bc}
+ \begin{pmatrix}
+ d& -b  \\
+ -c& a  \\
+ \end{pmatrix} 
+ $$
+ を$A$の逆行列という.
+  平面の線形変換の視点で見れば, 
+  $$
+  \begin{pmatrix}
+\xi  \\ \eta
+ \end{pmatrix}
+ =
+ A
+   \begin{pmatrix}
+x \\ y
+ \end{pmatrix} 
+  \Leftrightarrow
+     \begin{pmatrix}
+x \\ y
+ \end{pmatrix} 
+  =
+  A^{-1}
+    \begin{pmatrix}
+\xi  \\ \eta
+ \end{pmatrix}
+  $$
+  となる. つまり$A^{-1}$は$f(\bm{x})=A\bm{x}$の逆変換を与える.
+    \end{enumerate}
+    \end{dfn}
+ \end{tcolorbox}
+ 
+
+\subsubsection{線形写像の像と次元}
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{lem}[線形写像の像]
+     $A=
+  \begin{pmatrix}
+ a& b  \\
+ c& d  \\
+ \end{pmatrix} 
+ $とし, 線形写像$f : \R^2 \to \R^2$を$f(\bm{x})=A\bm{x}$とする.
+
+$f$の像($f(\bm{x})$とかけるものの集合)は, $A$の列ベクトル
+$
+  \begin{pmatrix}
+ a  \\
+ c  \\
+ \end{pmatrix} 
+$と
+$  \begin{pmatrix}
+b \\
+ d  \\
+ \end{pmatrix} 
+ $
+ で張られる. つまり
+ $f$の像は
+ $$
+ \begin{pmatrix}
+ a  \\
+ c  \\
+ \end{pmatrix} 
+ x
+ +
+   \begin{pmatrix}
+b \\
+ d  \\
+ \end{pmatrix} 
+ y
+ $$
+ の形でかける. 
+  \end{lem}
+ \end{tcolorbox}
+ 
+ 平面の線形変換$f(\bm{x})=A\bm{x}$について次が言える
+ \begin{enumerate}
+     \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+ \item 像の次元が2 $  \Leftrightarrow$ 二つの列ベクトルは異なる方向を向く(線形独立)
+ \item 像の次元が1 $  \Leftrightarrow$ 二つの列ベクトルは同じ方向を向く.
+ \item 像の次元が0 $  \Leftrightarrow$ 二つの列ベクトルはゼロベクトル.
+ \end{enumerate}
+
+
+\subsubsection{線形写像の合成と行列の積}
+ 
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}
+$A,B$を$2 \times 2$行列とし, $\R^2$の一次変換
+を    
+  $$
+f\begin{pmatrix}
+x \\ y
+ \end{pmatrix} 
+ =
+ A
+\begin{pmatrix}
+x \\ y
+ \end{pmatrix}  
+\quad
+g\begin{pmatrix}
+x \\ y
+ \end{pmatrix} 
+ =
+ B
+\begin{pmatrix}
+x \\ y
+ \end{pmatrix}  
+$$
+ とする. 
+ このとき, 
+ $$
+ g\circ f 
+ \begin{pmatrix}
+x \\ y
+ \end{pmatrix}  
+ := g \left( 
+ f\begin{pmatrix}
+x \\ y
+ \end{pmatrix} 
+ \right)
+ =BA \begin{pmatrix}
+x \\ y
+ \end{pmatrix} 
+ $$
+ となる. 
+つまり線形変換の合成は行列の積で与えられる. 
+\end{thm}
+ \end{tcolorbox}
+ 
+ 
+ \begin{exa}
+$
+A=\begin{pmatrix}
+\cos \theta & -\sin \theta\\
+\sin \theta& \cos \theta  \\
+\end{pmatrix}
+$, 
+$
+B=
+\begin{pmatrix}
+\cos \varphi & -\sin \varphi \\
+\sin \varphi & \cos \varphi  \\
+\end{pmatrix}
+$
+とし, 
+$
+f\begin{pmatrix}
+x \\ y
+ \end{pmatrix} 
+ =
+ A
+\begin{pmatrix}
+x \\ y
+ \end{pmatrix},
+g\begin{pmatrix}
+x \\ y
+ \end{pmatrix} 
+ =
+ B
+\begin{pmatrix}
+x \\ y
+ \end{pmatrix}  
+$
+とおくと, $g \circ f$は定理から
+ $$
+ g\circ f 
+ \begin{pmatrix}
+x \\ y
+ \end{pmatrix}  
+ = g \left( 
+ f\begin{pmatrix}
+x \\ y
+ \end{pmatrix} 
+ \right)
+ =BA\begin{pmatrix}
+x \\ y
+ \end{pmatrix} 
+ =
+ \begin{pmatrix}
+\cos \varphi \cos \theta  - \sin \varphi \sin \theta 
+& -\cos \varphi \sin \theta - \sin \varphi \cos \theta \\
+\sin \varphi \cos \theta + \cos \varphi \sin \theta
+& - \sin \varphi \sin \theta  + \cos \varphi \cos \theta \\
+\end{pmatrix}
+  \begin{pmatrix}
+x \\ y
+ \end{pmatrix} 
+ $$
+一方$g \circ f$は反時計回りに$\varphi + \theta$回転させる回転なので,
+$$
+ g\circ f 
+ \begin{pmatrix}
+x \\ y
+ \end{pmatrix}  
+ =
+ \begin{pmatrix}
+\cos (\varphi  + \theta)& -\sin (\varphi  + \theta)\\
+\sin (\varphi  + \theta)& \cos (\varphi  + \theta)  \\
+\end{pmatrix}
+   \begin{pmatrix}
+x \\ y
+ \end{pmatrix} 
+$$
+がなりたつ. これは加法定理の別証明を与えている. 
+\end{exa}
+
+\subsection{行列式と外積 \cite[1.3節]{M}}
+\label{subsec-det-wedge}
+\subsubsection{行列式}
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[行列式(determinant)]
+2次正方行列
+ $A=
+  \begin{pmatrix}
+ a& b  \\
+ c& d  \\
+ \end{pmatrix} 
+ $
+ について
+  $ad-bc$を\underline{$A$の行列式}といい$\det(A)$と書いたり
+  $  \begin{vmatrix}
+ a& b  \\
+ c& d  \\
+ \end{vmatrix} $と書いたりする. 
+    \end{dfn}
+
+ \end{tcolorbox}
+ 
+ 幾何学的には
+ $\bm{x}=
+  \begin{pmatrix}
+ a  \\
+ c  \\
+ \end{pmatrix} 
+$と
+$ \bm{y}=\begin{pmatrix}
+b \\
+ d  \\
+ \end{pmatrix} 
+ $
+ とするとき, 行列式$  \begin{vmatrix}
+ a& b  \\
+ c& d  \\
+ \end{vmatrix} $
+ は
+ \begin{itemize}
+ 	\setlength{\parskip}{0cm}
+  	\setlength{\itemsep}{0pt}
+\item 絶対値は$\bm{x}, \bm{y}$の貼る平行四辺形の面積
+\item 符号は$\bm{x}$から$\bm{y}$へ回る向きが正の向き(反時計周り)なら$+$, 負の向き(時計周り)なら$-$ 
+ \end{itemize}
+ として定義する.
+
+
+ \begin{exa}
+$
+\begin{vmatrix}
+3&5\\
+6&1 \\
+\end{vmatrix}
+=-27
+\text{, } 
+\begin{vmatrix}
+6&1 \\
+3&5\\
+\end{vmatrix}
+=
+27.
+ $
+ \end{exa}
+ 
+ \subsubsection{外積}
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}
+$\bm{a}=(a_1, a_2, a_3), \bm{b}=(b_1, b_2, b_3)\in \R^3$について, 外積$\bm{a} \times \bm{b}$を次で定める. 
+\begin{align*}
+\bm{a} \times \bm{b} 
+&=\left(\begin{vmatrix}
+a_2&a_3\\
+b_2&b_3 \\
+\end{vmatrix},
+\begin{vmatrix}
+a_3&a_1\\
+b_3&b_1 \\
+\end{vmatrix},
+\begin{vmatrix}
+a_1&a_2\\
+b_1&b_2 \\
+\end{vmatrix}
+\right)
+\\
+&=
+( a_2b_3 - a_3b_2, a_3b_1-a_1b_3, a_1b_2-a_2b_1)  
+\end{align*}
+\end{dfn}
+ \end{tcolorbox}
+ 幾何学的には
+$\bm{a}, \bm{b}$
+について外積$\bm{a} \times \bm{b}  \in \R^3$で
+ \begin{itemize}
+ 	\setlength{\parskip}{0cm}
+  	\setlength{\itemsep}{0pt}
+\item 長さは$\bm{x}, \bm{y}$の貼る平行四辺形の面積
+\item 向きは$\bm{x}$から$\bm{y}$に右ネジを回した時に進む向き\footnote{右ネジの部分が"反時計回り"と同じく現代で通じるのか謎である. 現代的に言うと"YouTubeにおける高評価の手の形"ということである. }
+ \end{itemize}
+ として定義する. 
+ 
+ \begin{exa}
+ $\bm{a}=(3, 5, 0), \bm{b}=(6, 1, 0)$とすると
+ $$
+ \bm{a} \times \bm{b}
+ =\left(\begin{vmatrix}
+5&0\\
+1&0 \\
+\end{vmatrix},
+\begin{vmatrix}
+0&3\\
+0&6 \\
+\end{vmatrix},
+\begin{vmatrix}
+3&5\\
+6&1 \\
+\end{vmatrix}
+\right)
+= (0,0,-27)
+\text{, } 
+\bm{b} \times  \bm{a} 
+ =\left(\begin{vmatrix}
+1&0 \\
+5&0\\
+\end{vmatrix},
+\begin{vmatrix}
+0&6 \\
+0&3\\
+\end{vmatrix},
+\begin{vmatrix}
+6&1 \\
+3&5\\
+\end{vmatrix}
+\right)
+= (0,0,27).
+ $$
+ \end{exa}
+
+
+\subsection{複素数とベクトル\cite[1.4節]{M}}
+これは微分積分学でやると思われるので省略する. 
+
+\newpage
+\section{行列と連立一次方程式 \cite[2章]{M}}
+\subsection{数ベクトルと演算 \cite[2.1節]{M}}
+\label{subsec-2.1}
+
+\subsubsection{数ベクトル空間}
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}
+    \label{dfn-ei}
+$\R$を実数の集合とし, $n \geqq1$なる自然数について
+$$
+(x_1, \ldots, x_n) 
+$$
+　を\underline{$n$次元の数ベクトル}といい, その集合を
+$$
+\R^n  = \{ (x_1, \ldots, x_n) | x_1, \ldots, x_n \in \R\}
+$$
+とかく. また原点に対応するもの$\bm{0}=(0, \ldots, 0)$を\underline{ゼロベクトル}という.
+
+\underline{基本単位ベクトル}$\bm{e}_i$を, $i$番目のみ1で他は0である数ベクトル, つまり
+$$
+\bm{e}_i = (0, \ldots, \underbrace{1}_{i}, \ldots, 0)
+$$
+で定める.ここで$i=1,2,\ldots, n$である.
+    \end{dfn}
+ \end{tcolorbox}
+ 例えば$\R^2$は平面をあらわし, $\R^3$は空間を表す.
+また1章と同様, 数ベクトルに関して, 横に並べるか縦に並べるかは状況によって異なる. 板書ではどちらも用いる.
+     
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}
+$\bm{a}=(a_1, \ldots, a_n), \bm{b}=(b_1, \ldots, b_n)\in \R^n$, $\alpha, \beta \in \R$について和, 差, スカラー倍,
+\begin{itemize}
+ 	\setlength{\parskip}{0cm}
+  	\setlength{\itemsep}{0pt}
+\item 和 $\bm{a} + \bm{b} = (a_1 + b_1, \ldots, a_n + b_n)$.
+\item 差 $\bm{a} - \bm{b} = (a_1 - b_1, \ldots, a_n - b_n)$.
+\item スカラー倍 $\alpha \bm{a} = (\alpha a_1, \ldots, \alpha a_n)$.
+\item 線形結合 $\alpha \bm{a} + \beta \bm{b}$とする． 一般的に$\bm{a}_1, \ldots, \bm{a}_n$と$\alpha _1, \ldots, \alpha _n \in \R$についてその線形結合を$\alpha _1\bm{a}_1 + \cdots + \alpha _n\bm{a}_n $で表す.
+\end{itemize}
+    \end{dfn}
+ \end{tcolorbox}
+
+\begin{rem}
+$\bm{x} \in \R^n$は$n$個の基本単位ベクトルの線形結合で表される. 具体的には次であらわされる
+$$
+\bm{x}
+=
+\begin{pmatrix}
+x_1\\x_2\\\vdots\\x_n
+\end{pmatrix}
+=
+x_1 \bm{e}_1 + x_2 \bm{e}_2 + \cdots + x_n\bm{e}_n 
+=
+x_1 \begin{pmatrix}
+1\\0\\\vdots\\0
+\end{pmatrix} + x_2 \begin{pmatrix}
+0\\1\\\vdots\\0
+\end{pmatrix} + \cdots + x_n\begin{pmatrix}
+0\\0\\\vdots\\1
+\end{pmatrix} 
+$$
+\end{rem}
+
+\subsubsection{線形独立・線形従属}
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}(線形独立・線形従属\cite[定義2.1]{M})
+    \label{dfn-linear-independent}
+    $\bm{a}_1, \ldots, \bm{a}_n \in \R^n$とする. 
+    \begin{itemize}
+	\setlength{\parskip}{0cm}
+  	\setlength{\itemsep}{0pt} 
+\item $\bm{a}_1, \ldots, \bm{a}_n $が\underline{線形独立}であるとは, 
+「$c_1\bm{a}_1 + \cdots+ c_n\bm{a}_n = \bm{0}$ならば$c_1=\cdots =c_n =0$となる」こと.
+\item $\bm{a}_1, \ldots, \bm{a}_n $が\underline{線形従属}であるとは, 
+線形独立でないこと. つまり$c_1=\cdots =c_n =0$以外の$c_1, \ldots, c_n \in \R$があって, $c_1\bm{a}_1 + \cdots + c_n\bm{a}_n = \bm{0}$となること.
+\end{itemize}
+    \end{dfn}
+ \end{tcolorbox}
+ 定義から, 線形独立か線形従属のどちらか一方が成り立つ. 
+ 
+ \begin{exa}
+$\R^2$について
+$$
+\bm{a}_1=(1,2), \quad
+\bm{a}_2=(2,2), \quad
+\bm{a}_3=(-1,-1), \quad
+\bm{a}_4=(0,0) \quad
+$$
+とする.すると次がわかる.
+\begin{itemize}
+   \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+  \item $\bm{a}_1$は線系独立.
+  \item $\bm{a}_2$は線系独立.
+  \item $\bm{a}_4$は線形従属.
+  \item $\bm{a}_1, \bm{a}_2$は線型独立.
+  \item $\bm{a}_1, \bm{a}_3$は線型独立.
+    \item $\bm{a}_2, \bm{a}_3$は線形従属.
+  \item $\bm{a}_1, \bm{a}_4$は線形従属.
+   \end{itemize}
+   
+ つまり$\bm{a}, \bm{b} \in \R^2$においては次が言える.
+\begin{itemize}
+   \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+ \item $\bm{a}$と$\bm{b}$が線形独立 $  \Leftrightarrow$ $\bm{a}$と$\bm{b}$は異なる方向を向く.
+ \item $\bm{a}$と$\bm{b}$が線形従属 $  \Leftrightarrow$ $\bm{a}$と$\bm{b}$は同じ方向を向く.\footnote{ただしゼロベクトルはどの方向も向いていると解釈する.}
+ \end{itemize}
+\end{exa}
+
+
+\begin{exa}
+$\R^3$について
+$$
+\bm{a}_1=(1,0,0), \quad
+\bm{a}_2=(0,1,0), \quad
+\bm{a}_3=(0,0,1), \quad
+\bm{a}_4=(1,1,0), \quad
+\bm{a}_5=(1,1,1) \quad
+$$
+とする.すると次がわかる.
+\begin{itemize}
+   \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+  \item $\bm{a}_1, \bm{a}_2, \bm{a}_{3}$は線型独立.
+  \item $\bm{a}_1, \bm{a}_2, \bm{a}_{4}$は線型従属.
+  \item $\bm{a}_1, \bm{a}_2, \bm{a}_{5}$は線型独立.
+   \end{itemize}
+
+
+ $\bm{a}, \bm{b}, \bm{c} \in \R^3$においては次が言える.
+ \begin{itemize}
+   \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+ \item $\bm{a}, \bm{b}, \bm{c}$が線形独立 $  \Leftrightarrow$ $\bm{a}, \bm{b}, \bm{c}$を含む, 原点を通る平面は存在しない
+ \item $\bm{a}, \bm{b}, \bm{c}$が線形従属 $  \Leftrightarrow$ $\bm{a}, \bm{b}, \bm{c}$を含む, 原点を通る平面が存在する. 
+ \end{itemize}
+ 
+ \end{exa}
+
+\subsection{一般の行列 \cite[2.2節]{M}}
+\label{subsec-2.2}
+\subsubsection{行列の定義と線形写像}
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[行列]
+    
+\begin{itemize}
+	\setlength{\parskip}{0cm}
+  	\setlength{\itemsep}{0pt} 
+\item $m \times n$個の数(実数または複素数) $a_{ij}$ ($i = 1, \ldots, m$, $j = 1, \ldots, n$)を
+$$
+\begin{pmatrix}
+a_{11}& a_{12} & \cdots &a_{1n} \\
+a_{21}& a_{22} & \cdots &a_{2n} \\
+\vdots& \vdots	&	\ddots   &	\vdots \\
+a_{m1}& a_{m2} & \cdots &a_{mn} \\
+\end{pmatrix}
+$$
+のように並べたものを\underline{$m \times n$型の行列}または\underline{$(m,n)$型行列}という. 
+\item 上の行列を$A$としたとき, $a_{ij}$を行列$A$の$(i,j)$成分という. 行列$A$を\underline{$(a_{ij})$}や\underline{$(a_{ij})_{m \times n}$}と略記することもある.
+\item $\begin{pmatrix} a_{i1} & \cdots & a_{in}\end{pmatrix}$を\underline{$A$の行}といい, 上から第1行, 第2行, $\cdots$, 第$m$行という.
+\item $\begin{pmatrix}a_{1j} \\ \vdots  \\ a_{mj}\end{pmatrix}$を\underline{$A$の列}といい, 上から第1列, 第2列, $\cdots$, 第$n$列という.
+\item $m=n$のとき, \underline{$n$次正方行列}という.
+\end{itemize}
+    \end{dfn}
+ \end{tcolorbox}
+ 最初の添字$i$が行(横のカウンター)を表し, 二つ目の添字$j$が列(縦のカウンター)を表す. 
+ 
+ 
+ \subsubsection{行列の足し算・引き算}
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[行列の和と差]
+    \text{}
+ 
+$m \times n$行列
+$
+A=\begin{pmatrix}
+a_{11}& a_{12} & \cdots &a_{1n} \\
+a_{21}& a_{22} & \cdots &a_{2n} \\
+\vdots& \vdots	&	\ddots   &	\vdots \\
+a_{m1}& a_{m2} & \cdots &a_{mn} \\
+\end{pmatrix}
+$, 
+$
+B=\begin{pmatrix}
+b_{11}& b_{12} & \cdots &b_{1n} \\
+b_{21}& b_{22} & \cdots &b_{2n} \\
+\vdots& \vdots	&	\ddots   &	\vdots \\
+b_{m1}& b_{m2} & \cdots &b_{mn} \\
+\end{pmatrix}
+$
+とする.
+
+このとき行列の和$A+B$と差$A-B$を次で定める.
+$$
+A+B=
+\begin{pmatrix}
+a_{11}+b_{11}& a_{12}+b_{12}& \cdots &a_{1n} +b_{1n}\\
+a_{21}+b_{21}& a_{22}+b_{22}& \cdots &a_{2n}+b_{2n} \\
+\vdots& \vdots	&	\ddots   &	\vdots \\
+a_{m1}+b_{m1}& a_{m2} +b_{m2}& \cdots &a_{mn} +b_{mn}\\
+\end{pmatrix}.
+$$
+$$
+A-B=
+\begin{pmatrix}
+a_{11}-b_{11}& a_{12}-b_{12}& \cdots &a_{1n} -b_{1n}\\
+a_{21}-b_{21}& a_{22}-b_{22}& \cdots &a_{2n}-b_{2n} \\
+\vdots& \vdots	&	\ddots   &	\vdots \\
+a_{m1}-b_{m1}& a_{m2}-b_{m2}& \cdots &a_{mn}-b_{mn}\\
+\end{pmatrix}.
+$$
+  \end{dfn}
+ \end{tcolorbox}
+ 
+ \begin{exa}
+ $A = 
+ \begin{pmatrix}
+ 1 &-2&8 \\
+ 2&5&-1
+ \end{pmatrix}
+ $, 
+ $
+ B = 
+ \begin{pmatrix}
+ -2&5&1 \\
+ 3&-1&2
+ \end{pmatrix}
+ $
+ とする．
+ 
+ このとき$
+ A+B =
+ \begin{pmatrix}
+ -1 &3&9 \\
+ 5&4&1
+ \end{pmatrix}
+ $, 
+ $
+  A-B =
+ \begin{pmatrix}
+ 3 &-7&7 \\
+ -1&6&-3
+ \end{pmatrix}
+ $である.
+ \end{exa}
+
+\begin{exa}
+ $A = 
+ \begin{pmatrix}
+ 3&1 \\
+ 1&4
+ \end{pmatrix}
+ $, 
+ $
+ B = 
+ \begin{pmatrix}
+ 2&7\\
+ 5&8
+ \end{pmatrix}
+ $
+ とする．
+ 
+ このとき$
+ A+B =
+ \begin{pmatrix}
+ 5&8 \\
+6&12
+ \end{pmatrix}
+ $, 
+ $
+  A-B =
+ \begin{pmatrix}
+ 1&-6 \\
+ -4&-4
+ \end{pmatrix}
+ $である.
+ \end{exa}
+ 
+ \begin{exa}
+ $A = 
+ \begin{pmatrix}
+ 2&1 \\
+ 1&5
+ \end{pmatrix}
+ $,
+$ 
+ B = 
+ \begin{pmatrix}
+ 1&1 &3 \\
+ 4&6 & 7
+ \end{pmatrix}
+ $
+ とする．このとき$A+B$は型が違うため定義されない. 
+ \end{exa}
+ 
+ 
+
+ \subsubsection{行列のスカラー倍}
+ 
+  \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[行列のスカラー倍]
+    \text{}
+    
+ $m \times n$行列
+ $
+A=\begin{pmatrix}
+a_{11}& a_{12} & \cdots &a_{1n} \\
+a_{21}& a_{22} & \cdots &a_{2n} \\
+\vdots& \vdots	&	\ddots   &	\vdots \\
+a_{m1}& a_{m2} & \cdots &a_{mn} \\
+\end{pmatrix}$
+とし, $c$を数とする($c$をスカラーとも呼ぶ).
+
+$A$の$c$倍$cA$を次で定める.
+$$
+cA=
+\begin{pmatrix}
+ca_{11}&c a_{12} & \cdots &ca_{1n} \\
+ca_{21}& ca_{22} & \cdots &ca_{2n} \\
+\vdots& \vdots	&	\ddots   &	\vdots \\
+ca_{m1}& ca_{m2} & \cdots &ca_{mn} \\
+\end{pmatrix}.
+$$
+  \end{dfn}
+ \end{tcolorbox}
+
+\begin{exa}
+ $A = 
+ \begin{pmatrix}
+ 1 &-2&8 \\
+ 2&5&-1
+ \end{pmatrix}
+ $,
+ $
+ c =3
+ $
+ とする．
+ このとき$
+ cA =
+ \begin{pmatrix}
+ 3 &-6&24 \\
+ 6&15&-3
+ \end{pmatrix}
+ $である.
+ \end{exa}
+ 
+  \subsubsection{行列の積}
+ 
+  \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[行列の積]
+    
+ $m \times n$行列$A =(a_{ij})_{m \times n}$と$n \times l$行列$B= (b_{jk})_{n \times l}$とする．
+このとき$A$と$B$の積$AB$は$m \times l$行列で, 次の式で定義される.
+
+$$
+AB = (c_{ik})_{m \times l}\text{としたとき, }
+c_{ik} = a_{i1}b_{1k} + a_{i2}b_{2k} + \cdots + a_{in}b_{nk} = \sum_{j=1}^{n} a_{ij}b_{jk}.
+$$
+  \end{dfn}
+ \end{tcolorbox}
+ 
+ \begin{exa}
+ $ A=\begin{pmatrix} 1 &2 &3 \end{pmatrix}$, 
+ $ 
+ B = 
+ \begin{pmatrix}
+5 \\7\\2
+ \end{pmatrix}
+ $
+ とする. 
+ 
+ $A$は$1\times 3$行列で$B$は$3 \times 1$行列なので, 行列の積$AB$が$1 \times 1$行列として定義でき, 
+ $$
+ AB = \begin{pmatrix}1 &2&3  \end{pmatrix}
+ \begin{pmatrix}
+5 \\7\\2
+ \end{pmatrix}
+ = \begin{pmatrix}1\times 5 + 2 \times 7 + 3 \times 2  \end{pmatrix}= 
+  \begin{pmatrix}5+14+6 \end{pmatrix}= \begin{pmatrix}25 \end{pmatrix}.
+ $$
+ 
+ \end{exa}
+ 
+  \begin{exa}
+ $ A= 
+ \begin{pmatrix}
+2 & 2\\
+4 & 3
+ \end{pmatrix}
+ $, $
+ B = 
+ \begin{pmatrix}
+5 \\1
+ \end{pmatrix}
+ $
+ とする. 
+ 
+ $A$は$2\times 2$行列で$B$は$2 \times 1$行列なので, 行列の積$AB$が$2 \times 1$行列として定義でき, 
+ $$
+ AB = 
+ \begin{pmatrix}
+2 & 2\\
+4 & 3
+ \end{pmatrix}
+  \begin{pmatrix}
+5 \\1
+ \end{pmatrix}
+ =  
+ \begin{pmatrix}
+2\times 5 + 2\times 1 \\
+4 \times 5 + 3 \times 1
+ \end{pmatrix}
+ = 
+  \begin{pmatrix}
+12 \\
+23
+ \end{pmatrix}.
+ $$
+ 
+ \end{exa}
+ 
+ \begin{exa}
+ $ A= 
+ \begin{pmatrix}
+2 & 3\\
+1 & 4
+ \end{pmatrix}
+ $, $
+ B = 
+ \begin{pmatrix}
+5 & 2\\
+2 & 3
+ \end{pmatrix}
+ $
+ とする. 
+ 
+ $A$は$2\times 2$行列で$B$は$2 \times 2$行列なので, 行列の積$AB$が$2 \times 2$行列として定義でき, 
+ $$
+ AB = 
+ \begin{pmatrix}
+2 & 3\\
+1 & 4
+ \end{pmatrix}
+ \begin{pmatrix}
+5 & 2\\
+2 & 3
+ \end{pmatrix}
+ =  
+ \begin{pmatrix}
+2 \times 5 + 3 \times 2& 2 \times 2 + 3 \times 3\\
+1 \times 5 + 4 \times 2 & 1\times 2 + 4 \times 3
+ \end{pmatrix}
+ = 
+ \begin{pmatrix}
+16 & 13\\
+13 & 14
+ \end{pmatrix}.
+ $$
+ 
+また$B$は$2\times 2$行列で$A$は$2 \times 2$行列なので, 行列の積$BA$が$2 \times 2$行列として定義でき, 
+ $$
+ BA = 
+  \begin{pmatrix}
+5 & 2\\
+2 & 3
+ \end{pmatrix}
+  \begin{pmatrix}
+2 & 3\\
+1 & 4
+ \end{pmatrix}
+ =
+  \begin{pmatrix}
+12 & 23\\
+7 & 18
+ \end{pmatrix}.
+ $$
+
+よって\underline{行列の積に関して$AB=BA$とは限らない($AB \neq BA$となることがある).}
+ \end{exa}
+ 
+  \begin{exa}
+ $ A= 
+ \begin{pmatrix}
+2 & 1&-3\\
+1 & -5 & 2
+ \end{pmatrix}
+ $, $
+ B = 
+  \begin{pmatrix}
+8 & 7&5 & 2
+ \end{pmatrix}
+ $
+ とする. 
+ 
+ $A$は$2 \times 3$行列で$B$は$1 \times 4$行列であるので, 行列の積$AB$は定義されない.
+ \end{exa}
+ 
+ \begin{ques}
+ 次の行列$A,B,C,D$のうち, 積が定義される全ての組み合わせを求め, その積を計算せよ.
+ $$
+  A=\begin{pmatrix}
+ 2 \\ 1\\-1
+ \end{pmatrix} 
+B= \begin{pmatrix}
+ 3 &2\\
+ 4&1\\
+ 0&1
+ \end{pmatrix} 
+ C=
+  \begin{pmatrix}
+ 2 &0&1 
+ \end{pmatrix}
+ D= \begin{pmatrix}
+ 2&3\\
+ -1&4
+ \end{pmatrix}
+ $$
+ \end{ques}
+
+  
+
+ \subsubsection{行列と線形写像}
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[$\R^n$から$\R^m$の線形写像]
+    \label{dfn-plane-linear}
+   $m \times n$行列
+$A=
+\begin{pmatrix}
+a_{11}& a_{12} & \cdots &a_{1n} \\
+a_{21}& a_{22} & \cdots &a_{2n} \\
+\vdots& \vdots	&	\ddots   &	\vdots \\
+a_{m1}& a_{m2} & \cdots &a_{mn} \\
+\end{pmatrix}
+$とする. 
+ $$
+\begin{array}{ccccc}
+f: &\R^n& \rightarrow & \R^m& \\
+&
+\bm{x}
+=
+\begin{pmatrix}
+x_1\\\vdots \\ x_n
+ \end{pmatrix} & \longmapsto & 
+  \bm{y}
+  =
+  \begin{pmatrix}
+y_1\\\vdots \\ y_m
+ \end{pmatrix}
+  =
+  A\bm{x}
+  =
+ \begin{pmatrix}
+a_{11}x_1 + a_{12}x_2 + \cdots +  a_{1n}x_n \\
+a_{21}x_1 + a_{22}x_2 + \cdots +  a_{2n}x_n \\
+\vdots \\
+a_{m1}x_1 + a_{m2}x_2 + \cdots +  a_{mn}x_n \\
+ \end{pmatrix}
+ &
+\end{array}
+$$
+を\underline{$\R^n$から$\R^m$の線形写像}という.
+教科書と同様に, $A: \R^n \to \R^m$と略記することもある.
+\end{dfn}
+ \end{tcolorbox}
+ 
+ 
+  \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{lem}
+   $m \times n$行列
+$A, B$とする. $\R^n$から$\R^m$への線形写像を
+それぞれ$A: \R^n \to \R^m$, $B: \R^n \to \R^m$と略記する.
+
+このとき行列の和$A+B$は二つの線形写像を足し算したものに対応する.
+ つまり$\bm{x}\in \R^n$について
+ $$
+ (A+B)\bm{x}=A\bm{x} + B\bm{x}
+ $$
+が成り立つ. 
+\end{lem}
+ \end{tcolorbox}
+ 
+  \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{lem}
+    \label{lem-compo}
+$m \times n$行列$A$, $l \times m$行列$B$とし, 対応する線形写像を
+それぞれ$A: \R^n \to \R^m$, $B: \R^m\to \R^l$と略記する.
+
+このとき行列の積$BA$($l \times n$行列)は, 二つの線形写像の合成$BA: \R^n \overset{A}{\rightarrow} \R^m \overset{B}{\rightarrow} \R^l$となる. 
+つまり以下が成り立つ. 
+$$
+\begin{array}{cccccc}
+BA:&\R^n& \overset{A}{\rightarrow} & \R^m&\overset{B}{\rightarrow}& \R^l\\
+&\bm{x} & \longmapsto & A\bm{x}&\longmapsto & B(A\bm{x}) = (BA)\bm{x}
+\end{array}
+$$
+\end{lem}
+ \end{tcolorbox}
+ 
+ \subsubsection{演算の性質}
+ 
+ 
+  \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{lem}\cite[補題2.1, 2.2]{M}
+    \label{lem-2.1}
+$A$を$m \times n$行列とし, $A$に対応する線形写像を$A: \R^n \to \R^m$と略記する.
+\begin{enumerate}
+	\setlength{\parskip}{0cm}
+  	\setlength{\itemsep}{0pt} 
+\item (行列の線形性)$\bm{x}, \bm{y} \in \R^n$, $\lambda, \mu \in \R$について
+$$
+A(\lambda\bm{x} + \mu \bm{y})
+=
+\lambda A\bm{x}
++\mu A \bm{y}
+$$
+\item $\bm{e}_i$を基本単位ベクトルとするとき, $A\bm{e}_i$は$A$の第$i$列となる.
+\item $B$を$m \times n$行列とする. $A=B$であることは, 任意の$\bm{x} \in \R^n$について$A\bm{x}=B\bm{x}$となることと同値である. 
+\end{enumerate}
+\end{lem}
+ \end{tcolorbox}
+ 
+  \subsubsection{行列環}
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}
+\begin{itemize}
+\setlength{\parskip}{0cm}
+ \setlength{\itemsep}{0pt} 
+\item   $\begin{pmatrix}
+0&0\\
+0 &0
+ \end{pmatrix}$のように, 全ての成分が0の行列を\underline{ゼロ行列}といい$O$で表す.
+\item $ \begin{pmatrix}
+1&0\\
+0 &1
+ \end{pmatrix}$のように$a_{ii}=1$で他は0となる$n$次正方行列を\underline{($n$次の)単位行列}といい$E$で表す.
+ \item $A$を$n$次正方行列とするとき$A^{m} = \underbrace{A \cdots A}_{m \text{ 個}}$とする. 
+\end{itemize}
+\end{dfn}
+ \end{tcolorbox}
+ 
+
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{prop}\cite[命題2.3]{M}
+    \label{prop-2.3}
+$n$次正方行列の全体は和と積に関して以下の性質を満たす. 
+\begin{enumerate}
+\setlength{\parskip}{0cm}
+ \setlength{\itemsep}{0pt} 
+\item (和の交換法則) $A+B = B+A$
+\item (和の結合法則) $(A+B) + C = A + (B+C)$
+\item (ゼロ元の存在) $A+O = O+A=A$
+\item (和の逆元の存在) $-A$を$(-1)A$で定義するとき, $A + (-A)=O$
+\item (積の結合法則) $(AB) C = A (BC)$
+\item (単位元の存在) $AE =EA=A$
+\item (分配法則) $A(B+C)=AB + AC, (A+B)C = AC + BC$
+\end{enumerate}
+このとき$n$次正方行列の全体は行列環と呼ばれる.
+\end{prop}
+ \end{tcolorbox}
+ \begin{rem}
+ 一般に環(ring)は集合に和と積の演算があって命題\ref{prop-2.3}のような性質を満たすものである. 
+ 例えば整数の集合$\Z$, 有理数の集合$\Q$などがそれに当たる.
+ また行列は一般的に$AB \neq BA$である. このような環を非可換環という. 
+ 一方で$AB=BA$となる環を可換環という. 
+ 私の研究はどちらかというと可換環の方面である. 
+ 
+なお上のような法則は暗記する必要はない. 私も忘れていた.
+ \end{rem}
+ 
+ 
+  \begin{ques}
+ 次の行列の計算を行え.
+
+ $$
+ \begin{pmatrix}
+ 2 &3&-1 \\
+ 0&5&4\\
+ -1&0&-2
+ \end{pmatrix}
+ \left\{
+ \begin{pmatrix}
+ 0 &5&9 \\
+ 3&-2&8\\
+ -1&8&1
+ \end{pmatrix}
+ - 2
+  \begin{pmatrix}
+ -1 &0&1 \\
+ 3&2&3\\
+ -4&2&-1
+ \end{pmatrix}
+\right\}
+ $$
+  \end{ques}
+
+
+ 
+
+\subsection{シグマ記号の練習\cite[2.3節]{M}}
+補題\ref{lem-compo}や補題\ref{lem-2.1}の証明でシグマ記号の練習をする予定. (一部省略する.)
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}
+    $ i,j =1, \ldots, n$について
+ $$
+ \delta_{ij} = 
+ \begin{cases}
+1 & \text{$i=j$のとき}\\
+0 & \text{$i \neq j$のとき}
+\end{cases}
+  $$
+を\underline{クロネッカーのデルタ}という.
+これは単位行列の成分である. 
+ \end{dfn}
+ \end{tcolorbox}
+ $m \times n$行列$A =(a_{ij})_{m \times n}$と$n$次の単位行列$E$について
+ $AE=A$である.
+ これはクロネッカーのデルタを用いると
+ $$
+ \sum_{j=1}^{n}a_{ij}\delta_{jk}
+ =
+ a_{jk}
+ $$
+ が$i,k=1, \ldots, n$で成り立つからである.
+  
+\subsection{行列の基本変形 \cite[2.4節]{M}}
+
+\subsubsection{係数行列・拡大係数行列}
+
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[係数行列, 拡大係数行列]
+$m$個の式からなる$n$変数連立一次方程式
+\begin{equation*}
+%\label{equation}
+\left\{ 
+\begin{matrix}
+a_{11}x_1&+& a_{12} x_2& +&\cdots &+&a_{1n}x_n &= &b_1 \\
+a_{21}x_1&+& a_{22} x_2& +&\cdots &+&a_{2n}x_n &= &b_2 \\
+\vdots		&& 	\vdots				 && 		& &\vdots&&\vdots	\\
+a_{m1}x_1&+& a_{m2} x_2& +&\cdots &+&a_{mn}x_n &= &b_m \\
+\end{matrix}
+\right.
+\text{に対して}
+\end{equation*}
+$$
+A=\begin{pmatrix}
+a_{11}& a_{12} & \cdots &a_{1n} \\
+a_{21}& a_{22} & \cdots &a_{2n} \\
+\vdots& \vdots	&	\ddots   &	\vdots \\
+a_{m1}& a_{m2} & \cdots &a_{mn} \\
+\end{pmatrix}
+\bm{x} =\begin{pmatrix}
+x_1\\x_2\\\vdots\\x_n
+\end{pmatrix}
+\bm{b} =\begin{pmatrix}
+b_1\\b_2\\\vdots\\b_m
+\end{pmatrix}
+\text{とおく.}
+$$
+行列$A$を連立一次方程式の\underline{係数行列}といい, 
+$$
+[A : \bm{b}] = \begin{pmatrix}
+a_{11}& a_{12} & \cdots &a_{1n} & b_1\\
+a_{21}& a_{22} & \cdots &a_{2n} &b_2\\
+\vdots& \vdots	&	\ddots   &	\vdots&\vdots \\
+a_{m1}& a_{m2} & \cdots &a_{mn}&b_m \\
+\end{pmatrix}
+\text{を連立一次方程式の\underline{拡大係数行列}という.}
+$$
+  \end{dfn}
+ \end{tcolorbox}
+ これにより上の連立一次方程式は$A\bm{x}=\bm{b}$とかける.
+
+ \begin{exa}
+ 連立一次方程式
+ $
+ \left\{ 
+\begin{matrix}
+2x&+&3y& = &7 \\
+x&-&4y& = &9 \\
+\end{matrix}
+\right.
+ $
+ について, 係数行列は
+ $A = 
+ \begin{pmatrix}
+ 2 & 3 \\
+ 1 & -4
+ \end{pmatrix}
+ $
+ で, 拡大係数行列は
+ $[A : \bm{b}] = 
+  \begin{pmatrix}
+ 2 & 3  &7\\
+ 1 & -4 &9
+ \end{pmatrix}
+ $
+ である.
+ \end{exa}
+ 
+  \begin{exa}
+ 連立一次方程式
+ $
+ \left\{ 
+\begin{matrix}
+3x_1&-&2x_2& +& x_3 &+& 4x_4 &=& 7 \\
+x_1 &  & 	   & -& 3x_3 &+& x_4 &=& 5 \\
+2x_1&-& x_2& +& 9x_3 & & 	 &=& 0 \\
+\end{matrix}
+\right.
+ $
+ について, \\
+ 係数行列は
+ $A = 
+ \begin{pmatrix}
+ 3 & -2  & 1&4\\
+ 1 & 0   & -3&1\\
+2 & -1  & 9&0\\
+ \end{pmatrix}
+ $
+ で, 拡大係数行列は
+ $[A : \bm{b}] = 
+ \begin{pmatrix}
+ 3 & -2  & 1&4 & 7\\
+ 1 & 0   & -3&1 &5\\
+2 & -1  & 9&0 & 0\\
+ \end{pmatrix}
+ $
+ である.
+ \end{exa}
+
+\subsubsection{ガウスの消去法の原理}
+
+
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}[ガウスの消去法の原理]
+ \label{thm-gauss}
+$m$個の式からなる$n$変数連立一次方程式
+\begin{equation*}
+%\label{equation}
+\left\{ 
+\begin{matrix}
+a_{11}x_1&+& a_{12} x_2& +&\cdots &+&a_{1n}x_n &= &b_1 \\
+a_{21}x_1&+& a_{22} x_2& +&\cdots &+&a_{2n}x_n &= &b_2 \\
+\vdots		&& 	\vdots				 && 		& &\vdots&&\vdots	\\
+a_{m1}x_1&+& a_{m2} x_2& +&\cdots &+&a_{mn}x_n &= &b_m \\
+\end{matrix}
+\right.
+\end{equation*}
+は次の三つの変形を用いれば解くことができる.
+ \begin{enumerate}
+   \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+  \item $i$番目の方程式を$\lambda$倍($\lambda\neq 0$)する.
+ \item $i$番目の方程式と$j$番目の方程式を入れ替える.
+ \item $i$番目の方程式の$\lambda$倍を$j$番目の方程式に加える. 
+ \end{enumerate}
+  \end{thm}
+ \end{tcolorbox}
+これは\ref{subsec-2.8}節で証明を与える.
+ 
+ 
+ \begin{exa}
+ 連立一次方程式
+ $
+ \left\{ 
+\begin{matrix}
+2x&+&3y& = &7 \\
+x&-&4y& = &9 \\
+\end{matrix}
+\right.
+ $
+ はガウスの消去法で解けて, 解は$x = \frac{57}{11}, y=-\frac{5}{11}$である. 
+これは拡大係数行列
+ $[A : \bm{b}] = 
+  \begin{pmatrix}
+ 2 & 3  &7\\
+ 1 & -4 &9
+ \end{pmatrix}
+ $
+の行基本変形(定義\ref{dfn-basic-trans})の変換と対応がある. 
+ \end{exa}
+
+
+ \subsubsection{基本変形と基本行列}
+ 
+  \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[行基本変形]
+    \label{dfn-basic-trans}
+ 行列$A$の次の3つの変形を行基本変形という.
+ \begin{enumerate}
+   \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+  \item $A$の第$i$行を$\lambda$倍($\lambda\neq 0$)する.
+ \item $A$の第$i$行と$A$の第$j$行を入れ替える.
+ \item $A$の第$i$行の$\lambda$倍を$A$の第$j$行に加える. 
+ \end{enumerate}
+  \end{dfn}
+  \end{tcolorbox}
+  同様に列基本変形を, 上の定義において"行"の部分を"列"に変えたものとする. 
+  基本的には行基本変形を用いる. 
+  
+    
+  \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}[行基本変形の可逆性]
+    \label{thm-inv-basic}
+3つの行基本変形はそれぞれ逆変換が存在し, その逆変換もまた行基本変形である. 
+  \end{thm}
+  \end{tcolorbox}
+  
+  
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}[基本行列]
+    \label{thm-basic}
+$A$を$m \times n$行列, $\lambda \in \R$, $i,j = 1, \ldots, m$とする.
+    このとき$A$によらないある$m \times m$行列$F_{i,\lambda}, G_{i,j}, H_{i, \lambda, j}$があってそれぞれ次を満たす.  
+ \begin{enumerate}
+   \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+  \item 行列$F_{i,\lambda}A$は, $A$の第$i$行を$\lambda$倍した行列である.ただし$\lambda \neq 0$とする. (教科書の基本行列$\maru{2}$)
+ \item 行列$G_{i,j}A$は, $A$の第$i$行と$A$の第$j$行を入れ替えた行列である． (教科書の基本行列$\maru{4}$)
+ \item 行列$H_{i,\lambda, j}A$は, $A$の第$i$行の$\lambda$倍を$A$の第$j$行に加えた行列である. (教科書の基本行列$\maru{5}$)
+ \end{enumerate}
+ これらは基本行列と呼ばれる. 
+ 
+  \end{thm}
+  \end{tcolorbox}
+  定理\ref{thm-inv-basic}から基本行列は正則で逆行列(定義\ref{dfn-regular})を持ち, 逆行列もまた基本行列となる.
+  
+  
+  
+    \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}[行基本変形と連立一次方程式]
+連立一次方程式$A\bm{x}=\bm{b}$とその拡大係数行列$[A:\bm{b}]$について, 次が成り立つ.
+ \begin{enumerate}
+   \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+   \item 「連立一次方程式の$i$番目の方程式を$\lambda$倍($\lambda\neq 0$)する」ことは, 「拡大係数行列$[A:\bm{b}]$の第$i$行を$\lambda$倍($\lambda\neq 0$)する」ことに対応する. 
+ \item 「連立一次方程式の$i$番目の方程式と$j$番目の方程式を入れ替える」ことは, 「拡大係数行列$[A:\bm{b}]$の第$i$行と$A$の第$j$行を入れ替える」ことに対応する. 
+ \item 「連立一次方程式の$i$番目の方程式の$\lambda$倍を$j$番目の方程式に加える」ことは, 「拡大係数行列$[A:\bm{b}]$の第$i$行の$\lambda$倍を$A$の第$j$行に加える」ことに対応する. 
+ \end{enumerate}
+  \end{thm}
+  \end{tcolorbox}
+
+\subsection{行列の階数と連立一次方程式の解の個数\cite[2.6節]{M}}
+\label{subsec-2.6}
+説明の都合上, 授業では先に\cite[2.6節]{M}を説明する. 
+\subsubsection{行列の掃き出し法・消去法}
+
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}\cite[2.6節]{M}
+   \label{thm-hyoujun}
+    任意の行列$A$は基本変形を繰り返して以下の"標準形?"にすることができる．
+    $$
+    \begin{pmatrix}
+0 & 0 & \cdots & 1 & \ast & 0 & \ast & \cdots & \ast \\
+0 & 0 & \cdots & 0 & \ast& 0 & \ast& \cdots & \ast \\
+0 & 0 & \cdots & 0 & 0 & 1 & \ast & \cdots & \ast \\
+\vdots & \vdots & & \vdots & \vdots & \vdots & \vdots & & \vdots \\
+0 & 0 & \cdots & 0 & 0 & 0 & 0 & \cdots & 0
+\end{pmatrix}
+$$
+   \end{thm}
+ \end{tcolorbox}
+ 
+ 以下"標準形"に関して厳密な定義を与える. 
+ これは教科書には載っていないので, 別の文献(三宅敏恒, "線形代数学　初歩からジョルダン標準形へ", 培風館.)を参照にした. 
+ 
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[主成分]
+   \label{dfn-main}
+  行列において, それぞれの行の最初に現れる0でない成分を主成分という.
+  \end{dfn}
+ \end{tcolorbox}
+ 
+ \begin{exa}
+ $$
+  \begin{pmatrix}
+\xr{1} & 2&3\\
+0 & 0&\xr{5}\\
+0 & 0&0\\
+0 & \xr{3}&0\\ 
+ \end{pmatrix}
+ $$
+ の主成分は赤色のものである. 
+ \end{exa}
+
+
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[簡約行列]
+  行列$A$が次の4つの条件を満たすとき, $A$を\underline{簡約行列}という.
+  \begin{enumerate}
+  	\setlength{\parskip}{0cm}
+  	\setlength{\itemsep}{0pt} 
+\item 全ての成分が0である行は0以外の値を含む行より下側にある. 
+\item 主成分は全て1.
+\item 右側の列に行くほど, 主成分は下側にある.
+\item 主成分を持つ列は, その主成分を除く全てが0.
+  \end{enumerate}
+  \end{dfn}
+ \end{tcolorbox}
+ おそらくこれが"標準形"の定義だと思われる. 
+ 
+ \begin{exa}
+以下の行列は全て簡約な行列である.
+$$
+ \begin{pmatrix}
+ 0& 1& 3  & 0&2\\
+ 0& 0& 0  & 1&1\\
+ 0& 0& 0 & 0&0\\
+ \end{pmatrix}
+  \begin{pmatrix}
+ 1& 0& 1  & 4&0&-1\\
+ 0& 1& 7 & -4&0&1\\
+ 0& 0& 0 & 0&1&3\\
+ \end{pmatrix}
+   \begin{pmatrix}
+ 0& 0& 0  & 1&6&0&3&0\\
+ 0& 0& 0 & 0&0&1&2&0\\
+ 0& 0& 0 & 0&0&0&0&0 \\
+ \end{pmatrix}
+$$
+\end{exa}
+ \begin{exa}
+ 次に簡約ではない行列の例を理由とともに挙げる.
+ \begin{itemize}
+\item 
+$ 
+\begin{pmatrix}
+ 1& 0& 1  & 1&0\\
+ 0& 0& 0  & 0&0\\
+ 0& 0& 0 & 0&1\\
+ \end{pmatrix} 
+ $
+ は1番目の条件が満たされていないので簡約ではない.
+ \item 
+$ 
+\begin{pmatrix}
+ 1& 0& 1  & 1&0\\
+ 0& 0& 0  & 0&3\\
+ \end{pmatrix} 
+ $
+ は2番目の条件が満たされていないので簡約ではない.
+ \item 
+$ 
+\begin{pmatrix}
+ 0& 0& 1  & 0&0\\
+ 1& 0& 0  & 0&0\\
+ \end{pmatrix} 
+ $
+ は3番目の条件が満たされていないので簡約ではない.
+ \item 
+$ 
+\begin{pmatrix}
+ 1& 0& 1  & 1&0\\
+ 1& 0& 0  & 0&1\\
+ \end{pmatrix} 
+ $
+ は4番目の条件が満たされていないので簡約ではない.
+ \end{itemize}
+\end{exa}
+
+以上より定理\ref{thm-hyoujun}の正確な主張を述べることができる.
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}
+    \label{thm-kanyakuka}
+    任意の行列$A$は基本変形を繰り返して標準形(簡約行列)$B$を得ることができる. またそのような標準形(簡約行列)$B$は一意に定まる.
+ %このように基本変形を繰り返して簡約行列を得ることを\underline{$A$を簡約化する}といい, 得られた簡約行列$B$を\underline{$A$の簡約化}という.
+   \end{thm}
+ \end{tcolorbox}
+ このような操作は"簡約化"と呼ばれる. 
+ 
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}[階数(rank)]
+   \label{dfn-rank}
+$A$を行列とし, $B$を$A$に基本変形を繰り返して得られた標準形(簡約行列)とする. 
+${\rm rank}(A)$を$B$のゼロベクトルでない行の個数とし\underline{$A$の階数(ランク)}と呼ぶ.
+   \end{dfn}
+ \end{tcolorbox}
+ 
+ 
+\begin{exa}
+$A=
+ \begin{pmatrix}
+ 0& 1& 3  & 0&2\\
+ 0& 0& 0  & 1&1\\
+ 0& 0& 0 & 0&0\\
+ \end{pmatrix}
+ $
+ とすると, これは簡約な行列であり零ベクトルでない行の個数は2個である. よって${\rm rank}(A)=2$.
+ 
+ $B= \begin{pmatrix}
+ 1& 0& 1  & 4&0&-1\\
+ 0& 1& 7 & -4&0&1\\
+ 0& 0& 0 & 0&1&3\\
+ \end{pmatrix}
+ $ とすると, これは簡約な行列であり零ベクトルでない行の個数は3個である. よって${\rm rank}(B)=3$.
+\end{exa}
+
+\begin{exa}
+$
+ \begin{pmatrix}
+ 1& 2& -3  \\
+ 1& 1& 1  \\
+ \end{pmatrix}
+ $
+ を基本変形で変形すると次のとおりである.\footnote{「$\maru{2} + \maru{1}\times(-1)$」は「行列の2行目に1行目の(-1)倍を加える」を意味している.}
+ \begin{align*}
+  \begin{pmatrix}
+ 1& 2& -3  \\
+ 1& 1& 1  \\
+ \end{pmatrix}
+ \overset{\text{$\maru{2} + \maru{1}\times(-1)$}}{\longrightarrow} 
+   \begin{pmatrix}
+ 1& 2& -3  \\
+ 0& -1& 4  \\
+ \end{pmatrix}
+ \overset{\text{$\maru{2} \times(-1)$}}{\longrightarrow} 
+   \begin{pmatrix}
+ 1& 2& -3  \\
+ 0& 1& -4  \\
+ \end{pmatrix}
+  \overset{\maru{1} + \maru{2}\times(-1)}{\longrightarrow} 
+   \begin{pmatrix}
+ 1& 0& 5  \\
+ 0& 1& -4  \\
+ \end{pmatrix}.
+  \end{align*}
+  よってこの行列の階数(ランク)は2である.
+\end{exa}
+
+\begin{exa}
+$
+ \begin{pmatrix}
+ 1& 0& 2  &1\\
+ 2& 1& 1  &0\\
+ 0& 1& 1  &0\\
+ \end{pmatrix}
+ $
+ を基本変形で簡約化すると次のとおりである.
+ 
+ \begin{align*}
+ &\begin{pmatrix}
+ 1& 0& 2  &1\\
+ 2& 1& 1  &0\\
+ 0& 1& 1  &0\\
+ \end{pmatrix}
+ \overset{\maru{2} + \maru{1}\times(-2)}{\longrightarrow} 
+\begin{pmatrix}
+ 1& 0& 2  &1\\
+ 0& 1& -3 &-2\\
+ 0& 1& 1  &0\\
+ \end{pmatrix}
+\overset{\maru{3} + \maru{2}\times(-1)}{\longrightarrow} 
+\begin{pmatrix}
+ 1& 0& 2  &1\\
+ 0& 1& -3 &-2\\
+ 0& 0& 4  &2\\
+ \end{pmatrix}
+ \\ %%
+ & \overset{\maru{3}\times \frac{1}{2}}{\longrightarrow} 
+\begin{pmatrix}
+ 1& 0& 2  &1\\
+ 0& 1& -3 &-2\\
+ 0& 0& 2  &1\\
+ \end{pmatrix} 
+ \overset{\maru{1} + \maru{3}\times (-1)}{\underset{\maru{2} + \maru{3}\times \frac{3}{2}}{\longrightarrow}}
+ \begin{pmatrix}
+ 1& 0& 0  &0\\
+ 0& 1& 0 &-\frac{1}{2}\\
+ 0& 0& 2  &1\\
+ \end{pmatrix} 
+ \overset{\maru{3}\times \frac{1}{2}}{\longrightarrow} 
+  \begin{pmatrix}
+ 1& 0& 0  &0\\
+ 0& 1& 0 &-\frac{1}{2}\\
+ 0& 0& 1 &\frac{1}{2}\\
+ \end{pmatrix}.
+ \end{align*}
+   よってこの行列の階数(ランク)は3である.
+ \end{exa}
+ 
+\begin{ques}
+$
+ \begin{pmatrix}
+ 1& 0& -1  & 0&-2\\
+ 0& 1& 1  & 0&1\\
+  -1& 0& 1 & 1&1\\
+ 2& 1& -1 & 0&-3\\
+ \end{pmatrix}
+ $
+ の階数を求めよ.
+\end{ques}
+定理\ref{thm-kanyakuka}から次を得る．
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}
+    任意の行列は簡約行列と基本行列(定理\ref{thm-basic})の積で書ける．
+    \end{thm}
+ \end{tcolorbox}
+\subsubsection{斉次方程式と解の次元}
+下のような$A\bm{x} =0$という斉次方程式は次のように解くことができる. 
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{suma}[$A\bm{x} =0$の解きかた(掃き出し法・ガウスの消去法)]
+\label{suma-gauss}
+(斉次)連立一次方程式
+\begin{equation*}
+%\label{equation}
+\left\{ 
+\begin{matrix}
+a_{11}x_1&+& a_{12} x_2& +&\cdots &+&a_{1n}x_n &= &0 \\
+a_{21}x_1&+& a_{22} x_2& +&\cdots &+&a_{2n}x_n &= &0 \\
+\vdots		&& 	\vdots				 && 		& &\vdots&&\vdots	\\
+a_{m1}x_1&+& a_{m2} x_2& +&\cdots &+&a_{mn}x_n &= &0 \\
+\end{matrix}
+\right.
+\end{equation*}
+は以下の手順で解くことができる. 
+ \begin{enumerate}
+ \item[手順1.] 連立方程式$A\bm{x} =0$から係数行列
+ $$
+ A=\begin{pmatrix}
+a_{11}& a_{12} & \cdots &a_{1n} \\
+a_{21}& a_{22} & \cdots &a_{2n} \\
+\vdots& \vdots	&	\ddots   &	\vdots \\
+a_{m1}& a_{m2} & \cdots &a_{mn} \\
+\end{pmatrix}
+\text{とおく.}
+ $$
+ \item[手順2.] 定理\ref{thm-kanyakuka}のように, 係数行列$A$に行基本変形を繰り返して標準形(簡約行列)$B$を得る.
+ \item[手順3.] $B\bm{x}=0$を解く. これが$A\bm{x} =0$の解となる. 
+ \end{enumerate}
+ \end{suma}
+ \end{tcolorbox}
+ 
+ \begin{exa}
+ 連立一次方程式
+ $$
+ \left\{ 
+\begin{matrix}
+x_1& + &  2x_2&  +& x_3&  = & 0 \\
+2x_1& + & 3x_2&  +& x_3&  = & 0 \\
+ x_1& + & 2x_2&  +& 2x_3&  = & 0 \\
+\end{matrix}
+\right.
+ $$
+ は次のように解くことができる.
+ 
+ [手順1.] 係数行列は
+$A=
+\begin{pmatrix}
+1 & 2&1\\
+2 & 3&1\\
+1 & 2&2\\
+ \end{pmatrix}
+ $となる.
+ 
+ [手順2.] 行基本変形を用いると次のような標準形(簡約行列)をえる
+ \begin{align*}
+ &\begin{pmatrix}
+1 & 2&1\\
+2 & 3&1\\
+1 & 2&2\\
+ \end{pmatrix}
+ \overset{}{\longrightarrow} 
+ \begin{pmatrix}
+1 & 2&1\\
+0 & -1&-1\\
+0 & 0&1\\
+ \end{pmatrix}
+ \overset{}{\longrightarrow} 
+ \begin{pmatrix}
+1 & 0&-1\\
+0 & 1&1\\
+0 & 0&1\\
+ \end{pmatrix}
+ \overset{}{\longrightarrow} 
+  \begin{pmatrix}
+1 & 0&0\\
+0 & 1&0\\
+0 & 0&1\\
+ \end{pmatrix}.
+ \end{align*}
+ よって標準形(簡約行列)$B=  \begin{pmatrix}
+1 & 0&0\\
+0 & 1&0\\
+0 & 0&1\\
+ \end{pmatrix}$
+ となる.
+ 
+ [手順3.]$B\bm{x}=0$を解く. 
+ これは 
+ $$
+ \left\{ 
+\begin{matrix}
+x_1&  &  &  &&  = & 0 \\
+&  &x_2 &  & &  = & 0 \\
+&  & &  & x_3&  = & 0 \\
+\end{matrix}
+\right.
+ $$
+ となるので$x_1 =x_2=x_3=0$を得る.
+ \end{exa}
+ \begin{exa}\cite[例題2.4]{M}
+ \label{exa-2.4}
+連立一次方程式
+ $$
+ \left\{ 
+\begin{matrix}
+x_1& + &  x_2&  -& x_3&+&3x_4& = & 0 \\
+          &  & x_2&  +& x_3& -&x_4& = & 0 \\
+ x_1& + & 2x_2&  +& x_3&  && = & 0 \\
+  x_1& + & 3x_2&  +& x_3&  +&x_4& = & 0 \\
+\end{matrix}
+\right.
+ $$
+ は次のように解くことができる.
+ 
+ [手順1.] 係数行列は
+$A=
+\begin{pmatrix}
+1 & 1&-1&3\\
+0 & 1&1&-1\\
+1 & 2&1&0\\
+1 & 3&1&1\\
+ \end{pmatrix}
+ $となる.
+ 
+ [手順2.] 行基本変形を用いると次のような標準形(簡約行列)をえる
+ \begin{align*}
+ &\begin{pmatrix}
+1 & 1&-1&3\\
+0 & 1&1&-1\\
+1 & 2&1&0\\
+1 & 3&1&1\\
+ \end{pmatrix}
+ \overset{}{\longrightarrow} 
+\begin{pmatrix}
+1 & 0&0&0\\
+0 & 1&0&1\\
+0 & 0&1&-2\\
+0& 0&0&0\\
+ \end{pmatrix}
+ \end{align*}
+ よって標準形(簡約行列)$B= \begin{pmatrix}
+1 & 0&0&0\\
+0 & 1&0&1\\
+0 & 0&1&-2\\
+0& 0&0&0\\
+ \end{pmatrix}$
+ となる.
+ 
+ [手順3.]$B\bm{x}=0$を解く. 
+ これは 
+ $$
+ \left\{ 
+\begin{matrix}
+x_1&  &  &  && &&    = & 0 \\
+&  &x_2 &  & &+&x_4&  = & 0 \\
+&  & &  & x_3&-&2x_4&    = & 0 \\
+&  & &  &  & & 0&    = & 0 \\
+\end{matrix}
+\right.
+ $$
+ となるので, 解は次のようになる.
+ $$
+ \begin{pmatrix}
+ x_1\\x_2\\x_3\\x_4
+ \end{pmatrix}
+=
+ \begin{pmatrix}
+ 0\\-t\\2t\\t
+ \end{pmatrix}
+ \quad
+ \text{($t$は任意)}
+ $$
+ \end{exa}
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}
+    $n$変数斉次方程式$A\bm{x}=0$の解の次元(自由に動ける変数の個数)は, $n - {\rm rank}(A)$に等しい. 
+  \end{thm}
+ \end{tcolorbox}
+
+
+\subsection{逆行列の計算 \cite[2.5節]{M}}
+\subsubsection{逆行列}
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}
+    \label{dfn-regular}
+$A$を$n$次正方行列とする.
+ ある行列$B$があって
+ $$
+ AB =BA =E \quad \text{(ただし$E$は$n$次単位行列)}
+ $$
+ となるとき\underline{$B$を$A$の逆行列}といい$B=A^{-1}$とかく.
+ 
+ 行列$A$が逆行列$A^{-1}$を持つとき, $A$は\underline{正則行列}という(\underline{$A$は正則である}ともいう).
+  \end{dfn}
+ \end{tcolorbox}
+ 
+ \begin{exa}
+ $A=
+  \begin{pmatrix}
+ 1& -5  \\
+ 0& 1  \\
+ \end{pmatrix} 
+ $
+ の逆行列は
+  $A^{-1}=
+  \begin{pmatrix}
+ 1& 5  \\
+ 0& 1  \\
+ \end{pmatrix} 
+ $
+ である. \\ 
+ 実際
+  $
+  \begin{pmatrix}
+ 1& -5  \\
+ 0& 1  \\
+ \end{pmatrix} 
+  \begin{pmatrix}
+ 1& 5  \\
+ 0& 1  \\
+ \end{pmatrix} 
+=
+  \begin{pmatrix}
+ 1& 5  \\
+ 0& 1  \\
+ \end{pmatrix} 
+   \begin{pmatrix}
+ 1& -5  \\
+ 0& 1  \\
+ \end{pmatrix} 
+ =
+   \begin{pmatrix}
+ 1& 0 \\
+ 0& 1  \\
+ \end{pmatrix} 
+ $
+ である.
+ 特に$A$は正則行列である. 
+ \end{exa}
+
+ \begin{exa}
+2次正方行列
+ $A=
+  \begin{pmatrix}
+ a& b  \\
+ c& d  \\
+ \end{pmatrix} 
+ $
+ について
+  $ad-bc \neq 0$ならば, $A$は逆行列を持ち
+ $$
+ A^{-1} =   
+ \frac{1}{ad-bc}
+ \begin{pmatrix}
+ d& -b  \\
+ -c& a  \\
+ \end{pmatrix} 
+ \text{\,\,\,である.}
+ $$
+  特に$A$は正則行列である. 
+ \end{exa}
+ 
+  \begin{exa}
+  $
+   A=\begin{pmatrix}
+ 0& 1 \\
+ 0& 1  \\
+ \end{pmatrix} 
+ $
+ は逆行列を持たない. 特に$A$は正則行列ではない.
+  \end{exa}
+  \begin{exa}
+  基本行列(定理\ref{thm-basic})は正則である. 
+  そして逆行列もまた基本行列である. 
+  \end{exa}
+
+ 
+ \subsubsection{行基本変形を用いた逆行列の求め方}
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}
+    $A$を$n$次正方行列, $E$を$n$次単位行列とする. 
+    さらに$n \times 2n$行列$[A : E]$が, 行基本変形を何回か繰り返して$[E : B]$となると仮定する. 
+    このとき$A$は正則行列で, $B$は$A$の逆行列である.
+  \end{thm}
+ \end{tcolorbox}
+ この定理により行基本変形を用いて逆行列を得ることができる.
+
+ \begin{exa}\cite[例題2.3]{M}
+ $
+  A=\begin{pmatrix}
+ 3& 0&-1\\
+ 0& 1 & 0 \\
+ -5& 1 &  2 \\
+ \end{pmatrix} 
+ $
+ の逆行列を求めよ.
+ 
+ (解).
+ $[A:E_3] = 
+ \begin{pmatrix}
+ 3& 0&-1&1& 0&0 \\
+ 0& 1 & 0 &0& 1&0 \\
+ -5& 1 &  2 &0& 0&1 \\
+ \end{pmatrix} 
+ $
+ を行基本変形を用いて変換すると
+ $
+ \begin{pmatrix}
+ 1& 0&0  &2& -1&1 \\
+ 0& 1 & 0 &0& 1&0 \\
+ 0& 0&  1 &5& -3&3 \\
+ \end{pmatrix} 
+ $
+ となる. よって$A$の逆行列は
+ $
+ \begin{pmatrix}
+2& -1&1 \\
+0& 1&0\\
+5& -3&3  \\
+ \end{pmatrix} 
+ $
+ である.
+ \end{exa}
+
+\subsubsection{正則行列の性質}
+  
+  
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{prop}
+    $A, B$を$n$次正方行列とする． 
+ \begin{enumerate}
+   \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+  \item$A, B$が正則ならば, $AB$も正則でありその逆行列は$B^{-1}A^{-1}$である.($(AB)^{-1} = B^{-1}A^{-1}$)
+\item $A$が正則行列で$AB=O$ならば$B=O$.
+\item 簡約行列(標準形)が正則ならば, 単位行列である.
+ \end{enumerate}
+  \end{prop}
+  \end{tcolorbox}
+  
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}\cite[定理2.4]{M}
+ \begin{enumerate}
+   \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+    \item 任意の正則行列は行基本変形を繰り返し行うことで単位行列にすることができる.
+  \item 任意の正則行列は基本行列(定理\ref{thm-basic})の積で表すことができる. 
+  \item $n$次正方行列$A$において, ${\rm rank} A =n$であることは, $A$が正則であることと同値. 
+ \end{enumerate}
+  \end{thm}
+  \end{tcolorbox}
+上において行基本変形の部分は列基本変形に変えても良い.
+
+次は\cite[2.8節]{M}の内容だが, 今の時点で証明できるのでここでしておく.
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{prop}\cite[定義2.6]{M}
+$n$次正方行列に関して, 次は同値である
+ \begin{enumerate}
+   \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+  \item$AB=E$($E$は$n$次単位行列)となる$n$次正方行列$B$が存在する. 
+    \item$BA=E$($E$は$n$次単位行列)となる$n$次正方行列$B$が存在する. 
+      \item$A$は正則行列. つまり逆行列$A^{-1}$を持つ. 
+ \end{enumerate}
+  \end{prop}
+  \end{tcolorbox}
+  
+\subsubsection{転置行列}
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}
+行列$A$の行と列を入れ替えた行列を\underline{転置行列}と言い${}^{t}A$とかく.
+つまり$m \times n$行列$ A=\begin{pmatrix}
+a_{11}& a_{12} & \cdots &a_{1n} \\
+a_{21}& a_{22} & \cdots &a_{2n} \\
+\vdots& \vdots	&	\ddots   &	\vdots \\
+a_{m1}& a_{m2} & \cdots &a_{mn} \\
+\end{pmatrix}$
+について
+$$
+{}^{t}A
+=
+\begin{pmatrix}
+a_{11}& a_{21} & \cdots &a_{m1} \\
+a_{12}& a_{22} & \cdots &a_{m2} \\
+\vdots& \vdots	&	\ddots   &	\vdots \\
+a_{1n}& a_{2n} & \cdots &a_{mn} \\
+\end{pmatrix}
+$$
+と定義する. ${}^{t}A$は$n \times m$行列である. 
+  \end{dfn}
+  \end{tcolorbox}
+  
+  
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{prop}
+    $A$を$m \times n$行列とする.
+ \begin{enumerate}
+   \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+  \item ${}^{t}{}^{t}A=A$
+  \item $B$を$n \times l$行列とするとき, ${}^{t}(AB)={}^{t}B \cdot {}^{t}A$
+  \item $m=n$かつ$A$が正則ならば, ${}^{t}(A^{-1}) = ({}^{t}A)^{-1}$
+  \item ${\rm rank}({}^{t}A)={\rm rank}(A)$. 特に${\rm rank}(A) \le \min\{m,n\}$(定理 \ref{thm-row-column}参照)
+ \end{enumerate}
+  \end{prop}
+  \end{tcolorbox}
+  4については定理\ref{thm-row-column}で証明を与える. 
+
+
+\subsection{線形写像の像と核\cite[2.7節]{M}}
+\subsubsection{部分空間と階数}
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}\cite[定義2.4]{M}[部分空間・階数・次元]
+     \begin{itemize}
+   \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+    \item $\bm{a}_1, \ldots, \bm{a}_k \in \R^n$について, これらの線形結合の全体
+    $$
+    W = {\rm Span}(\bm{a}_1, \ldots, \bm{a}_k)=
+    \{ \lambda_1\bm{a}_1 + \cdots +\lambda_k \bm{a}_k | \lambda_1, \ldots \lambda_k \in\R \}
+    $$
+    を\underline{$\bm{a}_1, \ldots, \bm{a}_k$ではられる$\R^n$の線形部分空間}という．
+    また$W={\rm Span}(\bm{a}_1, \ldots, \bm{a}_k)$と表される集合を\underline{線形部分空間}と呼ぶ.
+    
+    \item$\bm{a}_1, \ldots, \bm{a}_k$に含まれる線形独立(定義\ref{dfn-linear-independent})なベクトルの最大個数を階数(rank)といい, ${\rm rank}(\bm{a}_1, \ldots, \bm{a}_k)$で表す. (この教科書での用語である.)
+    \item \underline{$W$の次元(dimension)}を
+    $$
+    \dim W :={\rm rank} \{ \bm{a}_1, \ldots, \bm{a}_k\}
+    $$
+    として定義する.
+    \item $r=\dim W = {\rm rank}(\bm{a}_1, \ldots, \bm{a}_k)$とする. $r$個の線形独立な$W$の元$\bm{b}_1, \ldots, \bm{b}_r \in W$の組$\{\bm{b}_1, \ldots, \bm{b}_r\}$を\underline{$W$の基底}という.
+    \end{itemize}
+  \end{dfn}
+  \end{tcolorbox}
+  線形部分空間の詳しい定義は後期の授業で行う.(教科書\cite[定義2.4']{M}にも記述がある. ) ただ詳しい定義と上の定義は実は同じである.
+ また教科書には「$W$の次元とは$W$の点を一意に定めるために必要なパラメーターの個数」と定義している. 
+ \begin{exa}
+ $\R^3$について
+$$
+\bm{e}_1=(1,0,0), \quad
+\bm{e}_2=(0,1,0), \quad
+\bm{e}_3=(0,0,1) \quad
+ $$
+ とする.すると以下が成り立つ.
+ \begin{itemize}
+    \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+\item  ${\rm Span}(\bm{e}_1)$は直線であり, 次元は1である.
+\item ${\rm Span}(\bm{e}_1, \bm{e}_2)$は平面であり, 次元は2である.
+\item $\R^3 = {\rm Span}(\bm{e}_1, \bm{e}_2, \bm{e}_3)$は空間であり, 3次元である. 
+  \end{itemize}
+
+ \end{exa}
+
+\begin{exa}
+$\R^2$について
+$$
+\bm{a}_1=(1,2), \quad
+\bm{a}_2=(2,2), \quad
+\bm{a}_3=(-1,-1), \quad
+\bm{a}_4=(0,2), \quad
+$$
+とする.すると
+$$
+W = {\rm Span}(\bm{a}_1, \ldots, \bm{a}_4)= \R^2
+$$
+であり, $\bm{a}_1, \ldots, \bm{a}_4$に含まれる線形独立なベクトルの最大個数は2である($(\bm{a}_1, \bm{a}_2)$とか$(\bm{a}_1, \bm{a}_3)$など)
+よって$\dim W=2$である．
+
+$W$の基底の選び方はいっぱいある. 例えば$\{ (1,0), (0,1)\}$, $\{(1,2), (2,1)\}$などが基底である.
+\end{exa}
+
+\begin{exa}
+$\R^2$について
+$$
+\bm{a}_1=(1,2), \quad
+\bm{a}_2=(2,4), \quad
+\bm{a}_3=(-1,-2), \quad
+\bm{a}_4=(0,0), \quad
+$$
+とする.すると
+$$
+W = {\rm Span}(\bm{a}_1, \ldots, \bm{a}_4)=\{ (t, -t) | t \in \R \}
+$$
+であり, $\bm{a}_1, \ldots, \bm{a}_4$に含まれる線形独立なベクトルの最大個数は1である($(\bm{a}_1)$とか$(\bm{a}_2)$など)
+よって$\dim W=1$である． 
+$W$の基底は$\{ (1,2)\}$や$\{ (-100, -200)\}$などがある. 
+\end{exa}
+
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}\cite[定理2.7]{M}
+\label{thm-row-column}
+行列$A$の線形独立な行の個数は線形独立な列の個数に等しい. 特に ${\rm rank}({}^{t}A)={\rm rank}(A)$が成り立つ. 
+  \end{thm}
+  \end{tcolorbox}
+  
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{lem}
+ \begin{enumerate}
+   \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+  \item $\bm{a}_1, \ldots, \bm{a}_k\in \R^n$について
+  $
+  \bm{a}_j=
+    \begin{pmatrix}
+    a_{1j}\\a_{2j}\\\vdots\\a_{nj}
+    \end{pmatrix}
+    $
+  と成分表示する. 
+  このとき次が成り立つ. 
+  $$
+  {\rm rank}(\bm{a}_1, \ldots, \bm{a}_k)
+  =
+  {\rm rank}\begin{pmatrix}
+a_{11}& a_{12} & \cdots &a_{1k} \\
+a_{21}& a_{22} & \cdots &a_{2k} \\
+\vdots& \vdots	&	\ddots   &	\vdots \\
+a_{n1}& a_{n2} & \cdots &a_{nk} \\
+\end{pmatrix}
+%  ={\rm rank}
+  %    \begin{pmatrix}
+  %  \bm{a}_1&\bm{a}_2&\cdots&\bm{a_{k}}
+  %  \end{pmatrix}
+$$
+  ここで右のrankは定義\ref{dfn-rank}におけるものである. 
+  \item $ W={\rm Span}(\bm{a}_1, \ldots, \bm{a}_k)$とし, $r =\dim W$とするとき, $(\bm{a}_1, \ldots, \bm{a}_k)$の中から$r$個のベクトル$\bm{a}_{i_1}, \ldots, \bm{a}_{i_r}$を選んで
+  $$
+  W={\rm Span}(\bm{a}_{i_1}, \ldots, \bm{a}_{i_r})
+  $$
+  と書くことができる. 
+    \item $\bm{a}_1, \ldots, \bm{a}_k, \bm{b}_1, \ldots, \bm{b}_l\in \R^n$について
+    $$
+    W={\rm Span}(\bm{a}_1, \ldots, \bm{a}_k)={\rm Span}(\bm{b}_1, \ldots, \bm{b}_l)
+    $$
+    が成り立つならば, 
+    $$
+    {\rm rank}(\bm{a}_1, \ldots, \bm{a}_k)={\rm rank}(\bm{b}_1, \ldots, \bm{b}_l)
+    $$
+    となる. 特に線形部分空間$W$の次元の定義は$\bm{a}_1, \ldots, \bm{a}_k$の取り方によらない. 
+    \item $\dim \R^n=n$であり, $\{ \bm{e}_1, \ldots \bm{e}_n\}$は基底になる. $\bm{e}_i$は基本単位ベクトル($i$番目のみ1で他は0である数ベクトル)である.(定義\ref{dfn-ei})
+    \item $W \subset \R^n$を線形部分空間とするとき$\dim W \le n$.
+ \end{enumerate}
+  \end{lem}
+  \end{tcolorbox}
+
+\subsubsection{線形写像の像と核}
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}\cite[定義2.5]{M}[線形写像の像と核]
+    $m \times n$行列$A$と$\bm{a}_1, \ldots, \bm{a}_n \in  \R^m$を以下で定める.
+    
+    $$
+    \bm{a}_j=
+    \begin{pmatrix}
+    a_{1j}\\a_{2j}\\\vdots\\a_{mj}
+    \end{pmatrix}
+    \quad
+     A=\begin{pmatrix}
+a_{11}& a_{12} & \cdots &a_{1n} \\
+a_{21}& a_{22} & \cdots &a_{2n} \\
+\vdots& \vdots	&	\ddots   &	\vdots \\
+a_{m1}& a_{m2} & \cdots &a_{mn} \\
+\end{pmatrix}
+=
+    \begin{pmatrix}
+    \bm{a}_1&\bm{a}_2&\cdots&\bm{a}_n
+    \end{pmatrix}
+$$
+$A$で定義された線形写像
+    $$
+\begin{array}{cccc}
+A:&  \R^n&\rightarrow& \R^m \\
+& \bm{x}&\longmapsto & A\bm{x}
+\end{array}
+$$
+について像と核を次で定義する.
+    \begin{enumerate}
+   \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+  \item $A$の像(Image)${\rm  Image}A$を
+  $$
+{\rm  Image}A:= \{ \bm{y} \in \R^m | \text{ある$\bm{x}\in \R^n$があって$\bm{y}=A\bm{x}$となる.}\}
+  $$
+  として定義する. これは
+  \begin{align*}
+  \begin{split}
+  A\bm{x}=\begin{pmatrix}
+a_{11}& a_{12} & \cdots &a_{1n} \\
+a_{21}& a_{22} & \cdots &a_{2n} \\
+\vdots& \vdots	&	\ddots   &	\vdots \\
+a_{m1}& a_{m2} & \cdots &a_{mn} \\
+\end{pmatrix}
+\begin{pmatrix}
+x_1\\x_2\\ \vdots \\x_n
+\end{pmatrix}
+&=
+    \begin{pmatrix}
+    \bm{a}_1&\bm{a}_2&\cdots&\bm{a}_n
+    \end{pmatrix}
+    \begin{pmatrix}
+x_1\\x_2\\ \vdots \\x_n
+\end{pmatrix}\\
+&=
+\bm{a}_1x_1+ \bm{a}_2x_2 + \cdots + \bm{a}_nx_n
+  \end{split}
+  \end{align*}
+
+  と表される元の全体である. 
+  \item  $A$の核(Kernel)${\rm  Ker}A$を
+  $$
+{\rm  Ker}A:= \{ \bm{x} \in \R^n | A\bm{x}=0\}
+  $$
+ として定義する. これは
+ $$
+   A\bm{x}=
+   \bm{a}_1x_1+ \bm{a}_2x_2 + \cdots + \bm{a}_nx_n
+   =
+   \begin{pmatrix}
+a_{11}& a_{12} & \cdots &a_{1n} \\
+a_{21}& a_{22} & \cdots &a_{2n} \\
+\vdots& \vdots	&	\ddots   &	\vdots \\
+a_{m1}& a_{m2} & \cdots &a_{mn} \\
+\end{pmatrix}
+\begin{pmatrix}
+x_1\\x_2\\ \vdots \\x_n
+\end{pmatrix}
+=0
+ $$
+ となる$\bm{x} \in \R^n$の元全体で, つまり連立一次方程式$A\bm{x}=0$の解の全体である. 
+  \end{enumerate}
+  \end{dfn}
+  \end{tcolorbox}
+  
+   \begin{exa}
+$
+A=\begin{pmatrix}
+3& 0 \\
+0& 0 \\
+\end{pmatrix}
+$ならば
+$
+ A
+\begin{pmatrix}
+x \\ y
+ \end{pmatrix}  = 
+ \begin{pmatrix}
+3x \\0
+ \end{pmatrix}
+$
+である. 
+よって
+$$
+{\rm  Image}A
+=
+\{ (3x,0) \in \R^2 | x \in \R\}
+=
+\{ (x,0) \in \R^2 | x \in \R\}
+\quad
+{\rm  Ker}A
+=
+\{ (0,y) \in \R^2 | y \in \R\}
+$$
+\end{exa}
+\subsubsection{像と核の基底の求め方}
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{lem}\cite[補題2.6]{M}
+$A$を$m \times n$行列とし$A: \R^n \to \R^m$を$A$で定義された線形写像とする． 
+また$B$を
+定理\ref{thm-kanyakuka}のように行基本変形を繰り返して得られた標準形(簡約行列)とする.    
+\begin{enumerate}
+   \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+ \item ${\rm Image}A$は$B$の1が現れた位置の\underline{元の行列の列}で張られる. そしてそれが${\rm Image}A$　の基底をなす. 
+ \item$\dim({\rm Image}A)={\rm rank} A$
+ \item 連立一次方程式$A\bm{x}=0$の解がパラメーター$t_1, \ldots, t_l$を用いて
+ $$
+ \begin{pmatrix}
+x_1\\x_2\\ \vdots \\x_n
+\end{pmatrix}
+=
+t_1 
+\begin{pmatrix}
+b_{11}\\b_{21}\\ \vdots \\b_{n1}
+\end{pmatrix}
++
+t_2
+\begin{pmatrix}
+b_{12}\\b_{22}\\ \vdots \\b_{n2}
+\end{pmatrix}
++\cdots+
+t_l
+\begin{pmatrix}
+b_{1l}\\b_{2l}\\ \vdots \\b_{nl}
+\end{pmatrix}
+=
+t_1\bm{b}_1+\cdots + t_l \bm{b}_l
+\quad
+\bm{b}_j=
+\begin{pmatrix}
+b_{1j}\\b_{2j}\\ \vdots \\b_{nj}
+\end{pmatrix}
+\in \R^n
+ $$
+ とかけるとする. 
+ このとき$\bm{b}_1 \ldots, \bm{b}_l \in \R^n$は${\rm Ker}A$の基底をなす. 
+ \item $ \dim ({\rm Ker}A)=n-{\rm rank} A$.
+  \end{enumerate}
+  \end{lem}
+  \end{tcolorbox}
+像の部分の文章がわかりずらい.(これは教科書のままの表現である.)
+これは例えば行列$A$を行基本変形を用いて次のようになったとする
+$$
+A=
+    \begin{pmatrix}
+    \bm{a}_1&\bm{a}_2&\bm{a}_3&\bm{a}_4&\bm{a}_5
+    \end{pmatrix}
+   =
+\begin{pmatrix}
+a_{11}& a_{12} &a_{13}& a_{14} & a_{15}  \\
+a_{21}& a_{22} & a_{23}& a_{24} & a_{25}   \\
+a_{31}& a_{32} &a_{33}& a_{34} & a_{35}  \\
+a_{41}& a_{42} &a_{43}& a_{44} & a_{45}  \\
+\end{pmatrix}
+\longrightarrow 
+B=
+\begin{pmatrix}
+0& \xr{1}& 0& 0 & 0   \\
+0& 0 &0&\xr{1}&0 \\
+0& 0 &0& 0&\xr{1}  \\
+0& 0&0& 0& 0 \\
+\end{pmatrix}
+$$
+今$B$に$\xr{1}$が現れる列は2,4,5列である.
+よって${\rm Image}A$は$A$の2,4,5列で生成される. 
+つまり
+$$
+{\rm Image}A
+={\rm Span}
+    \begin{pmatrix}
+    \bm{a}_2&\bm{a}_4&\bm{a}_5
+    \end{pmatrix}
+={\rm Span}\left(
+\begin{pmatrix}
+a_{12}\\a_{22}\\a_{32}\\a_{42}
+\end{pmatrix},
+\begin{pmatrix}
+a_{14}\\a_{24}\\a_{34}\\a_{44}
+\end{pmatrix},
+\begin{pmatrix}
+a_{15}\\a_{25}\\a_{35}\\a_{45}
+\end{pmatrix}
+\right)
+$$
+となる. 
+
+
+
+  次は\cite[2.8節]{M}の内容だが, 今の時点で証明できるのでここでしておく.
+  \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}\cite[定理2.9. 次元公式]{M}
+\label{thm-dim}
+$A$を$m \times n$行列とし$A: \R^n \to \R^m$を$A$で定義された線形写像とする． 
+このとき以下の次元公式が成り立つ
+$$
+\dim({\rm Image}A) +  \dim ({\rm Ker}A) = \dim \R^n=n
+$$
+  \end{thm}
+  \end{tcolorbox}
+連立一次方程式$A\bm{x}=0$の言葉で言うと
+\begin{enumerate}
+   \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+  \item $\dim({\rm Image}A) $は「線形独立な方程式の個数」
+  \item $ \dim ({\rm Ker}A) $は「線形独立な方程式の解の個数」
+  \item $\dim \R^n$は「未知数の個数」
+  \end{enumerate}
+  となる. 
+  
+  \begin{exa}\cite[例題2.5]{M}
+  $A=
+\begin{pmatrix}
+1 & 1&-1&3\\
+0 & 1&1&-1\\
+1 & 2&1&0\\
+1 & 3&1&1\\
+ \end{pmatrix}
+ $とし$A$で定義された線形写像
+    $$
+\begin{array}{cccc}
+A:&  \R^4&\rightarrow& \R^4 \\
+& \bm{x}&\longmapsto & A\bm{x}
+\end{array}
+$$
+とする.
+この線形写像の像${\rm Image}A$と核${\rm Ker}A$の次元を求め, それらの線形部分空間としての基底を一組示せ. 
+ 
+ (答).例\ref{exa-2.4}によって,  行基本変形を用いると次のような標準形(簡約行列)をえる
+ \begin{align*}
+ &A=\begin{pmatrix}
+1 & 1&-1&3\\
+0 & 1&1&-1\\
+1 & 2&1&0\\
+1 & 3&1&1\\
+ \end{pmatrix}
+ \overset{}{\longrightarrow} 
+B=\begin{pmatrix}
+\xr{1} & 0&0&0\\
+0 & \xr{1}&0&1\\
+0 & 0&\xr{1}&-2\\
+0& 0&0&0\\
+ \end{pmatrix}
+ \end{align*}
+ 
+(像の次元と基底)
+ 像${\rm Image}A$の次元は${\rm rank}A$($B$の主成分の個数)より3.
+$B$に$\xr{1}$が現れる列は1,2,3列より, 基底は$A$の1,2,3列目である
+$
+\begin{pmatrix}
+1\\0\\1\\1
+\end{pmatrix}, 
+\begin{pmatrix}
+1\\1\\2\\3
+\end{pmatrix}, 
+\begin{pmatrix}
+-1\\1\\1\\1
+\end{pmatrix}
+$
+となる.
+
+(核の次元と基底) 
+核${\rm Ker}A$の次元は$4-{\rm rank}A$より1.
+基底は$A\bm{x}=0$の解がわかれば良い. これはまとめ\ref{suma-gauss}から$B\bm{x}=0$の解がわかれば良く, 
+$$
+B\bm{x}=0
+\Leftrightarrow
+ \left\{ 
+\begin{matrix}
+x_1&  &  &  && &&    = & 0 \\
+&  &x_2 &  & &+&x_4&  = & 0 \\
+&  & &  & x_3&-&2x_4&    = & 0 \\
+&  & &  &  & & 0&    = & 0 \\
+\end{matrix}
+\right.
+ $$
+$B\bm{x}=0$の解はパラメーター$t$を用いて
+ $
+ \begin{pmatrix}
+ x_1\\x_2\\x_3\\x_4
+ \end{pmatrix}
+=
+t
+ \begin{pmatrix}
+ 0\\-1\\2\\1
+ \end{pmatrix}
+ $
+ とかけるので， $\begin{pmatrix}
+ 0\\-1\\2\\1
+ \end{pmatrix}$が${\rm Ker}A$の基底である. 
+ \end{exa}
+ 
+ 
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+        \begin{suma}[線形写像$A : \R^n \to \R^m$の像と核の求め方]
+\label{suma-gauss}
+$m \times n$行列$A$による線形写像$A : \R^n \to \R^m$の像と核の求め方は以下の手順で解くことができる. 
+\begin{enumerate}
+   \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+ \item 定理\ref{thm-kanyakuka}のように行列$A$に行基本変形を繰り返して標準形(簡約行列)$B$を得る.
+ \item (像の次元と基底)$B$のゼロベクトルでない行ベクトルの個数(主成分(定義\ref{dfn-main})の1の個数)が${\rm rank}A=\dim {\rm Image}A$である．
+ \item (像の基底) $B$の1(主成分)が現れた位置の元の行列の列たちが${\rm Image}A$の基底になる． 
+ \item (核の次元) $\dim {\rm Ker}A = n-\dim {\rm Image}A=n-{\rm rank}A$.
+ \item (核の基底) $B \bm{x}=0$の解($A\bm{x}=0$の解に同じ)が, パラメーター$t_1, \ldots, t_l$を用いて$\bm{x}=t_1\bm{b}_1+\cdots+t_l\bm{b}_l$とかけるとき, $\bm{b}_1, \ldots, \bm{b}_l$が${\rm Ker}A$の基底となる.
+ \end{enumerate}
+\end{suma}
+ \end{tcolorbox}
+ 
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+        \begin{suma}
+    $m \times n$行列$A$と$\bm{a}_1, \ldots, \bm{a}_n \in  \R^m$を以下で定める.
+    
+    $$
+    \bm{a}_j=
+    \begin{pmatrix}
+    a_{1j}\\a_{2j}\\\vdots\\a_{mj}
+    \end{pmatrix}
+    \quad
+     A=\begin{pmatrix}
+a_{11}& a_{12} & \cdots &a_{1n} \\
+a_{21}& a_{22} & \cdots &a_{2n} \\
+\vdots& \vdots	&	\ddots   &	\vdots \\
+a_{m1}& a_{m2} & \cdots &a_{mn} \\
+\end{pmatrix}
+=
+    \begin{pmatrix}
+    \bm{a}_1&\bm{a}_2&\cdots&\bm{a}_n
+    \end{pmatrix}
+$$
+この時$ W = {\rm Span}(\bm{a}_1, \ldots, \bm{a}_n) \subset \R^m$とおくと, 
+$$
+ W  =\{ x_1\bm{a}_1 + \cdots +x_n\bm{a}_k | x_1, \ldots x_n \in\R \}
+    =\{A \bm{x} | \bm{x} \in \R^n \}
+    ={\rm Image}A \subset \R^m
+$$
+であるので, 
+\begin{itemize}
+   \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+  \item $W$の次元 $=$ ${\rm Image}A$の次元 $=$ ${\rm rank}A$.
+  \item $W$の基底 $=$ ${\rm Image}A$の基底.
+  \end{itemize}
+と上の方法で求めることができる.
+\end{suma}
+ \end{tcolorbox}
+ 
+
+
+
+\subsection{非斉次の連立一次方程式と次元公式 \cite[2.8節]{M}}
+\label{subsec-2.8}
+次元公式に関しては定理\ref{thm-dim}で与えたので省略.
+
+\subsubsection{非斉次の連立一次方程式}
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}\cite[定理2.8]{M}
+    $A$を$m \times n$行列とし, $A=(\bm{a}_1, \ldots, \bm{a}_n)$となるように$\bm{a}_i \in \R^m$をとる. 
+    $\bm{b} \in \R^m$について次は同値である. 
+     \begin{enumerate}
+    \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+ \item 連立一次方程式$A\bm{x} =\bm{b}$が解を持つ.
+ \item $\bm{b} \in {\rm Image}A$. つまり$\bm{x} \in \R^n$で$\bm{b}=A\bm{x}$となるものが存在する. 
+ \item${\rm rank}(A)={\rm rank}(\bm{a}_1, \ldots, \bm{a}_n) = {\rm rank}(\bm{a}_1, \ldots, \bm{a}_n, \bm{b}) ={\rm rank}( [A:\bm{b}])$.
+ \end{enumerate}
+  \end{thm}
+ \end{tcolorbox}
+ 
+
+\subsubsection{非斉次の連立一次方程式の(具体的な)解き方}
+
+
+
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+        \begin{suma}[$A\bm{x} =\bm{b}$の解きかた(掃き出し法・ガウスの消去法)]
+\label{suma-gauss}
+(斉次)連立一次方程式
+\begin{equation*}
+%\label{equation}
+\left\{ 
+\begin{matrix}
+a_{11}x_1&+& a_{12} x_2& +&\cdots &+&a_{1n}x_n &= &b_1\\
+a_{21}x_1&+& a_{22} x_2& +&\cdots &+&a_{2n}x_n &= &b_2 \\
+\vdots		&& 	\vdots				 && 		& &\vdots&&\vdots	\\
+a_{m1}x_1&+& a_{m2} x_2& +&\cdots &+&a_{mn}x_n &= &b_m \\
+\end{matrix}
+\right.
+\end{equation*}
+は以下の手順で解くことができる. 
+     \begin{enumerate}
+    \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+ \item  連立方程式$A\bm{x} =\bm{b}$から拡大係数行列
+ $$
+ [A:\bm{b}]=\begin{pmatrix}
+a_{11}& a_{12} & \cdots &a_{1n} &b_1\\
+a_{21}& a_{22} & \cdots &a_{2n} &b_2\\
+\vdots& \vdots	&	\ddots   &	\vdots &\vdots\\
+a_{m1}& a_{m2} & \cdots &a_{mn} &b_m\\
+\end{pmatrix}
+\text{とおく.}
+ $$
+ \item 定理\ref{thm-kanyakuka}のように拡大係数行列$[A:\bm{b}]$に行基本変形を繰り返して標準形(簡約行列)$[C:\bm{d}]$を得る.
+ \item $C \bm{x}=\bm{d}$をとく. これが連立方程式$A\bm{x} =\bm{b}$の解になる. 
+ \end{enumerate}
+\end{suma}
+ \end{tcolorbox}
+ 
+\begin{exa}
+連立一次方程式
+ $
+ \left\{ 
+\begin{matrix}
+x_1&+&2x_2& = &2 \\
+x_1&+&4x_2& = &4\\
+\end{matrix}
+\right.
+ $
+ を解け.
+ 
+ (解). 連立方程式の拡大係数行列は
+ $[A:\bm{b}]=
+  \begin{pmatrix}
+ 1& 2& 2  \\
+ 2& 4& 4  \\
+ \end{pmatrix}
+ $
+ である. これを簡約化すると
+ $
+  \begin{pmatrix}
+ 1& 2& 2  \\
+ 0& 0& 0  \\
+ \end{pmatrix} 
+ $
+ となる. よってこれより
+ $
+  \left\{ 
+\begin{matrix}
+x_1&+&2x_2& = &2 \\
+0x_1&+&0x_2& = &0\\
+\end{matrix}
+\right.
+$
+である. 
+
+以上より解は
+$
+ \left\{ 
+\begin{matrix}
+x_1&=& 2 -2c_2\\
+x_2 &=& c_2\\
+\end{matrix}
+\text{\,\, ($c_2$は任意)}
+\right.
+$
+となる. 
+
+解の書き方として
+$
+\begin{pmatrix}
+x_1\\
+x_2 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+2\\
+0 \\
+\end{pmatrix}
++t 
+\begin{pmatrix}
+-2\\
+1 \\
+\end{pmatrix}
+(t \in \R)
+$
+と書くこともある.
+\end{exa}
+
+\begin{exa}
+連立一次方程式
+ $
+ \left\{ 
+\begin{matrix}
+x_1&+&2x_2& = &2 \\
+x_1&+&4x_2& = &5\\
+\end{matrix}
+\right.
+ $
+ を解け.
+ 
+ (解). 連立方程式の拡大係数行列は
+ $[A:\bm{b}]=
+  \begin{pmatrix}
+ 1& 2& 2  \\
+ 2& 4& 5  \\
+ \end{pmatrix}
+ $
+ である. 
+ これを簡約化すると
+ $
+  \begin{pmatrix}
+ 1& 2& 0  \\
+ 0& 0& 1 \\
+ \end{pmatrix} 
+ $
+ となる. よってこれより
+ $
+  \left\{ 
+\begin{matrix}
+x_1&+&2x_2& = &0 \\
+0x_1&+&0x_2& = &1\\
+\end{matrix}
+\right.
+$
+である. 以上より解は存在しない.
+\end{exa}
+
+\begin{exa}
+連立一次方程式
+ $
+ \left\{ 
+\begin{matrix}
+x_1&-&2x_2&   &		&+&3x_4& &	&= 2 \\
+x_1&-&2x_2& + &x_3&+&2x_4&+&x_5&= 2 \\
+2x_1&-&4x_2& + &x_3&+&5x_4&+&2x_5&= 5 \\
+\end{matrix}
+\right.
+ $
+ を解け.
+ 
+ (解). 拡大係数行列は 
+ $[A:\bm{b}]=
+  \begin{pmatrix}
+ 1& -2& 0 & 3& 0& 2   \\
+  1& -2& 1& 2& 1& 2   \\
+ 2& -4& 1 & 5& 2& 5   \\
+ \end{pmatrix}
+ $
+ である. これを基本変形で簡約化すると
+ $
+  \begin{pmatrix}
+ 1& -2& 0 & 3& 0& 2   \\
+ 0& 0& 1& -1& 0& 1   \\
+ 0& 0& 0 & 0& 1& 1   \\
+ \end{pmatrix}
+ $
+ となる.
+ これをもう一回式に書き下すと
+ $$
+\left \{
+ \begin{matrix}
+x_1&-&2x_2&   &		&+&3x_4& &	&= 2 \\
+      & &		&   &x_3       &- & x_4& &       &= -1 \\
+      & & &   &    & &		& & x_5&= 1 \\
+\end{matrix}
+\right.
+\text{である.}
+ $$
+ 
+以上より解は
+$
+ \left\{ 
+\begin{matrix}
+x_1&=& 2 +2c_2 -3c_4\\
+x_2&=&c_2 \\
+x_3&=& -1 + c_4\\
+x_4&=&c_4 \\
+x_5&=& 1\\
+\end{matrix}
+\text{\,\, ($c_2, c_4$は任意)}
+\right.
+$
+となる. 
+ 
+解の書き方として
+$
+\begin{pmatrix}
+x_1\\
+x_2 \\
+x_3 \\
+x_4 \\
+x_5 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+2\\
+0 \\
+-1 \\
+0\\
+1 \\
+\end{pmatrix}
++ s
+\begin{pmatrix}
+2\\
+1\\
+0\\
+0\\
+0 \\
+\end{pmatrix}
++ t
+\begin{pmatrix}
+-3\\
+0\\
+1\\
+1\\
+0 \\
+\end{pmatrix}
+(s, t \in \R)
+$
+と書くこともある.
+ \end{exa}
+ 
+ \begin{exa}
+ 連立一次方程式
+ $
+ \left\{ 
+\begin{matrix}
+x_1& +& 4x_2 &  +& 2x_3&- &2x_4&= & 5\\
+4x_1&+&13x_2& +&5x_3&+&x_4&= & 2\\
+	& &x_2& + &x_3&-&3x_4&=&a \\
+\end{matrix}
+\right.
+ $
+ の解が存在するような$a$の値を全て求めよ.
+ 
+ (解). 
+ (解). 拡大係数行列は 
+ $[A:\bm{b}]=
+  \begin{pmatrix}
+ 1& 4& 2 & -2& 5   \\
+  4& 13& 5& 1&  2   \\
+ 0& 1& 1 & -3&  a   \\
+ \end{pmatrix}
+ $
+ である. これを基本変形で(ある程度変形すると)
+ $
+  \begin{pmatrix}
+ 1& 0& -2& 10& -19   \\
+ 0& 1& 1& -3& 6   \\
+ 0& 0& 0 & 0& a-6   \\
+ \end{pmatrix}
+ $
+ となる.
+ これをもう一回式に書き下すと
+ $$
+\left \{
+ \begin{matrix}
+x_1&  &  &  -& 2x_3&+ &10x_4&= & -19\\
+& &x_2& +&x_3&-&3x_4&= & 6\\
+	& && &&&0&=&a-6 \\
+\end{matrix}
+\right.
+\text{である.}
+ $$
+ よって$a -6\neq 0$のときは解が存在しない. 
+ 
+ $a-6 =0$のときは解は
+$
+ \left\{ 
+\begin{matrix}
+x_1&=& -19+2c_3-10c_4\\
+x_2&=&6 -c_3 + 3c_4 \\
+x_3&=& c_3\\
+x_4&=&c_4 \\
+\end{matrix}
+\text{\,\, ($c_3, c_4$は任意)}
+\right.
+$
+となり解が存在する. よって$a=6$.
+ \end{exa}
+
+\section{行列式 \cite[3章]{M}}
+\subsection{行列式の定義 \cite[3.1節]{M}}
+
+2章に同じく, $n$次正方行列$A$について, 列ベクトル$\bm{a}_1, \bm{a}_2, \ldots, \bm{a}_n \in \R^n$を用いて
+    $A= \begin{pmatrix}
+    \bm{a}_1&\bm{a}_2&\cdots&\bm{a}_n
+    \end{pmatrix}$と表す記法を用いる. 
+    
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}[行列式の存在]
+    \label{thm-det}
+    $n$次正方行列の集合から実数$\R$への関数$\det$
+    $$
+\begin{array}{ccccc}
+\det: &\{\text{$n$次正方行列} \}& \rightarrow & \R& \\
+&
+A
+=
+    \begin{pmatrix}
+    \bm{a}_1&\bm{a}_2&\cdots&\bm{a}_n
+    \end{pmatrix}
+ & 
+ \longmapsto & 
+ \det(A)=\det\begin{pmatrix}
+    \bm{a}_1&\bm{a}_2&\cdots&\bm{a}_n
+    \end{pmatrix}
+ &
+\end{array}
+$$
+で次を満たすものが存在する.
+       \begin{enumerate}
+    \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+\item (正規化条件) $n$次単位行列$E$について
+$$\det(E)=1.$$
+\item (多重線形性)$\bm{b}_{i} \in \R^n$と$\lambda, \mu \in \R$について
+\begin{align*}
+\begin{split}
+&\det\begin{pmatrix}
+    \bm{a}_1&\cdots&\lambda\bm{a}_i+\mu\bm{b}_i&\cdots&\bm{a}_n
+    \end{pmatrix} \\
+&=
+\lambda \det\begin{pmatrix}
+    \bm{a}_1&\cdots&\bm{a}_i&\cdots&\bm{a}_n
+    \end{pmatrix}
++
+\mu \det\begin{pmatrix}
+    \bm{a}_1&\cdots&\bm{b_i}&\cdots&\bm{a}_n
+    \end{pmatrix}
+    \end{split}.
+\end{align*}
+\item (交代性) $1\le i< j \le n$なる$i,j$について, $i$番目と$j$番目を入れ替えると符号が変わる. 
+$$
+\det(
+    \bm{a}_1, \cdots, \underbrace{\bm{a}_j}_{i}, \cdots , \underbrace{\bm{a}_i}_{j}, \cdots, \bm{a}_n
+)
+=
+-\det(
+    \bm{a}_1, \cdots, \underbrace{\bm{a}_i}_{i}, \cdots , \underbrace{\bm{a}_j}_{j}, \cdots, \bm{a}_n.
+)
+$$
+  \end{enumerate}
+  またこの関数$\det(A)$の値を\underline{$A$の行列式(determinant)}という. 
+  
+  行列式の表し方に関しては, 
+  $$
+  \det\begin{pmatrix}
+a_{11}& a_{12} & \cdots &a_{1n} \\
+a_{21}& a_{22} & \cdots &a_{2n} \\
+\vdots& \vdots	&	\ddots   &	\vdots \\
+a_{n1}& a_{n2} & \cdots &a_{nn} \\
+\end{pmatrix}
+\quad
+\text{}
+\quad
+\begin{vmatrix}
+a_{11}& a_{12} & \cdots &a_{1n} \\
+a_{21}& a_{22} & \cdots &a_{2n} \\
+\vdots& \vdots	&	\ddots   &	\vdots \\
+a_{n1}& a_{n2} & \cdots &a_{nn} \\
+\end{vmatrix}
+  $$
+  で表すこともある． 
+    \end{thm}
+ \end{tcolorbox}
+ 
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}[行列式の唯一性]
+    \label{thm-det}
+    $n$次正方行列の集合から実数$\R$への関数
+    $$
+\begin{array}{ccccc}
+f: &\{\text{$n$次正方行列} \}& \rightarrow & \R& \\
+&
+A
+=
+    \begin{pmatrix}
+    \bm{a}_1&\bm{a}_2&\cdots&\bm{a}_n
+    \end{pmatrix}
+ & 
+ \longmapsto & 
+ f(A)=f\begin{pmatrix}
+    \bm{a}_1&\bm{a}_2&\cdots&\bm{a}_n
+    \end{pmatrix}
+ &
+\end{array}
+$$
+で次を満たすとする.
+       \begin{enumerate}
+    \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+\item (多重線形性)$\bm{b}_{i} \in \R^n$と$\lambda, \mu \in \R$について
+\begin{align*}
+\begin{split}
+&f\begin{pmatrix}
+    \bm{a}_1&\cdots&\lambda\bm{a}_i+\mu\bm{b}_i&\cdots&\bm{a}_n
+    \end{pmatrix} \\
+&=
+\lambda f\begin{pmatrix}
+    \bm{a}_1&\cdots&\bm{a}_i&\cdots&\bm{a}_n
+    \end{pmatrix}
++
+\mu f\begin{pmatrix}
+    \bm{a}_1&\cdots&\bm{b_i}&\cdots&\bm{a}_n
+    \end{pmatrix}
+    \end{split}.
+\end{align*}
+\item (交代性) $1\le i< j \le n$なる$i,j$について, $i$番目と$j$番目を入れ替えると符号が変わる. 
+$$
+f(
+    \bm{a}_1, \cdots, \underbrace{\bm{a}_j}_{i}, \cdots , \underbrace{\bm{a}_i}_{j}, \cdots, \bm{a}_n
+)
+=
+-f(
+    \bm{a}_1, \cdots, \underbrace{\bm{a}_i}_{i}, \cdots , \underbrace{\bm{a}_j}_{j}, \cdots, \bm{a}_n.
+)
+$$
+  \end{enumerate}
+ このとき$ f(A) = f(E) \det A$
+ となる.
+     \end{thm}
+ \end{tcolorbox}
+ 
+ 
+行列式は次の例から"符号付きの体積"ともみれる.
+
+\begin{exa}
+\label{2jidet}
+$A = 
+  \begin{pmatrix}
+a_{11}& a_{12}\\
+a_{21}& a_{22}\\
+ \end{pmatrix} 
+$
+とすると$\det(A) = a_{11}a_{22} - a_{12}a_{21}$である.
+
+これは $
+ \begin{pmatrix}
+a_{11}\\ a_{21}
+ \end{pmatrix}$と
+$ \begin{pmatrix}
+a_{12}\\a_{22} \end{pmatrix} $
+がなす平行四辺形の"符号付き"面積に等しい. (\ref{subsec-det-wedge}節参照.)
+
+例えば
+$\det
+ \begin{pmatrix}
+3&5\\
+6&1 \\
+\end{pmatrix}
+=-27
+\text{, } 
+\det
+\begin{pmatrix}
+6&1 \\
+3&5\\
+\end{pmatrix}
+=
+27
+ $
+ である.
+\end{exa}
+
+\begin{exa}
+$A = 
+  \begin{pmatrix}
+a_{11}& a_{12} & a_{13}\\
+a_{21}& a_{22} & a_{23}\\
+a_{31}& a_{32} & a_{33}\\
+ \end{pmatrix} 
+$
+の行列式は
+$$
+ \det(A)= 
+ a_{11}a_{22}a_{33}+ a_{12}a_{23}a_{31}  +  a_{13}a_{21}a_{32} 
+- a_{11}a_{23}a_{32}     - a_{13}a_{22}a_{31}  - a_{12}a_{21}a_{33}
+  $$
+ で与えられる. 
+ これは
+  $\begin{pmatrix}
+a_{11}\\ a_{21}\\a_{31}
+ \end{pmatrix}$
+ と
+  $\begin{pmatrix}
+a_{12}\\ a_{22}\\a_{32}
+ \end{pmatrix}$
+ と
+   $\begin{pmatrix}
+a_{13}\\ a_{23}\\a_{33}
+ \end{pmatrix}$
+がなす平行六面体の"符号付き"体積に等しい. 
+
+\end{exa}
+
+ちなみに2次正方行列や3次正方行列の行列式は視覚的に綺麗に表わすことができる(サラスの公式と呼ばれる).
+
+\subsection{行列式の計算 \cite[3.2節]{M}}
+
+\subsubsection{行列式の公理からの帰結}
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{prop}\cite[系3.2]{M}
+     \begin{enumerate}
+    \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+ \item  ある列を$\lambda$倍すると, 行列式も$\lambda$倍される.
+ $$
+ \det \begin{pmatrix}
+    \bm{a}_1&\cdots&\lambda\bm{a}_i&\cdots&\bm{a}_n
+    \end{pmatrix}
+    =
+    \lambda
+     \det \begin{pmatrix}
+    \bm{a}_1&\cdots&\bm{a}_i&\cdots&\bm{a}_n
+    \end{pmatrix}
+ $$
+ \item 等しい列があれば, 行列式も0になる. 
+ $$
+ \det(\bm{a}_1, \cdots, \underbrace{\bm{a}_i}_{i}, \cdots , \underbrace{\bm{a}_i}_{j}, \cdots, \bm{a}_n)
+=0.
+ $$
+ \item ある列のスカラー倍を他の列に加えても行列式は不変である. 
+ $$
+\det(
+    \bm{a}_1, \cdots, \underbrace{\bm{a}_i}_{i}, \cdots , \underbrace{\lambda\bm{a}_i + \bm{a}_j}_{j}, \cdots, \bm{a}_n
+)
+=
+-\det(
+    \bm{a}_1, \cdots, \underbrace{\bm{a}_i}_{i}, \cdots , \underbrace{\bm{a}_j}_{j}, \cdots, \bm{a}_n
+).
+ $$
+ \item ある$i$で$\bm{a}_i$がゼロベクトル$\bm{0}$ならば, 行列式も0.
+ $$ \det(
+    \bm{a}_1, \cdots, \underbrace{\bm{0}}_{i}, \cdots, \bm{a}_n
+)=0.$$
+ \end{enumerate}
+  \end{prop}
+ \end{tcolorbox}
+  
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{prop}[対角行列の行列式]
+   $$
+\begin{vmatrix}
+a_{11}& a_{12} & a_{13} &\cdots &a_{1n-1}&a_{1n} \\
+0 	   & a_{22} & a_{23} &\cdots&a_{2n-1} &a_{2n} \\
+0 	   & 0  		& a_{33} &\cdots &a_{3n-1}&a_{3n} \\
+\vdots& \vdots	&  \ddots &\ddots&	\vdots  &	\vdots \\
+0	& 0      		&      	&\ddots	&a_{n-1n-1} &a_{n-1n} \\
+0	& 0      		&     \cdots	&	\cdots&0		&a_{nn} \\
+\end{vmatrix}
+=a_{11}a_{22}\cdots a_{nn}
+$$
+また上の行列に関して転置をとっても行列式は不変である. 
+  \end{prop}
+ \end{tcolorbox}
+ 
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{cor}[基本行列の行列式]
+   基本行列(定理\ref{thm-basic})について次がなりたつ. 
+ \begin{enumerate}
+   \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+  \item 基本行列$F_{i,\lambda}$(第$i$行を$\lambda$倍することに対応する基本行列)について, 
+  $$\det(F_{i,\lambda}) = \det({}^t F_{i,\lambda}) =\lambda.
+  $$
+ \item 基本行列$G_{i,j}$(第$i$行と$A$の第$j$行の入れ替えに対応する基本行列)について, 
+   $$\det(G_{i,j}) = \det({}^t G_{i,j}) =-1.
+  $$
+ \item 基本行列$H_{i,\lambda, j}$($A$の第$i$行の$\lambda$倍を$A$の第$j$行に加えることに対応する基本行列)について,  
+   $$\det(H_{i,\lambda, j}) = \det({}^t H_{i,\lambda, j}) =1.
+  $$
+ \end{enumerate}
+  \end{cor}
+  \end{tcolorbox}
+
+次は\cite[3.4節]{M}の内容だが必要なので先に証明する.
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}\cite[定理3.9]{M}
+    $$
+    \det(AB)=\det(A)\det(B).
+    $$
+  \end{thm}
+  \end{tcolorbox}
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}\cite[命題3.4]{M}
+    $$
+    \det({}^t A)=\det(A)
+    $$
+  またこのことから次が成り立つ. 
+    \begin{enumerate}
+    \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+  \item 定理\ref{thm-det}での行列式に関する性質(多重線形性・交代性)は"行"に関しても成り立つ. 
+ \item  ある"行"を$\lambda$倍すると, 行列式も$\lambda$倍される.
+ \item 二つの"行"を入れ替えると, 行列式は-1倍になる. 
+ \item ある"行"のスカラー倍を他の"行"に加えても行列式は不変である. 
+ \end{enumerate}
+  \end{thm}
+  \end{tcolorbox}
+  
+  
+  \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}
+    $n$次正方行列$A=(a_{ij})$の$i$行と$j$列を取り除いた$n-1$次正方行列を$A_{ij}$とかく.
+    つまり
+  $$
+  A_{ij}
+  =
+    \begin{pmatrix}
+a_{11}&   \cdots &a_{1j-1}&a_{1j+1}&\cdots&a_{1n} \\
+\vdots&   		& \vdots &\vdots &   		&\vdots  \\
+a_{i-11}&   \cdots &a_{i-1j-1}&a_{i-1j+1}&\cdots&a_{i-1n} \\
+a_{i+11}&   \cdots &a_{i+1j-1}&a_{i+1j+1}&\cdots&a_{i+1n} \\
+\vdots&   		& \vdots &\vdots &   		&\vdots  \\
+a_{n1}&   \cdots &a_{nj-1}&a_{nj+1}&\cdots&a_{nn} \\
+\end{pmatrix}
+\text{とする.}
+$$
+    \end{dfn}
+ \end{tcolorbox}
+ 
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}
+    \label{thm-cofactor}
+\begin{align*}
+\begin{split}
+&\begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}\\
+&=
+a_{11} 
+\begin{vmatrix}
+a_{22} & \cdots & a_{2n} \\
+\vdots & & \vdots \\
+a_{n2} & \cdots & a_{nn}
+\end{vmatrix}
+- a_{21}
+\begin{vmatrix}
+a_{12} & \cdots & a_{1n} \\
+a_{32} & \cdots & a_{3n} \\
+\vdots & & \vdots \\
+a_{n2} & \cdots & a_{nn}
+\end{vmatrix}
++ \cdots + (-1)^{n+1} a_{n1}
+\begin{vmatrix}
+a_{12} & \cdots & a_{1n} \\
+a_{22} & \cdots & a_{2n} \\
+\vdots & & \vdots \\
+a_{n-1,2} & \cdots & a_{n-1,n}
+\end{vmatrix}
+\end{split}
+\end{align*}
+
+特に行列$A$について
+$$
+\det(A) =a_{11}\det(A_{11}) - a_{21}\det(A_{21})+ \cdots +(-1)^{n+1}a_{n1}\det(A_{n1}) 
+$$
+
+同様にして任意の$1 \leqq i \leqq n, 1 \leqq j\leqq n$なる$i,j$について, 次が成り立つ.
+ \begin{align*}
+ \det(A) & =(-1)^{1+j}a_{1j}\det(A_{1j}) + \cdots +(-1)^{n+j}a_{nj}\det(A_{nj}) 
+ \\
+ &=(-1)^{i+1}a_{i1}\det(A_{i1}) + \cdots +(-1)^{i+n}a_{in}\det(A_{in}).
+  \end{align*}
+  これは\underline{余因子展開}と呼ばれる. 
+     \end{thm}
+ \end{tcolorbox}
+
+
+
+ \subsubsection{行列式の計算方法}
+ 
+ 行列式の計算方法は主に2通りある. 
+ どちらを用いても良いし, 混ぜて使っても良い. 
+ 
+  \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{suma}[行列式の計算方法1.]
+    行列式の計算に有用なものは以下のものである
+\begin{enumerate}[label=\textbf{操作}\arabic*.]
+    \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+ \item  ある行を$\lambda$倍すると, 行列式も$\lambda$倍される.
+ \item 二つの行を入れ替えると, 行列式は$-1$倍になる. 
+ \item ある行のスカラー倍を他の行に加えても行列式は不変である. 
+ \item 
+ $$
+\begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+0 & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & & \vdots \\
+0& a_{n2} & \cdots & a_{nn}
+\end{vmatrix}\\
+=
+a_{11} 
+\begin{vmatrix}
+a_{22} & \cdots & a_{2n} \\
+\vdots & & \vdots \\
+a_{n2} & \cdots & a_{nn}
+\end{vmatrix}
+ $$
+ \item $\begin{vmatrix}
+a& b\\
+c&d\\
+ \end{vmatrix} 
+=ad-bc$
+ \end{enumerate}
+ まず上の操作1-3を用いて, 操作4の左の形を作る. そして操作4を用いて行列のサイズを1つ下げる. この操作を繰り返して行列のサイズが2になるようにし, 最後に操作5を使えば良い.  
+ \end{suma}
+  \end{tcolorbox}
+  操作5に関しては$3 \times 3$行列の行列式の式を用いても良い. 
+
+  \begin{exa}
+ $
+ \begin{pmatrix}
+ 1&3&4\\
+ -2&-5&7\\
+ -3&2&-1\\
+ \end{pmatrix}
+$
+の行列式は次のように求められる. 
+
+\begin{align*}
+ &\begin{vmatrix}
+ 1&3&4\\
+ -2&-5&7\\
+ -3&2&-1\\
+ \end{vmatrix}
+ \overset{\text{操作3}} {=}
+ \begin{vmatrix}
+ 1&3&4\\
+ 0&1&15\\
+ 0&11&11\\
+ \end{vmatrix}
+ \overset{\text{操作4}} {=}
+ 1
+ \begin{vmatrix}
+1&15\\
+11&11\\
+ \end{vmatrix}
+  \overset{\text{操作1}} {=}
+ 11
+ \begin{vmatrix}
+1&15\\
+1&1\\
+ \end{vmatrix}\overset{\text{操作5} } {=}
+ 11 \left\{ 1 \times 1 - 15 \times 1 \right\} 
+ =
+ -154.
+ \end{align*}
+ 
+\end{exa}
+
+
+
+ \begin{exa}
+ $
+ \begin{pmatrix}
+ 2&-4&-5&3\\
+ -6&13&14&1\\
+ 1&-2&-2&-8\\
+ 2&-5&0&5\\
+ \end{pmatrix}
+$
+の行列式は次のように求められる. 
+
+\begin{align*}
+ &\begin{vmatrix}
+ 2&-4&-5&3\\
+ -6&13&14&1\\
+ 1&-2&-2&-8\\
+ 2&-5&0&5\\
+ \end{vmatrix}
+ \overset{\text{操作2}} {=}
+ (-1)
+  \begin{vmatrix}
+   1&-2&-2&-8\\
+ -6&13&14&1\\
+ 2&-4&-5&3\\
+ 2&-5&0&5\\
+ \end{vmatrix}
+  \overset{\text{操作3}}  {=}
+ (-1)
+  \begin{vmatrix}
+   1&-2&-2&-8\\
+ 0&1 &2  &-47\\
+ 0& 0&-1&19\\
+ 0&-1&4&21\\
+ \end{vmatrix}
+\\ %%%
+& \overset{\text{操作4}} {=}
+ (-1)
+  \begin{vmatrix}
+1 &2  &-47\\
+ 0&-1&19\\
+-1&4&21\\
+ \end{vmatrix}
+  \overset{\text{操作3}} {=}
+   (-1)
+  \begin{vmatrix}
+1 &2  &-47\\
+ 0&-1&19\\
+ 0&6&-26\\
+ \end{vmatrix}
+ \overset{\text{操作4}} {=}
+  (-1)
+    \begin{vmatrix}
+-1&19\\
+6&-26\\
+ \end{vmatrix}
+ \\ %%
+ & \overset{\text{操作5} } {=}
+ (-1)\left\{(-1)\times (-26) - 6\times 19\right\} = 88.
+\end{align*}
+ \end{exa}
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{suma}[行列式の計算方法2.]
+    行列に0が多めにある場合は余因子展開を用いても良い.
+    \begin{align*}
+\begin{split}
+&\begin{vmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & & \vdots \\
+a_{n1} & a_{n2} & \cdots & a_{nn}
+\end{vmatrix}\\
+&=
+a_{11} 
+\begin{vmatrix}
+a_{22} & \cdots & a_{2n} \\
+\vdots & & \vdots \\
+a_{n2} & \cdots & a_{nn}
+\end{vmatrix}
+- a_{21}
+\begin{vmatrix}
+a_{12} & \cdots & a_{1n} \\
+a_{32} & \cdots & a_{3n} \\
+\vdots & & \vdots \\
+a_{n2} & \cdots & a_{nn}
+\end{vmatrix}
++ \cdots + (-1)^{n+1} a_{n1}
+\begin{vmatrix}
+a_{12} & \cdots & a_{1n} \\
+a_{22} & \cdots & a_{2n} \\
+\vdots & & \vdots \\
+a_{n-1,2} & \cdots & a_{n-1,n}
+\end{vmatrix}
+\end{split}
+\end{align*}
+\end{suma}
+\end{tcolorbox}
+
+
+
+\begin{exa}行列
+$A=
+\begin{pmatrix}
+2 & 7&13 & 5\\
+5 & 3&8 & 2\\
+0 & 0 & 9  & 4\\
+0 & 0&-2 & 1\\
+\end{pmatrix}
+$の行列式は次のように求められる. 
+
+\begin{align*}
+\det(A) 
+&= 
+(-1)^{1+1}a_{11}\det(A_{11}) + (-1)^{2+1}a_{21}\det(A_{21}) + (-1)^{3+1}a_{31}\det(A_{31}) + (-1)^{4+1}a_{41}\det(A_{41}) 
+\\ %%
+&=
+2 
+\begin{vmatrix}
+ 3&8 & 2\\
+0 & 9  & 4\\
+0&-2 & 1\\
+\end{vmatrix}
+- 5 
+\begin{vmatrix}
+ 7&13 & 5\\
+0 & 9  & 4\\
+0&-2 & 1\\
+\end{vmatrix}
++0
+\begin{vmatrix}
+ 7&13 & 5\\
+ 3&8 & 2\\
+0&-2 & 1\\
+\end{vmatrix}
+-0
+\begin{vmatrix}
+ 7&13 & 5\\
+ 3&8 & 2\\
+0 & 9  & 4\\
+\end{vmatrix}
+\\ %%
+&=2 
+\begin{vmatrix}
+ 3&8 & 2\\
+0 & 9  & 4\\
+0&-2 & 1\\
+\end{vmatrix}
+- 5 
+\begin{vmatrix}
+ 7&13 & 5\\
+0 & 9  & 4\\
+0&-2 & 1\\
+\end{vmatrix}
+\\%%
+&=2 \times 3
+\begin{vmatrix}
+9  & 4\\
+-2 & 1\\
+\end{vmatrix}
+-5 \times 7
+\begin{vmatrix}
+9  & 4\\
+-2 & 1\\
+\end{vmatrix}
+=(2 \times 3 - 5 \times 7) \times (9 \times 1 - 4 \times (-2)) = -493.
+\end{align*}
+\end{exa}
+
+
+
+
+\begin{ques}
+
+行列式
+$
+\begin{vmatrix}
+ 0& -3& -6 &15 \\
+ -2& 5& 14 &4 \\
+ 1& -3& -2 &5 \\
+ 15 & 10& 10 &-5 \\
+ \end{vmatrix} 
+ $
+ を計算せよ.
+\end{ques}
+
+\begin{ques}
+行列式
+$
+\begin{vmatrix}
+3 & 5&1 & 2&-1\\
+2 & 6&0 & 9&1\\
+0 & 0& 7& 1&2\\
+0 & 0& 3& 2&5\\
+0 & 0& 0& 0&-6\\
+\end{vmatrix}
+$を計算せよ.
+
+\end{ques}
+
+
+
+ 
+\subsection{余因子行列とその応用 \cite[3.3節]{M}}
+
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}
+    $n$次正方行列$A=(a_{ij})$について, $(i,j)$成分の\underline{余因子(cofactor)}$\widetilde{a_{ij}}$を
+$$
+    \widetilde{a_{ij}}= (-1)^{i+j} \det(A_{ij})
+    $$
+    で定める.
+    \end{dfn}
+ \end{tcolorbox}
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}\cite[定理3.6]{M}
+$A$を$n$次正方行列とする. このとき.
+$$
+ \det(A)  =a_{1j}\widetilde{a_{1j}}+ \cdots +a_{nj}\widetilde{a_{nj}}
+$$
+であり, $k \neq j$なる$k$について
+$$
+0 =a_{1k}\widetilde{a_{1j}}+ \cdots +a_{nk}\widetilde{a_{nj}}
+$$
+が成り立つ. 
+
+同様に
+$$
+\det(A) =a_{i1}\widetilde{a_{i1}}+ \cdots +a_{in}\widetilde{a_{in}}
+$$
+であり, $k \neq i$なる$k$について
+$$
+0 =a_{k1}\widetilde{a_{i1}}+ \cdots +a_{kn}\widetilde{a_{in}}
+$$
+が成り立つ
+      \end{thm}
+ \end{tcolorbox}
+  
+  
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}
+    $n$次正方行列$A=(a_{ij})$について, 
+     \underline{$A$の余因子行列$\widetilde{A}$}を$A$の余因子を並べて作った行列を転置したものとして定義する:
+    $$
+\widetilde{A}
+=
+\begin{pmatrix}
+\widetilde{a_{11}}& \widetilde{a_{21}}& \cdots &\widetilde{a_{n1}} \\
+\widetilde{a_{12}}& \widetilde{a_{22}} & \cdots &\widetilde{a_{n2}} \\
+\vdots& \vdots	&	\ddots   &	\vdots \\
+\widetilde{a_{1n}}& \widetilde{a_{2n}} & \cdots &\widetilde{a_{nn}} \\
+\end{pmatrix}
+$$
+     \end{dfn}
+ \end{tcolorbox}
+\begin{exa}
+\label{inverse_2}
+$
+\begin{pmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22}
+\end{pmatrix}
+$
+のときの余因子行列$\widetilde{A}$は
+$\begin{pmatrix}
+a_{22} &- a_{12} \\
+-a_{21} & a_{11}
+\end{pmatrix}$となる.
+\end{exa}
+
+\subsubsection{余因子の応用}
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}
+ $A$を$n$次正方行列とする.このとき
+$$A\widetilde{A} = \widetilde{A}A =(\det A)E$$
+が成り立つ. 
+特に$\det(A)\neq0$ならば$A^{-1} = \frac{1}{\det A} \widetilde{A}$.
+     \end{thm}
+ \end{tcolorbox}
+
+\begin{exa}2次正方行列
+ $A=
+  \begin{pmatrix}
+ a& b  \\
+ c& d  \\
+ \end{pmatrix} 
+ $で
+  $\det(A)=ad-bc \neq 0$となるものとする． 
+  このとき上の定理から
+ $$
+ A^{-1} =   
+ \frac{1}{\det A} \widetilde{A}
+ =
+ \frac{1}{ad-bc}
+ \begin{pmatrix}
+ d& -b  \\
+ -c& a  \\
+ \end{pmatrix} 
+ \quad 
+ \text{となる. }
+ $$
+\end{exa}
+
+
+\subsubsection{クラメルの公式}
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}
+$A$を正則な$n$次正方行列とし, 列ベクトル$\bm{a}_1, \ldots, \bm{a}_{n}$を用いて
+$
+A = 
+\begin{pmatrix}
+\bm{a}_1 & \cdots & \bm{a}_{n}
+\end{pmatrix}
+$
+と表されているとする.
+このとき連立一次方程式$A \bm{x} =\bm{b}$の解は次のようになる.
+$$
+\bm{x}= \begin{pmatrix}
+x_1 \\ \vdots \\ x_{n}
+\end{pmatrix}, 
+x_i = \frac{\det
+(\bm{a}_1 \cdots \overbrace{\bm{b}}^{i} \cdots   \bm{a}_{n}
+)
+}{\det A}.
+$$
+    \end{thm}
+ \end{tcolorbox}
+\begin{exa}
+$
+A = 
+\begin{pmatrix}
+5 &1\\
+3&2 \\ 
+\end{pmatrix}
+$, $
+\bm{b} = 
+\begin{pmatrix}
+3\\
+2 \\ 
+\end{pmatrix}
+$
+とする. 
+連立一次方程式$A \bm{x} =\bm{b}$の解を
+$
+\bm{x}= \begin{pmatrix}
+x_1 \\x_2
+\end{pmatrix} 
+$
+とすると,
+$$
+x_1 = \frac{\det
+\begin{pmatrix}
+ \bm{b}& \bm{a}_{2}
+\end{pmatrix}
+}{\det A}
+= 
+\frac{ 
+\begin{vmatrix}
+3&1\\
+2&2 \\
+\end{vmatrix}
+}
+{
+\begin{vmatrix}
+5&1\\
+3&2 \\
+\end{vmatrix}
+}
+=\frac{4}{7} 
+\text{, }
+x_2 = \frac{\det
+\begin{pmatrix}
+\bm{a}_{1}& \bm{b}
+\end{pmatrix}
+}{\det A}
+= 
+\frac{ 
+\begin{vmatrix}
+5&3\\
+3&2 \\
+\end{vmatrix}
+}
+{
+\begin{vmatrix}
+5&1\\
+3&2 \\
+\end{vmatrix}
+}
+=\frac{1}{7}
+\text{となる.}
+$$
+\end{exa}
+
+  
+\subsection{行列式の公理の応用 \cite[3.4節]{M}}
+
+ 
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}
+    $A,B$を$n$次正方行列とする. 
+        \begin{enumerate}
+    \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}   
+\item $\det(A) \neq 0$であることと$A$が正則であることは同値.
+\item $AB=E$ならば, $A$は正則で$B$は$A$の逆行列である. 
+\end{enumerate}
+  \end{thm}
+ \end{tcolorbox}
+ 
+\subsection{行列式の存在証明 \cite[3.5節]{M}}
+実は行列式の存在証明は簡単である.
+行列式が存在すれば定理\ref{thm-cofactor}のようにならざるを得ないからである. (一意性は置換を勉強しないと出ないが...)
+よってこの節に関しては授業では省略する.
+%\footnote{行列式の定義はいろいろあるが, 今回のように公理からスタートすれば割と綺麗に物事が進む.置換を使ったものは具体的でわかりやすいが, 証明は大変である} 
+
+が, 展開公式(定義\ref{thm-det-ex}, \cite[命題3.3]{M})くらいは知っておいてもいいと思うので, 
+以下過去の授業で用いた内容を添付しておく. 
+わかりづらければ\cite{M}を参照してほしい. 
+
+\subsubsection{置換の定義}
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}
+    \text{}
+    \begin{itemize}
+\item $\{ 1, \ldots, n\}$から$\{ 1, \ldots, n\}$への1対1写像を\underline{置換}と言い$\sigma$で表す．
+つまり置換$\sigma$とは$k_1, \ldots, k_n$を1から$n$の並び替えとして, 
+1を$k_1$に, 2を$k_2$に, $\cdots$, $n$を$k_n$にと変化させる規則のことである.
+\item 上の置換$\sigma$を
+$$
+\sigma =
+  \begin{pmatrix}
+ 1& 2  &\cdots &n\\
+ k_1& k_2  &\cdots &k_n\\
+ \end{pmatrix} 
+$$
+とかき, $\sigma(1) =k_1, \sigma(2) =k_2, \ldots, \sigma(n) =k_n$とする.
+    \end{itemize}
+  \end{dfn}
+ \end{tcolorbox}
+ 
+ \begin{exa}
+ 置換$\sigma$を
+$
+\sigma =
+  \begin{pmatrix}
+ 1& 2  &3 &4\\
+ 3& 1  &4 &2\\
+ \end{pmatrix} 
+$
+とする. 
+これは「1を$3$に, 2を$1$に, 3を4に, 4を$2$にと変化させる規則」である.
+ $\sigma(1) =3, \sigma(2) =1, \sigma(3) =4,  \sigma(4) =2$である.
+ \end{exa}
+ 
+ \begin{exa}
+ 置換$\sigma$を
+$
+\sigma =
+  \begin{pmatrix}
+ 1& 2  &3 \\
+ 2& 1  &3 \\
+ \end{pmatrix} 
+$
+とする. 
+これは「1を$2$に, 2を$1$に, 3を3にと変化させる規則」である.
+ $\sigma(1) =2, \sigma(2) =1, \sigma(3) =3$である.
+ 
+ この置換は3に関しては何も変化させていないので
+ $
+\sigma =
+  \begin{pmatrix}
+ 1& 2   \\
+ 2& 1   \\
+ \end{pmatrix} 
+$
+ともかく.
+ \end{exa}
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}
+置換$\sigma, \tau$について, その積$\sigma \tau$を
+$\sigma(\tau(i))$で定める.
+  \end{dfn}
+ \end{tcolorbox}
+ 
+\begin{exa}
+ 置換$\sigma, \tau$を
+$
+\sigma =
+  \begin{pmatrix}
+ 1& 2  &3 & 4 \\
+ 4& 3  &1  &2 \\
+ \end{pmatrix} 
+\tau=
+  \begin{pmatrix}
+ 1& 2  &3 & 4 \\
+ 2& 3  &4  &1 \\
+ \end{pmatrix} 
+ $
+とすると, 
+$$
+  \begin{matrix}
+ \sigma (\tau (1)) &= &  \sigma (2)  & = & 3  \\
+ \sigma (\tau (2)) &= &  \sigma (3)  & = & 1 \\
+ \sigma (\tau (3)) &= &  \sigma (4)  & = & 2  \\
+ \sigma (\tau (4)) &= &  \sigma (1)  & = & 4  \\
+ \end{matrix} 
+ \text{\,\,\,であるので, }
+ \sigma \tau
+= 
+ \begin{pmatrix}
+ 1& 2  &3 & 4 \\
+ 3& 1  &2  &4 \\
+ \end{pmatrix} 
+ \text{である.}
+$$
+
+\end{exa}
+
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}
+\text{}
+\begin{itemize}
+\item $
+\epsilon =
+  \begin{pmatrix}
+ 1& 2  &\cdots &n\\
+ 1& 2  &\cdots &n\\
+ \end{pmatrix} $を\underline{単位置換}という.
+ \item  
+ $ \sigma =
+  \begin{pmatrix}
+ 1& 2  &\cdots &n\\
+ k_1& k_2  &\cdots &k_n\\
+ \end{pmatrix} 
+$について, 
+$
+  \begin{pmatrix}
+ k_1& k_2  &\cdots &k_n\\
+ 1& 2  &\cdots &n\\
+ \end{pmatrix} 
+$を\underline{$\sigma$の逆置換}と言い$\sigma^{-1}$で表す.
+\end{itemize}
+  \end{dfn}
+ \end{tcolorbox}
+
+\begin{exa} 
+$\sigma = 
+\begin{pmatrix}
+ 1& 2  &3 & 4 & 5\\
+ 4& 5  &1  &3 &2\\
+ \end{pmatrix} 
+$
+とするとき
+$
+\sigma^{-1}
+=
+\begin{pmatrix}
+ 4& 5  &1  &3 &2\\
+ 1& 2  &3 & 4 & 5\\
+ \end{pmatrix} 
+ =
+ \begin{pmatrix}
+ 1& 2  &3 & 4 & 5\\
+ 3& 5  &4  &1 &2\\
+ \end{pmatrix} 
+ \text{である.}
+$
+\end{exa}
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}
+ $ \sigma =
+  \begin{pmatrix}
+ k_1& k_2  &\cdots &k_l\\
+ k_2& k_3  &\cdots &k_1\\
+ \end{pmatrix} 
+$となる置換$\sigma$を\underline{巡回置換}と言い
+$\sigma =
+  \begin{pmatrix}
+ k_1& k_2  &\cdots &k_l\\
+ \end{pmatrix} 
+$と表す.
+
+特に $ \sigma =
+  \begin{pmatrix}
+ k_1& k_2  \\
+ k_2& k_1 \\
+ \end{pmatrix} 
+$となる巡回置換を\underline{互換}と言い$\sigma =
+  \begin{pmatrix}
+ k_1& k_2 \\
+ \end{pmatrix} 
+$と表す.
+  \end{dfn}
+ \end{tcolorbox}
+
+
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{thm}
+任意の置換$\sigma$は互換の積$\tau_1 \cdots \tau_{l}$で表わすことができ, $l$の偶奇は$\sigma$によってのみ定まる.
+  \end{thm}
+ \end{tcolorbox}
+ 
+ \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}
+置換$\sigma$が互換の積$\tau_1 \cdots \tau_{l}$で表せられているとする.
+\begin{itemize}
+\item $\sgn (\sigma) = (-1)^{l}$とし, これを\underline{$\sigma$の符号}と呼ぶ.
+\item $\sgn (\sigma) = 1$なる置換$\sigma$を\underline{偶置換}といい, $\sgn (\sigma) = -1$なる置換$\sigma$を\underline{奇置換}という.
+\end{itemize}
+  \end{dfn}
+ \end{tcolorbox}
+ 
+ \begin{exa}
+ $
+ \sigma 
+  =
+ \begin{pmatrix}
+ 1& 2  &3 & 4 & 5 & 6 & 7\\
+ 4& 1  &6  &2 &7 & 5 & 3\\
+ \end{pmatrix} 
+ $を互換の積で表し, その符号を求めよ.
+ 
+ (解). 
+ $1 \overset{\sigma}{\rightarrow} 4 \overset{\sigma}{\rightarrow}2 \overset{\sigma}{\rightarrow}1 $と変化し,  
+  $3 \overset{\sigma}{\rightarrow} 6\overset{\sigma}{\rightarrow}5 \overset{\sigma}{\rightarrow}7 \overset{\sigma}{\rightarrow}3$と変化するので, 
+  $$
+  \sigma = 
+   \begin{pmatrix}
+ 1& 4 &2 
+ \end{pmatrix} 
+    \begin{pmatrix}
+ 3& 6 &5 &7
+ \end{pmatrix} 
+ \text{である.}
+  $$
+  さらに
+  $   \begin{pmatrix}
+ 1& 4 &2 
+ \end{pmatrix} 
+ = 
+ \begin{pmatrix}
+ 1& 4  
+ \end{pmatrix} 
+ \begin{pmatrix}
+ 4 &2 
+ \end{pmatrix},
+\begin{pmatrix}
+ 3& 6 &5 &7
+ \end{pmatrix} 
+ =
+ \begin{pmatrix}
+ 3& 6  
+ \end{pmatrix} 
+  \begin{pmatrix}
+ 6& 5  
+ \end{pmatrix} 
+  \begin{pmatrix}
+ 5& 7  
+ \end{pmatrix} 
+ $
+ であるので, 
+ $$
+\sigma= 
+\begin{pmatrix}
+ 1& 4  
+ \end{pmatrix} 
+ \begin{pmatrix}
+ 4 &2 
+ \end{pmatrix}
+ \begin{pmatrix}
+ 3& 6  
+ \end{pmatrix} 
+  \begin{pmatrix}
+ 6& 5  
+ \end{pmatrix} 
+  \begin{pmatrix}
+ 5& 7  
+ \end{pmatrix} 
+ $$
+ となり, $\sgn(\sigma)= (-1)^{5}=-1$である.
+ 
+ \end{exa}
+
+  \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{prop}置換$\sigma, \tau$について, 
+    $\sgn(\epsilon) = 1$, $\sgn(\sigma^{-1}) = \sgn(\sigma)$, 
+$\sgn(\sigma \tau) = \sgn(\sigma) \sgn(\tau) $が成り立つ(ただし$\epsilon$は単位置換とする).
+  \end{prop}
+ \end{tcolorbox}
+ 
+ 
+  \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}
+$S_n$を$n$文字置換の集合とし, $A_n$を$n$文字置換の集合とする.
+  \end{dfn}
+ \end{tcolorbox}
+専門用語で$S_n$は対称群と言い, $A_n$は交代群と言う.
+
+  \begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{prop}\text{}
+    \begin{itemize}
+      \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+\item $S_n$の個数は$n!$個である.
+\item 偶置換と奇置換の個数は同じである.
+\item $A_n$の個数は$\frac{n!}{2}$個である.
+\item $\sigma, \tau \in A_n$ならば$\sigma \tau \in A_n$
+    \end{itemize}
+  \end{prop}
+ \end{tcolorbox}
+
+\subsubsection{行列式の定義}
+\begin{tcolorbox}[
+    colback = white,
+    colframe = green!35!black,
+    fonttitle = \bfseries,
+    breakable = true]
+    \begin{dfn}
+    \label{thm-det-ex}
+$n$次正方行列$A = (a_{ij})$について
+$$
+\det(A) =  \sum_{\sigma \in S_n}\sgn(\sigma) 
+a_{1 \sigma(1)} a_{2 \sigma(2)} \cdots a_{n \sigma(n)} 
+\text{を\underline{$A$の行列式}と言う.}
+$$
+ $A$の行列式は$\det(A)$, $|A|$, 
+$
+\begin{vmatrix}
+a_{11}& a_{12} & \cdots &a_{1n} \\
+a_{21}& a_{22} & \cdots &a_{2n} \\
+\vdots& \vdots	&	\ddots   &	\vdots \\
+a_{n1}& a_{n2} & \cdots &a_{nn} \\
+\end{vmatrix}
+$
+ともかく.
+  \end{dfn}
+ \end{tcolorbox}
+
+\begin{exa}
+\label{2jidet}
+$A = 
+  \begin{pmatrix}
+a_{11}& a_{12}\\
+a_{21}& a_{22}\\
+ \end{pmatrix} 
+$
+とすると$\det(A) = a_{11}a_{22} - a_{12}a_{21}$である.
+
+(証).
+$S_2 = \left\{   \begin{pmatrix}
+1& 2\\
+1& 2\\
+ \end{pmatrix} , 
+   \begin{pmatrix}
+1&2\\
+2& 1\\
+ \end{pmatrix} 
+  \right\}$
+  であるので, $A$の行列式は
+  \begin{align*}
+  \det(A) &= 
+  \sgn \begin{pmatrix}
+1& 2\\
+1& 2\\
+ \end{pmatrix} a_{11}a_{22}
+ +
+  \sgn \begin{pmatrix}
+1& 2\\
+2& 1\\
+ \end{pmatrix} a_{12}a_{21}
+ =
+ a_{11}a_{22} - a_{12}a_{21}.
+  \end{align*}
+
+\end{exa}
+
+\begin{exa}
+$A = 
+  \begin{pmatrix}
+a_{11}& a_{12} & a_{13}\\
+a_{21}& a_{22} & a_{23}\\
+a_{31}& a_{32} & a_{33}\\
+ \end{pmatrix} 
+$
+の行列式を求める.
+
+$S_3 = \left\{   
+\begin{pmatrix}
+1& 2 &3\\
+1& 2 &3\\
+ \end{pmatrix} , 
+\begin{pmatrix}
+1& 2 &3\\
+2& 1 &3\\
+ \end{pmatrix} , 
+\begin{pmatrix}
+1& 2 &3\\
+1& 3 &2\\
+ \end{pmatrix} , 
+ \begin{pmatrix}
+1& 2 &3\\
+3& 2 &1\\
+ \end{pmatrix} , 
+ \begin{pmatrix}
+1& 2 &3\\
+2& 3 &1\\
+ \end{pmatrix} , 
+ \begin{pmatrix}
+1& 2 &3\\
+3& 1 &2\\
+ \end{pmatrix}
+  \right\}$
+  であるので, $A$の行列式は
+  
+  \begin{align*}
+  \det(A) 
+  &= 
+  \sgn \begin{pmatrix}
+1& 2 &3\\
+1& 2 &3\\
+ \end{pmatrix}
+ a_{11}a_{22}a_{33}
+ +
+   \sgn \begin{pmatrix}
+1& 2 &3\\
+2& 1 &3\\
+ \end{pmatrix} 
+ a_{12}a_{21}a_{33}
+ +
+\sgn \begin{pmatrix}
+1& 2 &3\\
+1& 3 &2\\
+ \end{pmatrix} 
+ a_{11}a_{23}a_{32} 
+  \\%%%
+  &+
+\sgn  \begin{pmatrix}
+1& 2 &3\\
+3& 2 &1\\
+ \end{pmatrix}
+ a_{13}a_{22}a_{31} 
+ +
+\sgn  \begin{pmatrix}
+1& 2 &3\\
+2& 3 &1\\
+ \end{pmatrix}
+ a_{12}a_{23}a_{31} 
+  +
+\sgn   \begin{pmatrix}
+1& 2 &3\\
+3& 1 &2\\
+ \end{pmatrix}
+ a_{13}a_{21}a_{32} 
+ \\%%
+   &= a_{11}a_{22}a_{33}- a_{12}a_{21}a_{33}- a_{11}a_{23}a_{32} 
+   - a_{13}a_{22}a_{31}  + a_{12}a_{23}a_{31}  +  a_{13}a_{21}a_{32} 
+  \end{align*}
+  以上より
+  $
+ \det(A)= 
+ a_{11}a_{22}a_{33}+ a_{12}a_{23}a_{31}  +  a_{13}a_{21}a_{32} 
+- a_{11}a_{23}a_{32}     - a_{13}a_{22}a_{31}  - a_{12}a_{21}a_{33}
+  $
+  である.
+\end{exa}
+
+
+
+
+\subsection{行列式に関連する種々の概念\cite[3.6節]{M}}
+今回の授業では省略する. 
+気になる方は読んでほしい. 
+
+\begin{thebibliography}{n}
+\bibitem[教科書]{M}
+金子晃 線形代数講義 (サイエンス社)
+\end{thebibliography}
+ 
+
+\end{document}
