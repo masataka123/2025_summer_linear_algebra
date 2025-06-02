@@ -111,7 +111,7 @@
 -  (2025/05/15) 休講
 - 第4回 (2025/05/22) [第4回授業板書](https://masataka123.github.io/2025_summer_linear_algebra/material/4_授業板書.pdf)
 - 第5回 (2025/05/29) [第5回授業板書](https://masataka123.github.io/2025_summer_linear_algebra/material/5_授業板書.pdf)
-- 第6回 (2025/06/05) [中間レポート1](配布
+- 第6回 (2025/06/05) [中間レポート1](https://masataka123.github.io/2025_summer_linear_algebra/material/0_線形代数レポート1_20250605.pdf)配布
 - 第7回 (2025/06/12)
 - 第8回 (2025/06/19) 中間レポート1締切
 - (2025/06/26)  休講
