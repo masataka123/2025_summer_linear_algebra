@@ -36,7 +36,7 @@
 
 ## 中間レポート1に関して
 次の日時にレポートを配布します.
-- 内容: [中間レポート1](https://masataka123.github.io/2025_summer_linear_algebra/material/0_線形代数レポート1_20250605.pdf)
+- 内容: [中間レポート1](https://masataka123.github.io/2025_summer_linear_algebra/material/0_線形代数レポート1_20250605.pdf)
 - 配布日時: 2025年6月5日 
 - レポート締切: 2025年06月19日 23:59:00 (日本標準時刻, GMT+9)
 - レポート提出方法: 配布したレポート問題に解答し, CLEにて提出する. 
