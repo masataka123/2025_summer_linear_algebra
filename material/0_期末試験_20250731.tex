@@ -1,0 +1,497 @@
+\documentclass[dvipdfmx,a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+%\usepackage[dvipdfmx]{hyperref} %リンクを有効にする
+\usepackage{url} %同上
+\usepackage{amsmath,amssymb} %もちろん
+\usepackage{amsfonts,amsthm,mathtools} %もちろん
+\usepackage{braket,physics} %あると便利なやつ
+\usepackage{bm} %ラプラシアンで使った
+\usepackage[top=20truemm,bottom=30truemm,left=25truemm,right=25truemm]{geometry} %余白設定
+\usepackage{latexsym} %ごくたまに必要になる
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\usepackage{otf} %宗教上の理由でmin10が嫌いなので
+\usepackage{showkeys}\renewcommand*{\showkeyslabelformat}[1]{\fbox{\parbox{2cm}{ \normalfont\tiny\sffamily#1\vspace{6mm}}}}
+\usepackage[driverfallback=dvipdfm]{hyperref}
+
+
+\usepackage[all]{xy}
+\usepackage{amsthm,amsmath,amssymb,comment}
+\usepackage{amsmath}    % \UTF{00E6}\UTF{0095}°\UTF{00E5}\UTF{00AD}\UTF{00A6}\UTF{00E7}\UTF{0094}¨
+\usepackage{amssymb}  
+\usepackage{color}
+\usepackage{amscd}
+\usepackage{amsthm}  
+\usepackage{wrapfig}
+\usepackage{comment}	
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{pxrubrica}
+\usepackage{enumitem}
+\usepackage{mathrsfs} 
+
+\setstretch{1.2}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}} 
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}} 
+\newcommand{\Sin}{\text{Sin}^{-1}} 
+\newcommand{\Cos}{\text{Cos}^{-1}} 
+\newcommand{\Tan}{\text{Tan}^{-1}} 
+\newcommand{\invsin}{\text{Sin}^{-1}} 
+\newcommand{\invcos}{\text{Cos}^{-1}} 
+\newcommand{\invtan}{\text{Tan}^{-1}} 
+\newcommand{\Area}{\text{Area}}
+\newcommand{\vol}{\text{Vol}}
+\newcommand{\maru}[1]{\raise0.2ex\hbox{\textcircled{\tiny{#1}}}}
+\newcommand{\sgn}{{\rm sgn}}
+%\newcommand{\rank}{{\rm rank}}
+
+
+
+   %当然のようにやる．
+\allowdisplaybreaks[4]
+   %もちろん．
+%\title{第1回. 多変数の連続写像 (岩井雅崇, 2020/10/06)}
+%\author{岩井雅崇}
+%\date{2020/10/06}
+%ここまで今回の記事関係ない
+\usepackage{tcolorbox}
+\tcbuselibrary{breakable, skins, theorems}
+
+\theoremstyle{definition}
+\newtheorem{thm}{定理}
+\newtheorem{lem}[thm]{補題}
+\newtheorem{prop}[thm]{命題}
+\newtheorem{cor}[thm]{系}
+\newtheorem{claim}[thm]{主張}
+\newtheorem{dfn}[thm]{定義}
+\newtheorem{rem}[thm]{注意}
+\newtheorem{exa}[thm]{例}
+\newtheorem{conj}[thm]{予想}
+\newtheorem{prob}[thm]{問題}
+\newtheorem{rema}[thm]{補足}
+
+\DeclareMathOperator{\Ric}{Ric}
+\DeclareMathOperator{\Vol}{Vol}
+ \newcommand{\pdrv}[2]{\frac{\partial #1}{\partial #2}}
+ \newcommand{\drv}[2]{\frac{d #1}{d#2}}
+  \newcommand{\ppdrv}[3]{\frac{\partial #1}{\partial #2 \partial #3}}
+
+
+%ここから本文．
+\begin{document}
+\pagestyle{empty}
+
+
+
+\begin{center}
+{\LARGE 期末試験} \\
+
+{2025年度春夏学期 大阪大学 全学共通教育科目 線形代数学1 工(然56-110)}
+\end{center}
+
+\begin{flushright}
+ 岩井雅崇(いわいまさたか) 2025/07/31
+\end{flushright}
+
+
+%\vspace{2pt}
+%\begin{flushleft}
+%{ \large \underline{学籍番号: \hspace{4cm} 名前  \hspace{8cm} } }
+%\end{flushleft}
+
+%\begin{center}
+ %{\large 下の問題を解け. なお解答は配布した解答用紙に解答すること. }
+ %{\large 各問題の下に答えを書きこの用紙を提出してください. 問題は両面あります.}
+  %\end{center}
+  
+  \begin{center}
+下の問題を解け.  ただし解答に関しては答えのみならず, 答えを導出する過程をきちんと記すこと. 
+  \end{center}
+  
+  \begin{enumerate}[label={\Large \textbf{第}\arabic*\textbf{問}.}]
+ 
+\item 次の行列$A,B,C,D$のうち, 積が定義される全ての組み合わせを求め, その積を計算せよ.
+ $$
+  A= \begin{pmatrix} %33
+ 3\\
+ 5 \\
+ 2\\
+ \end{pmatrix} %%32
+ \text{, \,\,} 
+B= 
+ \begin{pmatrix} %14
+ -1& 3&2 \\
+ \end{pmatrix}  
+ \text{, \,\,} 
+ C=
+ \begin{pmatrix}
+ 2 \\
+1  \\
+ \end{pmatrix}
+  \text{, \,\,} 
+ D=
+   \begin{pmatrix}
+ 2 &2 \\
+0 &2 \\
+1&3 \\
+ \end{pmatrix}
+ $$
+ 
+ \item $2 \times 2$行列
+$
+A=\begin{pmatrix}
+a& b \\
+c& d \\
+\end{pmatrix}
+$とする. 
+ $
+\begin{array}{ccccc}
+f_A: &\R^2& \rightarrow & \R^2& \\
+&\begin{pmatrix}
+x \\ y
+ \end{pmatrix} & \longmapsto & 
+A
+\begin{pmatrix}
+x \\ y
+ \end{pmatrix}  = 
+ \begin{pmatrix}
+ax + by \\ cx + dy
+ \end{pmatrix}
+ &
+\end{array}
+$
+とおき, $A$を$f_A$に対応する行列という. 
+
+ 「135度反時計回りに回転し, $x$軸に関しての鏡映(反転)を行い, 45度反時計回りに回転する変換」を$g : \R^2 \to \R^2$とする. $g$に対応する$2 \times 2$行列を求めよ.  
+ % \begin{enumerate}[label=(\arabic*).]
+%   \setlength{\parskip}{0cm} % 段落間
+ % \setlength{\itemsep}{0cm} % 項目間
+%  \item 「$x$軸に関しての鏡映(反転)を行い, 135度反時計回りに回転する変換」に対応する$2 \times 2$行列を求めよ.
+%  \item 「$x$軸に関しての鏡映(反転)を行い, 135度反時計回りに回転し, さらに$x$軸に関しての鏡映(反転)を行う変換」を$g : \R^2 \to \R^2$とする. $g$は「$\alpha$度反時計回りに回転する変換」と同じである. $\alpha$の値を求めよ.   ただし$0 \leqq \alpha \leqq 360$とする.
+%  \end{enumerate}
+  
+
+\item 
+%\vspace{11pt}
+行列
+ % (1).
+%$
+% \begin{pmatrix}
+%1 &2&1 \\
+%2 & 1& 3\\
+%1&5 &0
+% \end{pmatrix}
+% $
+% (1).
+$ \begin{pmatrix}
+1&2&4\\
+0&1&4\\
+0&0&2 \\
+\end{pmatrix}
+ $
+の逆行列を求めよ. 
+
+
+\item 行基本変形と行列の簡約化を用いて, 次の連立1次方程式の解を求めよ.
+ $$
+ \left\{ 
+\begin{matrix}
+ x_1& +&2x_2 &  +&4x_3& - &6x_4 &= & -7\\
+3x_1&+&x_2& +&7x_3&+&7x_4&= & 9\\
+-x_1&+ &6x_2& + &4x_3&+&8x_4&=&1 \\
+ x_1&- &2x_2&   & &-&4x_4&=&-1 \\
+\end{matrix}
+\right.
+ $$
+ %$
+% \left\{ 
+%\begin{matrix}
+%x_1& &         &  +& 2x_3&- &x_4&+ & 2x_5&= 3 \\
+%2x_1&+&x_2& + &3x_3&-&x_4&-&x_5&= -1 \\
+%-x_1&+&3x_2& - &5x_3&+&4x_4&+&x_5&= -6 \\
+%\end{matrix}
+%\right.
+% $
+ 
+
+ 
+ 
+   \item  $\R^4$において
+$$
+\bm{a}_1=\begin{pmatrix}0\\ 1 \\ 0 \\0\end{pmatrix}, \quad
+\bm{a}_2=\begin{pmatrix}1 \\  1\\ 1 \\0\end{pmatrix},  \quad
+\bm{a}_3=\begin{pmatrix}0\\  1\\ 0 \\1\end{pmatrix}, \quad
+\bm{a}_4=\begin{pmatrix}1 \\ 0\\ 1 \\0\end{pmatrix}.
+$$
+とする. 次の問いに答えよ
+ \begin{enumerate}[label=(\arabic*).]
+   \setlength{\parskip}{0cm} 
+  \setlength{\itemsep}{0cm}
+  \item $\bm{a}_1, \bm{a}_2, \bm{a}_{3}$は線形独立か, それとも線形従属か? 理由とともに答えよ.
+  \item $\bm{a}_1, \bm{a}_2, \bm{a}_{4}$は線形独立か, それとも線形従属か? 理由とともに答えよ.
+  \item $\bm{a}_1, \bm{a}_2, \bm{a}_{3}, \bm{a}_4$は線形独立か, それとも線形従属か? 理由とともに答えよ. 
+ %\item $W = {\rm Span}(\bm{a}_1, \ldots, \bm{a}_4)= \{ \lambda_1\bm{a}_1 + \cdots +\lambda_4 \bm{a}_4 | \lambda_1, \ldots \lambda_4 \in\R \}$とする. $W$の次元を求め, $W$の線形部分空間としての基底を一組示せ. 
+\end{enumerate}
+
+  \begin{flushright}
+\LARGE{第6問に続く}
+\end{flushright}
+
+ \newpage
+ 
+   \item
+ 次の行列の行列式をそれぞれ求めよ. 
+  
+ (1). 
+ $
+ \begin{pmatrix}
+1& 1& 1&1&1\\
+ 1& 2  & 2&2&2\\
+1& 2 & 3&3&3\\
+1& 2& 3&4&4\\
+1& 2& 3&4&5\\
+ \end{pmatrix}
+ $ 
+   (2). 
+ $
+ \begin{pmatrix}
+   1& 0& 4& 3&0\\
+  3& 4& 0& 2&0\\
+  0& 1& 0  & 0&2\\
+  6& 0& 2 & 5&0\\
+  0& 0& 1 & 0&3\\
+ \end{pmatrix}
+  $
+
+ 
+ 
+ \item $4 \times 6$行列$A, B$を次で定める. 
+ $$
+A =
+\begin{pmatrix}
+1 & 0 & -1 & 0 & -2 & 1 \\
+0 & 1 & 1  & 0 & 1  & -2 \\
+-1 & 0 & 1 & 1 & 1  & 3 \\
+2 & 1 & -1 & 0 & -3 & 1
+\end{pmatrix}
+\quad  
+  B=
+\begin{pmatrix}
+1 & 0 & -1 & 0 & -2 & 0 \\
+0 & 1 & 1  & 0 & 1  & 0 \\
+0 & 0 & 0  & 1 & -1 & 0 \\
+0 & 0 & 0  & 0 & 0  & 1
+\end{pmatrix}
+$$
+\underline{ここで$B$は$A$の簡約化(行基本変形)によって得られる簡約行列である.}
+
+$
+ \begin{array}{cccc}
+A:&  \R^6&\rightarrow& \R^4 \\
+& \bm{x}&\longmapsto & A\bm{x}
+\end{array}
+$
+とする. この線形写像の像${\rm Image}A$と核${\rm Ker}A$の次元を求め, それらの線形部分空間としての基底を一組示せ. 
+
+ 
+
+\item  連立1次方程式
+ $$
+ \left\{ 
+\begin{matrix}
+x_1&  &  &  -& x_3&= & 0\\
+2x_1&+&\lambda x_2& -&x_3&= & 0\\
+(\lambda + 1)x_1& +&x_2& + &\lambda x_3&=&0\\
+%x_1& +& 3x_2 &  +& 2x_3&+ &4x_4&= & 5\\
+%2x_1&+&3x_2& +&x_3&+&3x_4&= & 6\\
+%& &6x_2& + &5x_3&+&10x_4&=&a \\
+\end{matrix}
+\right.
+ $$
+ が$x_1=x_2=x_3=0$以外の解を持つような$\lambda$の値を全て求めよ.
+% の解が存在するような$a$の値を全て求めよ.
+
+\item
+ 
+次の問題に答えよ. ただし解答に際し授業・教科書で証明を与えた定理に関しては自由に用いて良い. 
+%また$E_n$を$n$次単位行列とし, $O$をゼロ行列とする. 
+ただし$E_n$は$n$次単位行列とする. 
+また断りがなければ, 行列$A, B$の成分は実数であるとする. 
+
+ \begin{enumerate}[label=(\arabic*).]
+\setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm}
+ \item $n$次正方行列$A, B$について, $A$と$B$が正則ならば, $B^{-1}A^2 B^3A^{-1}$もまた正則行列であることを示せ. 
+ %  \item $n$次正方行列$A, B$について, $AB =E_n$ならば$AB=BA$であることを示せ.
+   %\item $2 \times 3$行列$C$と$3 \times 2$行列$D$であって, $CD=O$だが$DC = E_3$であるものの例を一つあげよ. 
+ \item $A$を$m \times n$行列とし, $A$で定義された線形写像
+$\begin{array}{cccc}
+A:&  \R^n&\rightarrow& \R^m \\
+& \bm{x}&\longmapsto & A\bm{x}
+\end{array}
+$
+とする. \\
+$\bm{x}_1, \bm{x}_2 \in {\rm  Ker}A$ならば$5\bm{x}_1-2\bm{x}_2 \in {\rm  Ker}A$であることを示せ. 
+%\item $A$を$1\times 10$行列とし, $A$で定義された線形写像$\begin{array}{cccc}A:&  \R^{10}&\rightarrow& \R^1\\& \bm{x}&\longmapsto & A\bm{x}\end{array}$とする. \\ある$\bm{x} \in R^{10}$があって$A \bm{x} \neq 0 \in \R$であるとき, ${\rm Ker} A$の次元を求めよ.
+% \item "実数"からなる$n$次正方行列$A$について, $A^7=E_n$ならば, $\det (A) = 1$であることを示せ. 
+ \item "実数"からなる$n$次正方行列$A$について, $^{t}A A=E_n$ならば, $\det (A) = \pm 1$であることを示せ.  ここで$^{t}A A$は$^{t}A $と$A$の積のことである.
+% \item  実数からなる$2$次正方行列$B$について, $^{t}B B=E_2$かつ$\det (B) =  1$ならば, ある実数$\theta$があって$B =  \begin{pmatrix}\cos \theta& -\sin \theta\\\sin \theta& \cos \theta\\\end{pmatrix}$ と表せることを示せ.
+\item  "実数"からなる$n$次正方行列$A$について, $A$が正則ならば, $A$の余因子行列$\tilde{A}$の行列式$\det(\tilde{A})$は$\det(A)^{n-1}$であることを示せ. 
+\item "有理数"からなる$n$次正方行列$A$について, $A$が正則ならば, 逆行列$A^{-1}$のどの成分も有理数であることを示せ. 
+\item "全ての成分が0と1"からなる正方行列$C$で$\det C=5$となるものを一つ構成せよ. ただし答えだけでなくその理由も書くこと. また行列$C$のサイズ(行の数)は自由に決めて良い. 
+%\item 1以上の整数からなる100次正方行列$C$で$\det C=-2024$となるものを一つ構成せよ. ただし答えだけでなくその理由も書くこと.
+ \end{enumerate} 
+
+  \end{enumerate}
+  
+
+  \begin{flushright}
+\LARGE{問題は以上である. }
+\end{flushright}
+
+ \end{document}
+ 
+ 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+ \vspace{11pt}
+ \vspace{11pt}
+  {\Large おまけ問題}  
+  
+  ある部屋に100人集められている. 別の部屋に100個のロッカーがあり, それぞれのロッカーには100人のうち1人の名前が書かれた紙が入れてある. 違うロッカーには違う名前の紙が入っている.
+
+順番を決め, 1人がロッカーの部屋に入り, 50個のロッカーを開ける.
+その中に自分の名前があれば、ロッカーを元の状態に戻し, 次の人がロッカー部屋に入り, 50個のロッカーを開ける.
+これを繰り返し, 100人が皆自分の名前を見つけられたらゲームは成功. 1人でも名前が見つけられなければゲームは失敗である.
+
+100人はゲームを始める前に議論し戦略を決めることができる. ただしゲームが始まったらお互いに話すこと・情報を伝えることはできない.  このゲームにおいて, 30\%以上の確率で成功する戦略を考えよ.
+
+\vspace{5pt}
+[補足]普通にランダムにロッカーを開ける戦略では成功する確率は$(\frac{1}{2})^{100}$となってしまう. 
+なおこの問題は100人の囚人問題と呼ばれている. 試験後解答が気になる方は調べてみると良い. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% またこの問題において, $m,n$を正の整数, $E_m$を$m$次の単位行列, $O_{n,m}$を$n\times m$型の零行列とする.
+ \begin{enumerate}
+\renewcommand{\labelenumi}{(\arabic{enumi}).}
+ \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm}
+   % \item $2\times 2$行列$A, B, C$で$ABC\neq CBA$となる例を一つあげよ. 
+    \item $2\times 2$行列$A, B$について, $AB$は零行列であるが, $A$も$B$も零行列でない行列$A,B$の例を一つあげよ. 
+   % \item $2\times 2$行列$A$について, $A^2=\begin{pmatrix}  1&  0 \\  0 &1 \end{pmatrix}$だが$A$は対角行列でない行列$A$の例を一つあげよ. 
+ \item $2\times 2$行列$A, B$について, $AB=\begin{pmatrix}  1&  0 \\  0 &1  \end{pmatrix}$ならば, $AB=BA$であることを示せ.
+ \item $2\times 2$行列$A, B, C$について, $\det(ABC) = \det(BAC)$であることを示せ.
+   \item $2\times 2$行列$A, B$について, $AB$が正則行列ならば, $A$も$B$も正則行列であることを示せ.
+ \end{enumerate} 
+ %     \item $2\times 2$行列$A, B$で$AB\neq BA$となる例を一つあげよ. 
+  % \item $2\times 2$行列$A$について, $A^2=\begin{pmatrix}  1&  0 \\  0 &1 \end{pmatrix}$だが$A$は対角行列でない行列$A$の例を一つあげよ. 
+    % \item $2\times 2$行列$A, B$について, $AB=\begin{pmatrix}  0&  0 \\  0 &0  \end{pmatrix}$であるが, $A$$B \neq \begin{pmatrix}  0&  0 \\  0 &0  \end{pmatrix}$である.
+          %\item $2\times 2$行列$A$で. $A$の各成分は実数であるが, $A$の全ての固有値が実数ではない複素数になるものの例をあげよ. 
+          %     \item $2\times 2$行列$A$で. $A$の各成分は実数であるが, $A$の全ての固有値が実数ではない複素数になるものの例をあげよ. 
+
+
+{\Large 第問}  
+ \vspace{11pt}
+ 
+   以下の(1)-(5)の各主張について, 正しい場合には証明を与え, 誤っている場合には反例をあげよ.  
+   
+   
+% またこの問題において, $m,n$を正の整数, $E_m$を$m$次の単位行列, $O_{n,m}$を$n\times m$型の零行列とする.
+ \begin{enumerate}
+\renewcommand{\labelenumi}{(\arabic{enumi}).}
+ \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm}
+     \item 行列$A, B$について,$A$と$B$がともに$2\times 2$行列ならば$AB=BA$である. 
+ \item $2\times 2$行列$A, B$について, $AB=\begin{pmatrix}  1&  0 \\  0 &1  \end{pmatrix}$ならば, $BA = \begin{pmatrix}  1&  0 \\  0 &1  \end{pmatrix}$である.
+ \item $2\times 2$行列$A, B$について, $AB=\begin{pmatrix}  0&  0 \\  0 &0  \end{pmatrix}$ならば, $B = \begin{pmatrix}  0&  0 \\  0 &0  \end{pmatrix}$である.
+ \item $2\times 2$行列$A, B, C$について, $\det(ABC) = \det(BAC)$である.
+ %\item $n$次正方行列$A$と$n\times m$行列$B$について, $A$が正則行列かつ$AB=O_{n,m}$ならば, $B=O_{n,m}$である.
+%  \item $n$次正方行列$A, B$について, $AB=O_{n,n}$ならば, $B=O_{n,n}$である.
+  %\item $n$次正方行列$A, B$について, $AB=E_n$ならば, $AB=BA$である.
+   \item $2\times 2$行列$A, B$について, $AB$が正則行列ならば, $A$も$B$も正則行列である.
+ %\item 「$n$次正方行列$A, B$について, $A$も$B$も正則行列であるならば, $AB$も正則行列である.」
+% \item $n$次正方行列$A, B, C$について, $\det(ABC) = \det(BAC)$である.
+ %\item 全ての成分が整数である$n$次正則行列$A$について, $\det(A) =\pm1$ならば, 逆行列$A^{-1}$の全ての成分は整数である.
+ %\item 全ての成分が整数である$n$次正則行列$A$について, 逆行列$A^{-1}$の全ての成分が整数であるならば, $\det(A) =\pm1$である.
+
+ \end{enumerate} 
+ 
+ ただし次の点に注意すること. 
+ \begin{enumerate}
+ \renewcommand{\labelenumi}{注意\arabic{enumi}.}
+ \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm}
+ \item 授業・教科書で証明を与えた定理に関しては自由に用いて良い. 
+ \item 反例とは「ある主張"AならばBである"について, それが成立しない例(つまりAを満たすがBを満たさない例)」のことである. 
+例えば「任意の実数$x$について, $x \geqq 0$ならば, $x+1=2$である」という主張は誤りである. その反例として$x=5$が挙げられる. なぜなら$x=5 \geqq0$ではあるが, $x+1 = 5 + 1 =6 \neq 2$であるためである. また$x=1$はこの主張の反例にはならない.
+\item 解答に関しては次の解答例を参考にせよ.
+   
+   \medskip
+   (問題例1) $2x =4$ならば$x=2$である.
+   
+   (解答例1) 正しい. $2x=4$ならば両辺に$\frac{1}{2}$をかけることで
+   $x =\frac{1}{2} \cdot 2x = \frac{1}{2}\cdot 4 = 2$となるからである.
+   
+   \medskip
+    (問題例2) $x^2 =4$ならば$x=2$である.
+   
+   (解答例2) 間違いである. 反例として$x=-2$が挙げられる. $x=-2$とすると$x^2=(-2)^2=4$であるが$x=-2 \neq 2$であるからである.    
+ 
+  \end{enumerate} 
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+{\Large 第問}  
+この問題は行列の対角化の応用を見る問題である. 
+
+フィボナッチ数列$\{a_{n} \}$を
+$$
+a_{n+2}=a_{n+1} + a_{n} \quad a_1=a_2=1
+$$
+とする. 
+また行列$A$と実数$\alpha, \beta$を次のように定める.
+$$
+A = \begin{pmatrix}  1& 1  \\  1 &0  \end{pmatrix}
+\quad
+\alpha = \frac{1 +\sqrt{5}}{2}
+\quad
+\beta = \frac{1 -\sqrt{5}}{2}
+$$
+ 次の問題に答えよ. 
+ \begin{enumerate}
+\renewcommand{\labelenumi}{(\arabic{enumi}).}
+ \setlength{\parskip}{0cm} % 段落間
+  \setlength{\itemsep}{0cm}
+  	\item $a_5$を求めよ.
+     \item 1以上の自然数$n$について
+     $
+     \begin{pmatrix}  a_{n+2} \\   a_{n+1} \end{pmatrix}
+     = A
+     \begin{pmatrix}  a_{n+1} \\   a_{n} \end{pmatrix}
+     $
+     であることを示せ.
+     \item 2以上の自然数$n$について
+     $
+     \begin{pmatrix}  a_{n} \\   a_{n-1} \end{pmatrix}
+     = A^{n-2}
+     \begin{pmatrix}  1 \\   1 \end{pmatrix}
+     $
+     であることを示せ.
+     \item $\alpha, \beta$は$A$の固有値であることをしめせ.
+     \item 固有値$\alpha,\beta$に関する固有ベクトルをそれぞれ求めよ.
+     \item $A^{n}$を求めよ.
+     \item (3)と(6)を用いてフィボナッチ数列の一般項$a_{n}$を$\alpha, \beta, n$を用いて表せ. 
+ \end{enumerate} 
+   \end{comment}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+
+ 
