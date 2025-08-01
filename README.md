@@ -87,8 +87,8 @@
 
 期末試験の採点を確定させました. 期末試験の問題と解答はこちらです.
 
- - [期末試験](https://masataka123.github.io/2024_summer_linear_algebra/material/0_期末試験_20250731.pdf) 
- - [期末試験解答](https://masataka123.github.io/2024_summer_linear_algebra/material/0_期末試験_解答_20250731.pdf)
+ - [期末試験](https://masataka123.github.io/2025_summer_linear_algebra/material/0_期末試験_20250731.pdf) 
+ - [期末試験解答](https://masataka123.github.io/2025_summer_linear_algebra/material/0_期末試験_解答_20250731.pdf)
 
 <!--
 - 期末試験には「普通の問題」と「おまけの問題」があります. 普通の問題はしっかり勉強すれば解ける問題です. おまけの問題は解けることを想定していない問題です. 面白いので出しました.  
